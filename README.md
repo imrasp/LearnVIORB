@@ -1,3 +1,14 @@
+
+To fix problem of EXPORT_PACKAGE_PATH
+```
+CMake Error at /opt/ros/kinetic/share/ros/core/rosbuild/private.cmake:102 (message):
+  [rosbuild] rospack found package "ORB_VIO" at "", but the current directory
+  is "/home/rasp/workspace/git/LearnVIORB/Examples/ROS/ORB_VIO".  You should
+  double-check your ROS_PACKAGE_PATH to ensure that packages are found in the
+
+```
+sudo ln -s /home/rasp/workspace/git/LearnVIORB/Examples/ROS/ORB_VIO /opt/ros/kinetic/share/ORB_VIO
+
 Realtime branch. 
 
 Modification: 
