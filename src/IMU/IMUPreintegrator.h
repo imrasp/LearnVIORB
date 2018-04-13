@@ -1,7 +1,7 @@
 #ifndef TVISLAM_IMUPREINTEGRATOR_H
 #define TVISLAM_IMUPREINTEGRATOR_H
 
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 
 #include "IMU/imudata.h"
 #include "so3.h"

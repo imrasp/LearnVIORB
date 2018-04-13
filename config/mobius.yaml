@@ -4,72 +4,48 @@
 test.RealTime: 1
 # Time for visual-inertial initialization
 test.VINSInitTime: 15.0
-
-# Modify test.InitVIOTmpPath and bagfile to the correct path
-# Path to save tmp files/results
-test.InitVIOTmpPath: "/home/rasp/workspace/LearnVIORB/tmp/"
-
 ## For good initialization (no movement at the beginning for some bag)
 test.DiscardTime: 0
-#bagfile: "/home/jp/TimeV1_01_easy.bag"
-## bad: V1_03_difficult(wrong), V2_03_difficult(lost)
-## not so good(cant close loop without loopclosure): V1_02_medium, V2_02_medium, MH_05_difficult
-## good: V1_01_easy, V2_01_easy, MH_01_easy, MH_02_easy, MH_03_medium, MH_04_difficult
 
-#test.DiscardTime: 18
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/MH_03_medium.bag"
-
-bagfile: "/home/rasp/workspace/LearnVIORB/datasets/MH_04_difficult.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/MH_05_difficult.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/MH_02_easy.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/MH_01_easy.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V2_02_medium.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V2_01_easy.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V1_02_medium.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V1_01_easy.bag"
-
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V1_03_difficult.bag"
-#bagfile: "/media/jp/JingpangPassport/3dataset/EuRoC-VIO/un_restamped/V2_03_difficult.bag"
-
-
-#######################################
+test.InitVIOTmpPath: "/home/rasp/workspace/LearnVIORB/tmp/"
+bagfile: "/home/rasp/workspace/LearnVIORB/datasets/car_enu.bag"
 
 imutopic: "/imu0"
 imagetopic: "/cam0/image_raw"
 
+Camera.delaytoimu: 0.07 #0.07
 
-# Timestamp shift. Timage = Timu + image_delay
-Camera.delaytoimu: 0
-
-# acc=acc*9.8, if below is 1
 IMU.multiplyG: 0
 
 # camera-imu frame transformation, Pi = Tic * Pc
 Camera.Tbc:
- [0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
-  0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
-  -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+ [0.0, 0.0, 1.0, 0.14,
+  1.0, 0.0, 0.0, -0.002,
+  0.0, 1.0, 0.0, -0.102,
   0.0, 0.0, 0.0, 1.0]
 
 # Local Window size
-LocalMapping.LocalWindowSize: 20
+LocalMapping.LocalWindowSize: 12
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
 #--------------------------------------------------------------------------------------------
 
-# Camera calibration and distortion parameters (OpenCV) 
-Camera.fx: 458.654
-Camera.fy: 457.296
-Camera.cx: 367.215
-Camera.cy: 248.375
 
-Camera.k1: -0.28340811
-Camera.k2: 0.07395907
-Camera.p1: 0.00019359
-Camera.p2: 0.00001762 
 
-Camera.width: 752
+# Camera calibration parameters (OpenCV) 
+Camera.fx: 408.762565
+Camera.fy: 463.665134
+Camera.cx:  407.244775
+Camera.cy: 252.187563
+
+# Camera distortion paremeters (OpenCV) --
+Camera.k1: -0.276515
+Camera.k2: 0.052479
+Camera.p1: -0.001320
+Camera.p2: 0.000480
+
+Camera.width: 848
 Camera.height: 480
 
 # Camera frames per second 

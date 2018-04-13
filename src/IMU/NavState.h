@@ -1,7 +1,7 @@
 #ifndef NAVSTATE_H
 #define NAVSTATE_H
 
-#include "Eigen/Geometry"
+#include "eigen3/Eigen/Geometry"
 #include "so3.h"
 
 namespace ORB_SLAM2
