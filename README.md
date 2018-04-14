@@ -7,8 +7,15 @@ CMake Error at /opt/ros/kinetic/share/ros/core/rosbuild/private.cmake:102 (messa
   double-check your ROS_PACKAGE_PATH to ensure that packages are found in the
 
 ```
-sudo ln -s /home/rasp/workspace/git/LearnVIORB/Examples/ROS/ORB_VIO /opt/ros/kinetic/share/ORB_VIO
+`sudo ln -s /home/rasp/workspace/git/LearnVIORB/Examples/ROS/ORB_VIO /opt/ros/kinetic/share/ORB_VIO`
 
+to Run 
+```
+rosparam set use_sim_time true
+rosbag play bag.bag --clock
+roslaunch /home/rasp/workspace/LearnVIORB/Examples/ROS/ORB_VIO/launch/euroc.launch
+
+```
 Realtime branch. 
 
 Modification: 
