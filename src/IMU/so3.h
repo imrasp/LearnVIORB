@@ -23,9 +23,9 @@
 #ifndef SOPHUS_SO3_H
 #define SOPHUS_SO3_H
 
-#include <Eigen/Core>
-#include <Eigen/StdVector>
-#include <Eigen/Geometry>
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/StdVector>
+#include <eigen3/Eigen/Geometry>
 
 
 namespace Sophus

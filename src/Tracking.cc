@@ -831,8 +831,10 @@ void Tracking::Track()
             if(bOK)
             {
 #ifndef TRACK_WITH_IMU
+//                cout << "NOT DEFINE TRACK_WITH_IMU \n";
                 bOK = TrackLocalMap();
 #else
+//                cout << "DEFINE TRACK_WITH_IMU \n";
                 if(!mpLocalMapper->GetVINSInited())
                     bOK = TrackLocalMap();
                 else
@@ -852,6 +854,12 @@ void Tracking::Track()
         }
         else
         {
+            // mbVO true means that there are few matches to MapPoints in the map. We cannot retrieve
+            // a local map and therefore we do not perform TrackLocalMap(). Once the system relocalizes
+            // the camera we will use the local map again.
+            //if(bOK && !mbVO)
+            //    bOK = TrackLocalMap();
+
             // Localization Mode: Local Mapping is deactivated
             cerr<<"Localization mode not supported yet"<<endl;
         }

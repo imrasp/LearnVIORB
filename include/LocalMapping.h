@@ -28,7 +28,7 @@
 #include "KeyFrameDatabase.h"
 
 #include <mutex>
-
+#include <iomanip>
 
 namespace ORB_SLAM2
 {

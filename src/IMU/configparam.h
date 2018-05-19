@@ -1,7 +1,7 @@
 #ifndef CONFIGPARAM_H
 #define CONFIGPARAM_H
 
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <opencv2/opencv.hpp>
 
 namespace ORB_SLAM2
