@@ -269,7 +269,7 @@ int main(int argc, char **argv)
 
 
     // Save camera trajectory
-    //SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM(config._tmpFilePath+"KeyFrameTrajectory.txt");
     SLAM.SaveKeyFrameTrajectoryNavState(config._tmpFilePath+"KeyFrameNavStateTrajectory.txt");
 
     cout<<endl<<endl<<"press any key to shutdown"<<endl;

@@ -24,6 +24,11 @@ public:
     static double GetImageDelayToIMU();
     static bool GetAccMultiply9p8();
 
+    static double GetAccelerometer_noise_density();
+    static double GetAccelerometer_random_walk();
+    static double GetGyroscope_noise_density();
+    static double GetGyroscope_random_walk();
+
     static double GetG(){return _g;}
 
     std::string _bagfile;
@@ -42,7 +47,14 @@ private:
     static Eigen::Matrix4d _EigTcb;
     static cv::Mat _MatTcb;
     static int _LocalWindowSize;
+
     static double _ImageDelayToIMU;
+
+    static double accelerometer_noise_density;
+    static double accelerometer_random_walk;
+    static double gyroscope_noise_density;
+    static double gyroscope_random_walk;
+
     static bool _bAccMultiply9p8;
 
     static double _g;

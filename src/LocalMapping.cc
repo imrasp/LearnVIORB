@@ -167,12 +167,14 @@ void LocalMapping::VINSInitThread()
     cerr<<"start VINSInitThread"<<endl;
     while(1)
     {
+        //cout << " KeyFrame::nNextId = " << KeyFrame::nNextId << endl;
         if(KeyFrame::nNextId > 2)
             if(!GetVINSInited() && mpCurrentKeyFrame->mnId > initedid)
             {
                 initedid = mpCurrentKeyFrame->mnId;
 
                 bool tmpbool = TryInitVIO();
+                //cout << "called TryInitVIO() from VINSInitThread() \n";
                 if(tmpbool)
                 {
                     //SetFirstVINSInited(true);
@@ -184,6 +186,7 @@ void LocalMapping::VINSInitThread()
         if(isFinished())
             break;
     }
+    cout << "break VINSInitThread\n";
 }
 
 bool LocalMapping::TryInitVIO(void)
@@ -522,6 +525,7 @@ bool LocalMapping::TryInitVIO(void)
 
     if(bVIOInited)
     {
+        //cout << "bVIOInited is true! \n";
         // Set NavState , scale and bias for all KeyFrames
         // Scale
         double scale = s_;
@@ -981,6 +985,7 @@ void LocalMapping::Run()
                         {
                             // Update map scale
                             mpMap->UpdateScale(mnVINSInitScale);
+                            cout << "... scale updated from localmapping run...\n";
                             // Set initialization flag
                             SetFirstVINSInited(true);
                         }

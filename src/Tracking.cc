@@ -1596,6 +1596,7 @@ bool Tracking::NeedNewKeyFrame()
 
 void Tracking::CreateNewKeyFrame()
 {
+    cout << "CreateNewKeyFrame\n";
     if(!mpLocalMapper->SetNotStop(true))
         return;
 

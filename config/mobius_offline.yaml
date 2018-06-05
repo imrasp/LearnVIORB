@@ -1,0 +1,120 @@
+%YAML:1.0
+
+system.baudrate: 921600
+system.uart_name: /dev/ttyUSB0
+
+#system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
+#system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
+system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5/"
+#system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi128"
+#system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
+#system.record_path: "/home/rasp/Documents/datasets/ds10"
+
+system.fps: 20
+system.sec: 60
+system.cameraid: 0
+system.gpstime: 0 #use gps time 1:yes 0:no
+system.vocabulary: "/home/rasp/workspace/LearnVIORB_mavlink/Vocabulary/ORBvoc.bin"
+
+# 1: realtime, 0: non-realtime
+test.RealTime: 1
+# Time for visual-inertial initialization
+test.VINSInitTime: 15.0
+## For good initialization (no movement at the beginning for some bag)
+test.DiscardTime: 0
+
+test.InitVIOTmpPath: "/home/rasp/workspace/LearnVIORB_mavlink/tmp/"
+bagfile: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds3.bag"
+
+imutopic: "/imu0"
+imagetopic: "/cam0/image_raw"
+
+# Timestamp shift. Timage = Timu + image_delay
+Camera.delaytoimu: 0.5 #0.07
+
+IMU.multiplyG: 0
+
+# camera-imu frame transformation, Pi = Tic * Pc
+Camera.Tbc:
+ [0.0, 0.0, 1.0, 0.14,
+  1.0, 0.0, 0.0, -0.002,
+  0.0, 1.0, 0.0, -0.102,
+  0.0, 0.0, 0.0, 1.0]
+# [-0.87428619,  0.43536022, -0.2146745,  -0.05801137,
+#   0.09528959, -0.27971607, -0.95534225, -0.27990003,
+#  -0.47596592, -0.85569878,  0.2030666,   0.12571249,
+#   0.0, 0.0, 0.0, 1.0]
+
+# Local Window size
+LocalMapping.LocalWindowSize: 12
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+
+
+# Camera calibration parameters (OpenCV) 
+Camera.fx: 408.762565
+Camera.fy: 463.665134
+Camera.cx: 407.244775
+Camera.cy: 252.187563
+
+# Camera distortion paremeters (OpenCV) --
+Camera.k1: -0.276515
+Camera.k2: 0.052479
+Camera.p1: -0.001320
+Camera.p2: 0.000480
+
+Camera.width: 848
+Camera.height: 480
+
+# Camera frames per second 
+Camera.fps: 20.0
+
+# IR projector baseline times fx (aprox.)
+Camera.bf: 40.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+ThDepth: 40.0
+
+# Deptmap values factor
+DepthMapFactor: 1.0
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid 
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast   
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize:2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
+

@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(ORB_SLAM2)
 
-IF(NOT CMAKE_BUILD_TYPE)
-  SET(CMAKE_BUILD_TYPE Release)
-ENDIF()
+IF (NOT CMAKE_BUILD_TYPE)
+    SET(CMAKE_BUILD_TYPE Release)
+ENDIF ()
 
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
@@ -14,17 +14,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-if(COMPILER_SUPPORTS_CXX11)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-   add_definitions(-DCOMPILEDWITHC11)
-   message(STATUS "Using flag -std=c++11.")
-elseif(COMPILER_SUPPORTS_CXX0X)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-   add_definitions(-DCOMPILEDWITHC0X)
-   message(STATUS "Using flag -std=c++0x.")
-else()
-   message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif()
+if (COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    add_definitions(-DCOMPILEDWITHC11)
+    message(STATUS "Using flag -std=c++11.")
+elseif (COMPILER_SUPPORTS_CXX0X)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+    add_definitions(-DCOMPILEDWITHC0X)
+    message(STATUS "Using flag -std=c++0x.")
+else ()
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif ()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
@@ -34,69 +34,96 @@ find_package(Pangolin REQUIRED)
 find_package(Cholmod REQUIRED)
 
 include_directories(
-${PROJECT_SOURCE_DIR}
-${PROJECT_SOURCE_DIR}/include
-${PROJECT_SOURCE_DIR}/src
-${EIGEN3_INCLUDE_DIR}
-${Pangolin_INCLUDE_DIRS}
-${CHOLMOD_INCLUDE_DIR}
+        ${PROJECT_SOURCE_DIR}
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/src
+        ${EIGEN3_INCLUDE_DIR}
+        ${Pangolin_INCLUDE_DIRS}
+        ${CHOLMOD_INCLUDE_DIR}
+        ${PROJECT_SOURCE_DIR}/Thirdparty/mavlink/include/mavlink/v2.0
+	${PROJECT_SOURCE_DIR}/Thirdparty/cpr
+	${PROJECT_SOURCE_DIR}/Thirdparjson
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 add_library(${PROJECT_NAME} SHARED
-src/System.cc
-src/Tracking.cc
-src/LocalMapping.cc
-src/LoopClosing.cc
-src/ORBextractor.cc
-src/ORBmatcher.cc
-src/FrameDrawer.cc
-src/Converter.cc
-src/MapPoint.cc
-src/KeyFrame.cc
-src/Map.cc
-src/MapDrawer.cc
-src/Optimizer.cc
-src/PnPsolver.cc
-src/Frame.cc
-src/KeyFrameDatabase.cc
-src/Sim3Solver.cc
-src/Initializer.cc
-src/Viewer.cc
+        src/System.cc
+        src/Tracking.cc
+        src/LocalMapping.cc
+        src/LoopClosing.cc
+        src/ORBextractor.cc
+        src/ORBmatcher.cc
+        src/FrameDrawer.cc
+        src/Converter.cc
+        src/MapPoint.cc
+        src/KeyFrame.cc
+        src/Map.cc
+        src/MapDrawer.cc
+        src/Optimizer.cc
+        src/PnPsolver.cc
+        src/Frame.cc
+        src/KeyFrameDatabase.cc
+        src/Sim3Solver.cc
+        src/Initializer.cc
+        src/Viewer.cc
 
-include/Frame.h
-include/KeyFrame.h
-include/Tracking.h
-include/LocalMapping.h
+        include/Frame.h
+        include/KeyFrame.h
+        include/Tracking.h
+        include/LocalMapping.h
 
-src/IMU/configparam.h
-src/IMU/configparam.cpp
+        src/IMU/configparam.h
+        src/IMU/configparam.cpp
 
-src/IMU/imudata.h
-src/IMU/imudata.cpp
-src/IMU/IMUPreintegrator.h
-src/IMU/IMUPreintegrator.cpp
-src/IMU/so3.cpp
-src/IMU/so3.h
-src/IMU/NavState.h
-src/IMU/NavState.cpp
+        src/IMU/imudata.h
+        src/IMU/imudata.cpp
+        src/IMU/IMUPreintegrator.h
+        src/IMU/IMUPreintegrator.cpp
+        src/IMU/so3.cpp
+        src/IMU/so3.h
+        src/IMU/NavState.h
+        src/IMU/NavState.cpp
 
-src/IMU/g2otypes.h
-src/IMU/g2otypes.cpp
-)
+        src/IMU/g2otypes.h
+        src/IMU/g2otypes.cpp
+
+#        src/MAV/autopilot_interface.cpp
+#        src/MAV/autopilot_interface.h
+#        src/MAV/mavlink_control.cpp
+#        src/MAV/mavlink_control.h
+#        src/MAV/serial_port.cpp
+#        src/MAV/serial_port.h
+#        src/MAV/imu_recorder.cpp
+#        src/MAV/imu_recorder.h
+#        src/MAV/camera_recorder.cpp
+#        src/MAV/camera_recorder.h
+        src/MAV/configParam.cpp
+        src/MAV/configParam.h
+#        src/MAV/log.cpp
+#        src/MAV/log.h
+#        src/MAV/time_recorder.cpp
+#        src/MAV/time_recorder.h
+        )
 
 target_link_libraries(${PROJECT_NAME}
-${OpenCV_LIBS}
-${EIGEN3_LIBS}
-${Pangolin_LIBRARIES}
-${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
-${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
-cholmod
-${CHOLMOD_LIBRARIES}
-${BLAS_LIBRARIES}
-${LAPACK_LIBRARIES}
-)
+        boost_date_time
+        boost_chrono
+        boost_system
+        boost_thread
+        boost_filesystem
+        ${OpenCV_LIBS}
+        ${EIGEN3_LIBS}
+        ${Pangolin_LIBRARIES}
+        ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
+	${PROJECT_SOURCE_DIR}/Thirdparty/cpr
+	${PROJECT_SOURCE_DIR}/Thirdparjson
+        cholmod
+        ${CHOLMOD_LIBRARIES}
+        ${BLAS_LIBRARIES}
+        ${LAPACK_LIBRARIES}
+        )
 
 ## Build examples
 

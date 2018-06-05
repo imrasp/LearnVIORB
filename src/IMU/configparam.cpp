@@ -21,6 +21,14 @@ ConfigParam::ConfigParam(std::string configfile)
 
     std::cout<<std::endl<<std::endl<<"Parameters: "<<std::endl;
 
+    //===========================================================
+    // ADDED by VILASINEE
+//    accelerometer_noise_density = fSettings["imu.accelerometer_noise_density"];
+//    accelerometer_random_walk = fSettings["imu.accelerometer_random_walk"];
+//    gyroscope_noise_density = fSettings["imu.gyroscope_noise_density"];
+//    gyroscope_random_walk = fSettings["imu.gyroscope_random_walk"];
+    //===========================================================
+
     _testDiscardTime = fSettings["test.DiscardTime"];
     _nVINSInitTime = fSettings["test.VINSInitTime"];
     std::cout<<"VINS initialize time: "<<_nVINSInitTime<<std::endl;
@@ -124,5 +132,14 @@ bool ConfigParam::GetAccMultiply9p8()
 {
     return _bAccMultiply9p8;
 }
+
+//static double GetAccelerometer_noise_density()
+//{ return accelerometer_noise_density; }
+//static double GetAccelerometer_random_walk()
+//{ return accelerometer_random_walk; }
+//static double GetGyroscope_noise_density()
+//{ return gyroscope_noise_density; }
+//static double GetGyroscope_random_walk()
+//{ return gyroscope_random_walk; }
 
 }

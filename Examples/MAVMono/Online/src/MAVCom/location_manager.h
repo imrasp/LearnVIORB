@@ -1,0 +1,9 @@
+//
+// Created by rasp on 29/4/2561.
+//
+
+#ifndef C_UART_IMU_LOCATION_MANAGER_H
+#define C_UART_IMU_LOCATION_MANAGER_H
+
+
+#endif //C_UART_IMU_LOCATION_MANAGER_H

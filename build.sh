@@ -48,3 +48,25 @@ echo ""
 
 #echo "Converting vocabulary to binary"
 #./tools/bin_vocabulary
+
+echo "Building Offline SLAM"
+
+cd Examples/MAVMono/Offline
+rm -r build
+mkdir build
+cd build
+cmake ..
+make -j2
+cd ../../../../
+
+
+echo "Building Online SLAM"
+
+cd Examples/MAVMono/Online
+rm -r build
+mkdir build
+cd build
+cmake ..
+make -j2
+cd ../../../../
+
