@@ -10,16 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/LearnVIORB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LearnVIORB.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mono_mav_live.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mono_mav_live.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mobius_offline2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/mobius_offline2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrameDrawer.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameDrawer.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IMU/imudata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/IMU/imudata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAV/configParam.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAV/configParam.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAV/configParam.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAV/configParam.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,6 +49,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Frame.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Frame.cc">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,10 +74,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="imudata.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="imudata.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
+            <state relative-caret-position="525">
               <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
             </state>
           </provider>
@@ -88,15 +88,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="417">
               <caret line="31" column="21" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configParam.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MAV/configParam.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -179,13 +170,13 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.h" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/mono_mav_live.cpp" />
         <option value="$PROJECT_DIR$/src/FrameDrawer.cc" />
         <option value="$PROJECT_DIR$/config/mobius_offline2.yaml" />
         <option value="$PROJECT_DIR$/src/IMU/imudata.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -377,12 +368,12 @@
       <workItem from="1528187448688" duration="6597000" />
       <workItem from="1528209816751" duration="6803000" />
       <workItem from="1528222451865" duration="679000" />
-      <workItem from="1528227164578" duration="9946000" />
+      <workItem from="1528227164578" duration="10078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118450000" />
+    <option name="totallyTimeSpent" value="118582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -677,13 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IMU/configparam.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -757,8 +741,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
+        <state relative-caret-position="525">
           <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
         </state>
       </provider>
     </entry>
