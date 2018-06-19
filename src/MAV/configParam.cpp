@@ -6,9 +6,9 @@ namespace MAV {
     int ConfigParam::fps;
     int ConfigParam::sec;
     int ConfigParam::gpstime;
-//    int ConfigParam::bEnableIMU;
-//    int ConfigParam::bEnableSLAM;
-//    int ConfigParam::bEnableCamera;
+    int ConfigParam::bEnableIMU;
+    int ConfigParam::bEnableSLAM;
+    int ConfigParam::bEnableCamera;
 
     string ConfigParam::uart_name;
     string ConfigParam::setting;
@@ -27,9 +27,9 @@ namespace MAV {
         cameraid = fSettings["system.camera1"];
         fps = fSettings["system.fps"];
         gpstime = fSettings["system.gpstime"];
-//        bEnableIMU = fSettings["system.useIMU"];
-//        bEnableSLAM = fSettings["system.useSLAM"];
-//        bEnableCamera = fSettings["system.usecamera"];
+        bEnableIMU = fSettings["system.useIMU"];
+        bEnableSLAM = fSettings["system.useSLAM"];
+        bEnableCamera = fSettings["system.usecamera"];
 
         cout << "\n-------------------------------------" << endl;
         cout << "Parameters :" << endl;

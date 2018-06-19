@@ -5,8 +5,8 @@ system.uart_name: /dev/ttyUSB0
 
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
-#system.record_path: "/home/rasp/Documents/datasets/ds11/"
-system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5-2"
+#system.record_path: "/home/rasp/Documents/datasets/ds11/ds11"
+system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5"
 #system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
 #system.record_path: "/home/rasp/Documents/datasets/ds8-bhidecsim"
 

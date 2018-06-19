@@ -32,33 +32,28 @@ int slamThread(std::string configfile);
 int main(int argc, char **argv) {
     try {
 
-        bool bCamera = true;
-        bool bIMU = true;
-        bool bSLAM = false;
+        std::cout << "\nConfigurating params \n";
+        MAV::ConfigParam configParam(argv[1]);
+        std::cout << "\nCreating log folder \n";
+        Log log(configParam.record_path);
+        std::cout << "\nStart IMU recorder thread \n";
+        IMU_Recorder imu_recorder(&configParam, true);
+        std::cout << "\nStart Mavlink_Control\n";
+        Mavlink_Control mavlinkControl(&configParam, &imu_recorder);
+        Camera_Recorder cameraRecorder(&configParam);
 
-//        std::cout << "\nConfigurating params \n";
-//        MAV::ConfigParam configParam(argv[1]);
-//        std::cout << "\nCreating log folder \n";
-//        Log log(configParam.record_path);
-//        std::cout << "\nStart IMU recorder thread \n";
-//        IMU_Recorder imu_recorder(&configParam, true);
-//        std::cout << "\nStart Mavlink_Control\n";
-//        Mavlink_Control mavlinkControl(&configParam, &imu_recorder);
-//        Camera_Recorder cameraRecorder(&configParam);
-//
-//        //create SLAM thread
-//
-//        if(bIMU) mavlinkControl.start();
-//
-//        if(bCamera) cameraRecorder.start();
-//
-//        mavlinkControl.cmd();
-//
-//        if(bCamera) cameraRecorder.stop();
-//
-//        if(bIMU) imu_recorder.stop();
-//
-//        mavlinkControl.stop();
+        //create SLAM thread
+        if(configParam.bEnableIMU) mavlinkControl.start();
+
+        if(configParam.bEnableCamera) cameraRecorder.start();
+
+        mavlinkControl.cmd();
+
+        if(configParam.bEnableCamera) cameraRecorder.stop();
+
+        if(configParam.bEnableIMU) imu_recorder.stop();
+
+        mavlinkControl.stop();
 
         return 0;
     }

@@ -113,6 +113,7 @@ cv::Mat FrameDrawer::DrawFrame()
                 }
                 else // This is match to a "visual odometry" MapPoint created in the last frame
                 {
+                    //cv.putText(im, vCurrentKeys[i]., (230, 50), font, 0.8, (0, 255, 0), 2, cv.LINE_AA)
                     cv::rectangle(im,pt1,pt2,cv::Scalar(255,0,0));
                     cv::circle(im,vCurrentKeys[i].pt,2,cv::Scalar(255,0,0),-1);
                     mnTrackedVO++;

@@ -44,8 +44,8 @@ namespace ORB_SLAM2 {
     //PIXHAWK
     //0.022906 & 5.0e-3 first close loop
     // 0.000195 * 0.000195*10 & 0.022906 * 0.022906*10
-    double IMUData::_gyrBiasRw2 = 0.000195 * 0.000195;// *100/*10*/;  //2e-12*1e3
-    double IMUData::_accBiasRw2 = 0.022906 * 0.022906;// *100/*10*/;  //4.5e-8*1e2
+    double IMUData::_gyrBiasRw2 = 0.000195 * 0.000195 *100/*10*/;  //2e-12*1e3
+    double IMUData::_accBiasRw2 = 0.022906 * 0.022906 *100/*10*/;  //4.5e-8*1e2
     Matrix3d IMUData::_gyrMeasCov =
             Matrix3d::Identity() * 0.024137 * 0.024137 / 0.005 /* 100*/;       // sigma_g * sigma_g / dt, ~6e-6*10
     Matrix3d IMUData::_accMeasCov =

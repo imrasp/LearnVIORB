@@ -42,7 +42,7 @@ include_directories(
         ${CHOLMOD_INCLUDE_DIR}
         ${PROJECT_SOURCE_DIR}/Thirdparty/mavlink/include/mavlink/v2.0
 	${PROJECT_SOURCE_DIR}/Thirdparty/cpr
-	${PROJECT_SOURCE_DIR}/Thirdparjson
+	${PROJECT_SOURCE_DIR}/Thirdparty/json
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -88,22 +88,8 @@ add_library(${PROJECT_NAME} SHARED
         src/IMU/g2otypes.h
         src/IMU/g2otypes.cpp
 
-#        src/MAV/autopilot_interface.cpp
-#        src/MAV/autopilot_interface.h
-#        src/MAV/mavlink_control.cpp
-#        src/MAV/mavlink_control.h
-#        src/MAV/serial_port.cpp
-#        src/MAV/serial_port.h
-#        src/MAV/imu_recorder.cpp
-#        src/MAV/imu_recorder.h
-#        src/MAV/camera_recorder.cpp
-#        src/MAV/camera_recorder.h
         src/MAV/configParam.cpp
         src/MAV/configParam.h
-#        src/MAV/log.cpp
-#        src/MAV/log.h
-#        src/MAV/time_recorder.cpp
-#        src/MAV/time_recorder.h
         )
 
 target_link_libraries(${PROJECT_NAME}
@@ -118,7 +104,7 @@ target_link_libraries(${PROJECT_NAME}
         ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 	${PROJECT_SOURCE_DIR}/Thirdparty/cpr
-	${PROJECT_SOURCE_DIR}/Thirdparjson
+	${PROJECT_SOURCE_DIR}/Thirdparty/json
         cholmod
         ${CHOLMOD_LIBRARIES}
         ${BLAS_LIBRARIES}

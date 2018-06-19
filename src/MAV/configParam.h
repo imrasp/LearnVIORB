@@ -25,9 +25,9 @@ namespace MAV {
         static string mission_route;
         static string record_path;
         static string vocabulary;
-//        static int bEnableCamera;
-//        static int bEnableIMU;
-//        static int bEnableSLAM;
+        static int bEnableCamera;
+        static int bEnableIMU;
+        static int bEnableSLAM;
 
         ConfigParam(std::string configfile);
 //        int get_bEnableIMU();
