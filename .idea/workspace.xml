@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,11 +50,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="45">
               <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -74,6 +84,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5">
+              <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="imudata.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
           <provider selected="true" editor-type-id="text-editor">
@@ -81,20 +100,6 @@
               <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configParam.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MAV/configParam.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="31" column="21" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mavlink_control.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="mono_mav_live.cpp" pinned="false" current-in-tab="false">
@@ -148,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Examples/ROS/ORB_VIO/src/ros_vio.cc" />
         <option value="$PROJECT_DIR$/src/Tracking.cc" />
         <option value="$PROJECT_DIR$/src/System.cc" />
@@ -167,7 +171,6 @@
         <option value="$PROJECT_DIR$/src/IMU/configparam.h" />
         <option value="$PROJECT_DIR$/src/IMU/configparam.cpp" />
         <option value="$PROJECT_DIR$/src/IMU/imudata.h" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.cpp" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.h" />
@@ -177,6 +180,8 @@
         <option value="$PROJECT_DIR$/config/mobius_offline2.yaml" />
         <option value="$PROJECT_DIR$/src/IMU/imudata.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -368,12 +373,12 @@
       <workItem from="1528187448688" duration="6597000" />
       <workItem from="1528209816751" duration="6803000" />
       <workItem from="1528222451865" duration="679000" />
-      <workItem from="1528227164578" duration="10078000" />
+      <workItem from="1528227164578" duration="10731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118582000" />
+    <option name="totallyTimeSpent" value="119235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -541,13 +546,6 @@
         <state relative-caret-position="-270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="41" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -661,13 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="62" selection-start-line="42" selection-start-column="62" selection-end-line="42" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IMU/configparam.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -748,8 +739,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="45">
           <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
         </state>
       </provider>
     </entry>

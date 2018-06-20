@@ -33,7 +33,7 @@ find_package(OpenCV 3.0.0 REQUIRED)
 #find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 # PCL #######################
-find_package(PCL 1.7 REQUIRED COMPONENTS common io)
+#find_package(PCL 1.7 REQUIRED COMPONENTS common io)
 
 include_directories(
         ${PROJECT_SOURCE_DIR}
@@ -53,7 +53,7 @@ set(LIBS
         ${OpenCV_LIBS}
         ${EIGEN3_LIBS}
         ${Pangolin_LIBRARIES}
-        ${PCL_LIBRARY_DIRS}
+#        ${PCL_LIBRARY_DIRS}
         ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
         ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
         ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
