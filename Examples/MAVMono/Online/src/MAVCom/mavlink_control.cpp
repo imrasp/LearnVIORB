@@ -222,7 +222,7 @@ int Mavlink_Control::check_route(){
     }
 
 //    cout << "lat,lon =" << lat << ", " << lon << endl;
-    cout << "current lat, lon = " << auttopilot_interface->current_messages.global_position_int.lat << ", " << autopilot_interface->current_messages.global_position_int.lon << endl;
+    cout << "current lat, lon = " << autopilot_interface->current_messages.global_position_int.lat << ", " << autopilot_interface->current_messages.global_position_int.lon << endl;
     if(lat != 0){
         //check distant between current and first waypoint
         geodetic_converter::GeodeticConverter* gc = new geodetic_converter::GeodeticConverter();
