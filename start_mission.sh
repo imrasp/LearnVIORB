@@ -1,0 +1,2 @@
+/home/rasp/workspace/LearnVIORB/Examples/MAVMono/Online/build/MonoMAV /home/rasp/workspace/LearnVIORB/config/odroid_mobius_online.yaml
+
