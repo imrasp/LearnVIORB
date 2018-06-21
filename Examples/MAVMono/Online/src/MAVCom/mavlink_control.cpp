@@ -121,6 +121,8 @@ int Mavlink_Control::start() {
     serial_port->start();
     autopilot_interface->start();
 
+    //waiting for first gps message
+    
     //check route
     int result = check_route();
     if (!result) { return -1; }
