@@ -5,8 +5,8 @@
 
 Log::Log(std::string name){
     //initialize Record folder
-    boost::filesystem::path dir("./" + name);
-    boost::filesystem::path dir2("./" + name + "/cam0");
+    boost::filesystem::path dir(name);
+    boost::filesystem::path dir2(name + "/cam0");
 
     if (!(boost::filesystem::exists(dir))) {
         std::cout << "Doesn't Exists" << std::endl;
