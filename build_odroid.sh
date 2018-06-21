@@ -1,3 +1,5 @@
+echo "Flashing newest version of software..."
+git pull
 
 echo "Configuring and building ORB_SLAM2 ..."
 
