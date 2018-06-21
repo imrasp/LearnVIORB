@@ -27,13 +27,13 @@ public:
     Camera_Recorder(ConfigParam *configParam_);
     ~Camera_Recorder();
 
-    void initializeCamera();
+    int initializeCamera();
     void query_maximum_resolution(cv::VideoCapture *camera, int &max_width, int &max_height);
     double frameDifference(cv::Mat &matFrameCurrent, cv::Mat &matFramePrevious);
     void cameraRecord();
     void cameraLoop();
     void action();
-    void start();
+    int start();
     void stop();
 
     cv::VideoCapture stream1;

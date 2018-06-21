@@ -9,8 +9,9 @@ Camera_Recorder::Camera_Recorder(ConfigParam *configParam_):configParam(configPa
 
 Camera_Recorder::~Camera_Recorder() {}
 
-void Camera_Recorder::initializeCamera() {
+int Camera_Recorder::initializeCamera() {
     stream1 = cv::VideoCapture(configParam->cameraid);
+    if(stream1.isOpened()) return 0;
 //    query_maximum_resolution(&stream1, max_width, max_height);
 //    max_width = 1280; max_height = 720;
 //    max_width = 640; max_height = 480;
@@ -18,6 +19,7 @@ void Camera_Recorder::initializeCamera() {
 
     lframe.open("./record_data/frame.csv");
     lframe << "timestamp" << "\n";
+    return 1;
 }
 
 //find maximum resolution
@@ -120,9 +122,10 @@ void Camera_Recorder::cameraRecord() {
     std::cout << "#Record = " << totalRecord << std::endl;
 }
 
-void Camera_Recorder::start() {
+int Camera_Recorder::start() {
     // initilize camera parameter
-    initializeCamera();
+    int con = initializeCamera();
+    if (!con) return 0;
 
     //create camera thread
     std::cout << "Start camera thread..." << std::endl;
@@ -131,6 +134,8 @@ void Camera_Recorder::start() {
     // create record thread
     std::cout << "Start record thread..." << std::endl;
     threadRecord = boost::thread(&Camera_Recorder::cameraRecord, this);
+
+    return 1;
 }
 
 void Camera_Recorder::stop() {

@@ -7,6 +7,7 @@
 #include<fstream>
 #include <iostream>
 #include<chrono>
+#include <unistd.h>
 
 #include"../../../../include/System.h"
 
@@ -28,12 +29,25 @@ using namespace std;
 
 int main(int argc, char **argv);
 int slamThread(std::string configfile);
+inline bool exists_test (const std::string& name);
 
 int main(int argc, char **argv) {
     try {
-
         std::cout << "\nConfigurating params \n";
         MAV::ConfigParam configParam(argv[1]);
+
+        //Check is configuration file is exist or not
+        {
+            if(!exists_test(configParam.mission_route)) {
+                cout << "Route file is not exist, Please upload route.";
+                return 0;
+            }
+            if (!exists_test(configParam.vocabulary)) {
+                cout << "Vocabulary file is not exist, Please contract admin.";
+                return 0;
+            }
+        }
+
         std::cout << "\nCreating log folder \n";
         Log log(configParam.record_path);
         std::cout << "\nStart IMU recorder thread \n";
@@ -45,7 +59,13 @@ int main(int argc, char **argv) {
         //create SLAM thread
         if(configParam.bEnableIMU) mavlinkControl.start();
 
-        if(configParam.bEnableCamera) cameraRecorder.start();
+        if(configParam.bEnableCamera) {
+            int con = cameraRecorder.start();
+            if(!con){
+                cout << "Camera is not working, Please turn on camera.";
+                return 0;
+            }
+        }
 
         mavlinkControl.cmd();
 
@@ -55,12 +75,18 @@ int main(int argc, char **argv) {
 
         mavlinkControl.stop();
 
-        return 0;
+        cout << "Mission Complete!";
+        return 1;
     }
     catch (int error) {
         fprintf(stderr, "threw exception %i \n", error);
         return error;
     }
+}
+
+inline bool exists_test (const std::string& name) {
+    ifstream f(name.c_str());
+    return f.good();
 }
 
 int slamThread(std::string configfile){

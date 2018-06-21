@@ -14,7 +14,7 @@ namespace MAV {
     string ConfigParam::setting;
     string ConfigParam::record_path;
     string ConfigParam::vocabulary;
-
+    string ConfigParam::mission_route;
 
     ConfigParam::ConfigParam(std::string configfile) {
         std::cout << " setting : " << configfile << std::endl;
@@ -23,6 +23,7 @@ namespace MAV {
         fSettings["system.uart_name"] >> uart_name;
         fSettings["system.record_path"] >> record_path;
         fSettings["system.vocabulary"] >> vocabulary;
+            fSettings["system.route"] >> mission_route;
         sec = fSettings["system.sec"];
         cameraid = fSettings["system.camera1"];
         fps = fSettings["system.fps"];
