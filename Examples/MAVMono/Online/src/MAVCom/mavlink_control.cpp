@@ -208,9 +208,9 @@ int Mavlink_Control::check_route(){
                 } else if (i == 1) {
                     lat = stod(temp); i++;
                 } else if (i == 2) {
-                    lon = stod(temp); i++;
-                } else if (i == 3) {
-                    alt = stod(temp); break;
+                    lon = stod(temp); break;
+//                } else if (i == 3) {
+//                    alt = stod(temp); break;
                 }
             }
 
@@ -221,6 +221,7 @@ int Mavlink_Control::check_route(){
 
     }
 
+    cout << "lat,lon =" << lat << ", " << lon << endl;
     if(lat != 0){
         //check distant between current and first waypoint
         geodetic_converter::GeodeticConverter* gc = new geodetic_converter::GeodeticConverter();
