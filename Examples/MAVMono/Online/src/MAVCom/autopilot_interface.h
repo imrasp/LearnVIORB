@@ -161,6 +161,7 @@ struct Time_Stamps
 	uint64_t home_position;
 	uint64_t system_time;
 	uint64_t odometry;
+    uint64_t gps_raw_int;
 
 	void
 	reset_timestamps()
@@ -178,6 +179,7 @@ struct Time_Stamps
 		home_position = 0;
         system_time = 0;
 		odometry = 0;
+		gps_raw_int =0;
 	}
 
 };
@@ -231,6 +233,9 @@ struct Mavlink_Messages {
 
     // System Time
     mavlink_system_time_t system_time;
+
+    // Gps Raw INT
+    mavlink_gps_raw_int_t gps_raw_int;
 
 	// System Parameters?
 
@@ -310,10 +315,15 @@ public:
 	void enable_takeoff(float height,float velocity);
 	void enable_land();
 	void enable_hold(double sec);
+	void enable_idle(double sec);
+
 	void set_message_interval( int msg_id, int hz );
 	void set_home();
 	void updateVisionEstimationPosition(mavlink_vision_position_estimate_t vpe);
-	void goto_ned_positon();
+	void goto_positon_ned(float x, float y, float z);
+	void goto_positon_offset_ned(float x, float y, float z);
+
+    bool IsInWaypointLocal(float radius);
 
     bool bTimeRef;
     pthread_cond_t timeRef, noTimeRef, unEmptyIMU, emptyIMU,

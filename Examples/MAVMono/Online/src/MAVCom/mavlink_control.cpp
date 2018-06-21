@@ -109,7 +109,11 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
 Mavlink_Control::~Mavlink_Control() {
 }
 
-void Mavlink_Control::start() {
+int Mavlink_Control::start() {
+    /* return:
+     * 1 success
+     * -1 mission dinined because location of the route is to far from current location.
+     * */
     /*
      * Start the port and autopilot_interface
      * This is where the port is opened, and read and write threads are started.
@@ -117,15 +121,9 @@ void Mavlink_Control::start() {
     serial_port->start();
     autopilot_interface->start();
 
-    // --------------------------------------------------------------------------
-    //   RUN INITIAL COMMANDS
-    // --------------------------------------------------------------------------
-    mavlink_set_position_target_local_ned_t sp;
-    mavlink_set_position_target_local_ned_t ip = autopilot_interface->
-            initial_position;
-    autopilot_interface->update_setpoint(sp);
-
-    // set time reference for imu data
+    //check route
+    int result = check_route();
+    if (!result) { return -1; }
 
     while (!autopilot_interface->bTimeRef) {
 
@@ -185,6 +183,141 @@ void Mavlink_Control::cmd() {
 // --------------------------------------------------------------------------
 
     return;
+}
+
+int Mavlink_Control::check_route(){
+    ifstream input(configParam->mission_route);
+    string line, temp;
+    float lat = 0, lon = 0, alt = 0;
+
+    // find first gps waypoint
+    if (input.is_open()) {
+        while (getline(input,line)) {
+            cout << line << endl;
+            stringstream s (line);
+            int i = 0;
+
+            string mode = "";
+
+            while(s>> temp) {
+                if ( i == 0 && temp == "gotogps" ) {
+                    i++;
+                } else if (i == 1) {
+                    lat = stod(temp); i++;
+                } else if (i == 2) {
+                    lon = stod(temp); i++;
+                } else if (i == 3) {
+                    alt = stod(temp); break;
+                }
+            }
+
+            if(i != 0) break;
+
+        }
+
+
+    }
+
+    if(lat != 0){
+        //check distant between current and first waypoint
+        geodetic_converter::GeodeticConverter* gc = new geodetic_converter::GeodeticConverter();
+        double distant = gc->distanceInKmBetweenEarthCoordinates(lat, lon, autopilot_interface->current_messages.global_position_int.lat, autopilot_interface->current_messages.global_position_int.lon);
+        //if distant is longer than 50 meters in x y direction
+        //return mission dinined because location of the route is to far from current location.
+        if (distant > 50.0){
+            return 0;
+        }
+
+    }
+}
+
+int Mavlink_Control::follow_route_file(){
+    cout << "read route from " << configParam->mission_route << endl;
+    ifstream input(configParam->mission_route);
+    string line, temp;
+    double param1, param2;
+
+    if (input.is_open()) {
+        while (getline(input,line)) {
+            cout << line << endl;
+            stringstream s (line);
+            int i = 0;
+            string mode = "";
+
+            // example : goto 9.0 8.0 7.0
+            //          goto > i == 0
+            //          9.0 > i == 1
+            //          8.0 > i == 2
+            //          7.0 > i == 3
+            while(s>> temp) {
+                cout << i << " : mode " << mode << " : " << temp << endl;
+                if ( i == 0 && temp == "takeoff" ){
+                    autopilot_interface->enable_takeoff(10.0, 0.5);
+                    //mode = "takeoff";
+                } else if ( i == 0 && temp == "arm" ){
+                    autopilot_interface->arm_control();
+                } else if ( i == 0 && temp == "disarm" ){
+                    autopilot_interface->disarm_control();
+                } else if ( i == 0 && temp == "land" ){
+                    autopilot_interface->enable_land();
+                }
+//                else if ( i == 0 && temp == "update_GPS_pose" ){
+//                    location_manager->setUpdateGPSPoseToMavlink(true);
+//                } else if ( i == 0 && temp == "disable_update_GPS_pose" ){
+//                    location_manager->setUpdateGPSPoseToMavlink(false);
+//                } else if ( i == 0 && temp == "update_SLAM_pose" ){
+//                    location_manager->setUpdateGPSPoseToMavlink(true);
+//                } else if ( i == 0 && temp == "disable_update_SLAM_pose" ){
+//                    location_manager->setUpdateGPSPoseToMavlink(true);
+//                }
+                else if ( i == 0 && temp == "hold" ){
+                    mode = "hold"; i++;
+                } else if ( i == 0 && temp == "gotoned" ){
+                    mode = "gotoned"; i++;
+                } else if ( i == 0 && temp == "gotogps" ){
+                    mode = "gotogps"; i++;
+                } else if ( i == 0 && temp == "sleep" ) {
+                    mode = "sleep"; i++;
+                } else if ( i == 0 && temp == "gotonedoffset" ){
+                    mode = "gotonedoffset"; i++;
+                } else if ( i == 0 && temp == "findgps" ) {
+                    int waiting_time = 60;
+                    //Checking for GPS
+                    while(autopilot_interface->current_messages.gps_raw_int.eph > 120 && autopilot_interface->current_messages.local_position_ned.z > -30 && waiting_time > 0){
+                        sleep(1);
+                        waiting_time--;
+                    }
+                    if(autopilot_interface->current_messages.gps_raw_int.eph > 120) return -1;
+                } else if ( i != 0 ) { // hold and goto // 1 condition
+                    if( i == 1 && mode == "hold" ){
+                        autopilot_interface->enable_hold(stod(temp));
+                    } else if( i == 1 && mode == "sleep" ){
+                        cout << "sleep for " << stod(temp) << " sec. \n";
+                        sleep(stod(temp));
+                    } else if ( i == 1 && (mode == "gotoned" || mode == "gotogps" || mode == "gotonedoffset" || mode == "takeoff")  ){
+                        param1 = stod(temp); i++;
+                    } else if (i != 1 ){
+                        if( i == 2 && mode == "takeoff") {
+//                            autopilot_interface->enable_takeoff(param1,stod(temp));
+                        } else if( i == 2){
+                            param2 = stod(temp); i++;
+                        } else if( i == 3 && mode == "gotoned" ){
+                            autopilot_interface->goto_positon_ned(param1,param2,stod(temp));
+                        } else if( i == 3 && mode == "gotogps" ){
+                            //Convert gps to ned
+
+                            //fly in ned location
+                            autopilot_interface->goto_positon_ned(param1,param2,stod(temp));
+                        } else if( i == 3 && mode == "gotonedoffset" ){
+                            autopilot_interface->goto_positon_offset_ned(param1,param2,stod(temp));
+                        }
+                    }
+                }
+            }
+        }
+    } else
+        cout << "ERROR: Cannot Open  File" << '\n';
+    input.close();
 }
 
 void Mavlink_Control::stop() {

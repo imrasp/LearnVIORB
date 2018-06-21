@@ -74,7 +74,7 @@ add_executable(MonoMAV_online
 	src/MAVCom/camera_recorder.h
 	src/MAVCom/imu_recorder.cpp
 	src/MAVCom/imu_recorder.h
-	src/MAVCom/location_manager.cpp
+        src/MAVCom/geodetic_converter.cpp
 	src/MAVCom/location_manager.h
 	src/MAVCom/log.cpp
 	src/MAVCom/log.h

@@ -460,6 +460,15 @@ read_messages() {
                     break;
                 }
 
+                case MAVLINK_MSG_ID_GPS_RAW_INT:
+                {
+                    //printf("MAVLINK_MSG_ID_HOME_POSITION\n");
+                    mavlink_msg_gps_raw_int_decode(&message, &(current_messages.gps_raw_int));
+                    current_messages.time_stamps.gps_raw_int = get_time_usec();
+                    this_timestamps.gps_raw_int = current_messages.time_stamps.gps_raw_int;
+                    break;
+                }
+
                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
                     mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
                     current_messages.time_stamps.system_time = get_time_usec();
@@ -1091,9 +1100,76 @@ void Autopilot_Interface::enable_land() {
 void Autopilot_Interface::enable_hold(double sec) {
 }
 
-void Autopilot_Interface::goto_ned_positon() {
 
+void Autopilot_Interface::enable_idle(double sec)
+{
+    printf("Mode Hold Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    setpoint.vx = 0;
+    setpoint.vy = 0;
+    setpoint.vz = 0;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_IDLE;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
+
+    update_setpoint(setpoint);
+    sleep(sec);
 }
+
+void Autopilot_Interface::goto_positon_ned(float x, float y, float z){
+
+    printf("Goto Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
+
+    setpoint.x = cp.x+x;
+    setpoint.y = cp.y+y;
+    setpoint.z = cp.z+z;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
+
+    update_setpoint(setpoint);
+    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
+    //wait message to update
+    while(cp.x+x != current_messages.position_target_local_ned.x && cp.y+y != current_messages.position_target_local_ned.y && cp.z+z != current_messages.position_target_local_ned.z){
+        sleep(1);
+    }
+
+    while(!IsInWaypointLocal(0.5)){
+        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
+        sleep(0.1);
+    }
+    cout << "reached! \n";
+}
+
+void Autopilot_Interface::goto_positon_offset_ned(float x, float y, float z){
+
+    printf("Goto Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
+    if (x != 0) setpoint.vx = x / fabs(x);
+    if (y != 0) setpoint.vy = y / fabs(y);
+    if (z != 0) setpoint.vz = z / fabs(z);
+    setpoint.x = x;
+    setpoint.y = y;
+    setpoint.z = z;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
+
+    update_setpoint(setpoint);
+    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
+    //wait message to update
+    while( cp.x+x != current_messages.position_target_local_ned.x && cp.y+y != current_messages.position_target_local_ned.y && cp.z+z != current_messages.position_target_local_ned.z){
+        cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
+        sleep(1);
+    }
+
+    while(!IsInWaypointLocal(0.5)){
+        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
+        sleep(0.1);
+    }
+    cout << "reached! \n";
+}
+
 
 // Request MSG streaming rate
 // param 1 = message ID and param 2 = interval in microseconds
@@ -1196,3 +1272,20 @@ uint64_t Autopilot_Interface::get_unixtimereference(uint32_t time){
         return (odroid_unix_ns_ref + ((time - time_boot_ms_ref) * 1e3));
 }
 
+bool Autopilot_Interface::IsInWaypointLocal(float radius)
+{
+    // Radios is in meters
+    float dx = current_messages.position_target_local_ned.x - current_messages.local_position_ned.x;
+    float dy = current_messages.position_target_local_ned.y - current_messages.local_position_ned.y;
+    float dz = current_messages.position_target_local_ned.z - current_messages.local_position_ned.z;
+    float distance = sqrtf(pow(dx,2) + pow(dy,2) + pow(dz,2));
+
+    //printf("distance to next position : %lf \n", distance);
+
+    if(distance < radius) {
+        //printf("Is in Waypoint");
+        return true;
+    }
+    else
+        return false;
+}

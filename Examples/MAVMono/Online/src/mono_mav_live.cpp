@@ -57,12 +57,18 @@ int main(int argc, char **argv) {
         Camera_Recorder cameraRecorder(&configParam);
 
         //create SLAM thread
-        if(configParam.bEnableIMU) mavlinkControl.start();
+        if(configParam.bEnableIMU) {
+            int result = mavlinkControl.start();
+            if (result == -1) {
+                cout << "Mission failed! Location of first waypoint in the route is to far from current location.";
+                return 0;
+            }
+        }
 
         if(configParam.bEnableCamera) {
             int con = cameraRecorder.start();
             if(!con){
-                cout << "Camera is not working, Please turn on camera.";
+                cout << "Camera is not working. Please turn on the camera.";
                 return 0;
             }
         }
