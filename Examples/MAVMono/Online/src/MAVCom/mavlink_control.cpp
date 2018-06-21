@@ -122,10 +122,11 @@ int Mavlink_Control::start() {
     autopilot_interface->start();
 
     //waiting for first gps message
-    
+
     //check route
     int result = check_route();
     if (!result) { return -1; }
+    cout << "route is checked complete! \n";
 
     while (!autopilot_interface->bTimeRef) {
 
