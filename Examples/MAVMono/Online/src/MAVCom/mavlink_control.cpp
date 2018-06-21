@@ -203,7 +203,7 @@ int Mavlink_Control::check_route(){
             string mode = "";
 
             while(s>> temp) {
-                if ( i == 0 && temp == "gotogps" ) {
+                if ( i == 0 && temp == "goto_gps" ) {
                     i++;
                 } else if (i == 1) {
                     lat = stod(temp); i++;
@@ -276,9 +276,9 @@ int Mavlink_Control::follow_route_file(){
 //                }
                 else if ( i == 0 && temp == "hold" ){
                     mode = "hold"; i++;
-                } else if ( i == 0 && temp == "gotoned" ){
+                } else if ( i == 0 && temp == "goto_ned" ){
                     mode = "gotoned"; i++;
-                } else if ( i == 0 && temp == "gotogps" ){
+                } else if ( i == 0 && temp == "goto_gps" ){
                     mode = "gotogps"; i++;
                 } else if ( i == 0 && temp == "sleep" ) {
                     mode = "sleep"; i++;
@@ -298,16 +298,16 @@ int Mavlink_Control::follow_route_file(){
                     } else if( i == 1 && mode == "sleep" ){
                         cout << "sleep for " << stod(temp) << " sec. \n";
                         sleep(stod(temp));
-                    } else if ( i == 1 && (mode == "gotoned" || mode == "gotogps" || mode == "gotonedoffset" || mode == "takeoff")  ){
+                    } else if ( i == 1 && (mode == "goto_ned" || mode == "goto_gps" || mode == "gotonedoffset" || mode == "takeoff")  ){
                         param1 = stod(temp); i++;
                     } else if (i != 1 ){
                         if( i == 2 && mode == "takeoff") {
 //                            autopilot_interface->enable_takeoff(param1,stod(temp));
                         } else if( i == 2){
                             param2 = stod(temp); i++;
-                        } else if( i == 3 && mode == "gotoned" ){
+                        } else if( i == 3 && mode == "goto_ned" ){
                             autopilot_interface->goto_positon_ned(param1,param2,stod(temp));
-                        } else if( i == 3 && mode == "gotogps" ){
+                        } else if( i == 3 && mode == "goto_gps" ){
                             //Convert gps to ned
 
                             //fly in ned location
