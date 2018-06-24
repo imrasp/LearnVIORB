@@ -25,6 +25,13 @@ public:
     uint64_t get_ns_time_ref_odroid(uint64_t time_ms);
     void record();
 
+    ofstream datasetimu;
+    std::string sep = ",";
+
+    std::queue<mavlink_highres_imu_t> copy_queue();
+    uint64_t pixhawk_to_unix_time_ns(uint64_t time_since_boot);
+    void write_first();
+
 private:
     MAV::ConfigParam *configParam;
 

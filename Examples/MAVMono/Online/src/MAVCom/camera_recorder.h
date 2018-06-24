@@ -45,6 +45,10 @@ public:
     std::queue<uint64_t> qTime;
     std::queue<cv::Mat> qFrame;
 
+    cv::Mat current_image;
+
+    pthread_mutex_t _mutexGrabFrame =  PTHREAD_MUTEX_INITIALIZER;
+
 private:
     ConfigParam *configParam;
 

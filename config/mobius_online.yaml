@@ -12,9 +12,10 @@ system.sec: 60
 system.usecamera: 1 #1:Enable camera 0:Disable
 system.useIMU: 1 #1:Enable IMU 0:Disable
 system.useSLAM: 1 #1:Enable SLAM 0:Disable
-system.cameraid: 0
-system.gpstime: 0 #use gps time 1:yes 0:no
+system.cameraid: 1
+system.gpstime: 1 #use gps time 1:yes 0:no
 system.vocabulary: "/home/rasp/workspace/LearnVIORB_mavlink/Vocabulary/ORBvoc.bin"
+system.route: "/home/rasp/workspace/LearnVIORB/route.txt"
 
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"

@@ -11,7 +11,7 @@ Camera_Recorder::~Camera_Recorder() {}
 
 int Camera_Recorder::initializeCamera() {
     stream1 = cv::VideoCapture(configParam->cameraid);
-    if(stream1.isOpened()) return 0;
+    if(!stream1.isOpened()) return 0;
 //    query_maximum_resolution(&stream1, max_width, max_height);
 //    max_width = 1280; max_height = 720;
 //    max_width = 640; max_height = 480;
@@ -66,16 +66,20 @@ void Camera_Recorder::cameraLoop() {
     stream1.set(CV_CAP_PROP_FPS, configParam->fps);
 
     while (!time_to_exit) {
+
+        pthread_mutex_lock(&_mutexGrabFrame);
         stream1 >> matFrameForward;
         timestampcamera_ns = boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count());
         //std::cout << "frame @ timestamp = " << timestampcamera_ns << std::endl;
         matFrameForward.convertTo(matFrameForward, CV_8U);
         cv::cvtColor(matFrameForward, matFrameForward, CV_BGR2GRAY);
+        pthread_mutex_unlock(&_mutexGrabFrame);
 
         pthread_mutex_lock(&_mutexFrameCam1Last);
         qFrame.push(matFrameForward);
         qTime.push(timestampcamera_ns);
+
         pthread_cond_signal(&frameQueueCondNotempty);
         pthread_mutex_unlock(&_mutexFrameCam1Last);
 
@@ -105,6 +109,7 @@ void Camera_Recorder::cameraRecord() {
         }
         recFrameForward = qFrame.front();
         timestampcamera = qTime.front();
+
         qFrame.pop();
         qTime.pop();
         if(qFrame.empty()) {

@@ -1,35 +1,10 @@
 /home/rasp/Downloads/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/rasp/workspace/LearnVIORB
--- The C compiler identification is GNU 5.4.0
--- The CXX compiler identification is GNU 5.4.0
--- Check for working C compiler: /usr/bin/cc
--- Check for working C compiler: /usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
--- Check for working CXX compiler: /usr/bin/c++
--- Check for working CXX compiler: /usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Detecting CXX compile features
--- Detecting CXX compile features - done
 Build type: Debug
--- Performing Test COMPILER_SUPPORTS_CXX11
--- Performing Test COMPILER_SUPPORTS_CXX11 - Success
--- Performing Test COMPILER_SUPPORTS_CXX0X
--- Performing Test COMPILER_SUPPORTS_CXX0X - Success
 -- Using flag -std=c++11.
-CMake Error at CMakeLists.txt:31 (find_package):
-  Could not find a configuration file for package "OpenCV" that is compatible
-  with requested version "3.3.1".
-
-  The following configuration files were considered but not accepted:
-
-    /home/rasp/opencv-3.0.0/cmake/OpenCVConfig.cmake, version: unknown
-    /usr/local/share/OpenCV/OpenCVConfig.cmake, version: 3.0.0
-    /usr/share/OpenCV/OpenCVConfig.cmake, version: 2.4.9.1
-
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/rasp/workspace/LearnVIORB/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+-- Found Eigen3: /usr/local/include/eigen3 (Required is at least version "3.1.0") 
+-- Found CHOLMOD: /usr/include/suitesparse  
+-- Configuring done
+WARNING: Target "ORB_SLAM2" requests linking to directory "/home/rasp/workspace/LearnVIORB/Thirdparty/cpr".  Targets may link only to libraries.  CMake is dropping the item.
+WARNING: Target "ORB_SLAM2" requests linking to directory "/home/rasp/workspace/LearnVIORB/Thirdparty/json".  Targets may link only to libraries.  CMake is dropping the item.
+-- Generating done
+-- Build files have been written to: /home/rasp/workspace/LearnVIORB/cmake-build-debug

@@ -126,10 +126,8 @@ int Mavlink_Control::start() {
     //check route
     int result = check_route();
     if (!result) { return -1; }
-    cout << "route is checked complete! \n";
 
     while (!autopilot_interface->bTimeRef) {
-
 
         pthread_mutex_lock(&autopilot_interface->mutexTimeRef);
         pthread_cond_wait(&autopilot_interface->timeRef, &autopilot_interface->mutexTimeRef);
@@ -168,22 +166,19 @@ void Mavlink_Control::cmd() {
 
     autopilot_interface->arm_control();
 
-    usleep(100); // give some time to let it sink in
-    cout << " waiting for " << configParam->sec << " sec.\n";
-    // stack imu in queue for 60 seconds
-    sleep(configParam->sec);
+    follow_route_file();
 
     autopilot_interface->disarm_control();
 
-// --------------------------------------------------------------------------
-//   STOP OFFBOARD MODE
-// --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    //   STOP OFFBOARD MODE
+    // --------------------------------------------------------------------------
 
     autopilot_interface->disable_offboard_control();
 
-// --------------------------------------------------------------------------
-//   END OF COMMANDS
-// --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    //   END OF COMMANDS
+    // --------------------------------------------------------------------------
 
     return;
 }
@@ -222,7 +217,7 @@ int Mavlink_Control::check_route(){
     }
 
 //    cout << "lat,lon =" << lat << ", " << lon << endl;
-    cout << "current lat, lon = " << autopilot_interface->current_messages.global_position_int.lat << ", " << autopilot_interface->current_messages.global_position_int.lon << endl;
+//    cout << "current lat, lon = " << autopilot_interface->current_messages.global_position_int.lat << ", " << autopilot_interface->current_messages.global_position_int.lon << endl;
     if(lat != 0){
         //check distant between current and first waypoint
         geodetic_converter::GeodeticConverter* gc = new geodetic_converter::GeodeticConverter();

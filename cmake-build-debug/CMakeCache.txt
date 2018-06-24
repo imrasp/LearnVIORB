@@ -14,6 +14,24 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a library.
+AMD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libamd.so
+
+//Path to a library.
+CAMD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcamd.so
+
+//Path to a library.
+CCOLAMD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libccolamd.so
+
+//Path to a file.
+CHOLMOD_INCLUDE_DIR:PATH=/usr/include/suitesparse
+
+//Path to a library.
+CHOLMOD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcholmod.so
+
+//Path to a library.
+CHOLMOD_METIS_LIBRARY:FILEPATH=CHOLMOD_METIS_LIBRARY-NOTFOUND
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -188,20 +206,49 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Path to a library.
+COLAMD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcolamd.so
+
+//Path to a file.
+EIGEN3_INCLUDE_DIR:PATH=/usr/local/include/eigen3
+
 //Value Computed by CMake
 ORB_SLAM2_BINARY_DIR:STATIC=/home/rasp/workspace/LearnVIORB/cmake-build-debug
+
+//Dependencies for the target
+ORB_SLAM2_LIB_DEPENDS:STATIC=general;boost_date_time;general;boost_chrono;general;boost_system;general;boost_thread;general;boost_filesystem;general;opencv_videostab;general;opencv_videoio;general;opencv_video;general;opencv_superres;general;opencv_stitching;general;opencv_shape;general;opencv_photo;general;opencv_objdetect;general;opencv_ml;general;opencv_imgproc;general;opencv_imgcodecs;general;opencv_highgui;general;opencv_hal;general;opencv_flann;general;opencv_features2d;general;opencv_core;general;opencv_calib3d;general;pangolin;general;/home/rasp/workspace/LearnVIORB/Thirdparty/DBoW2/lib/libDBoW2.so;general;/home/rasp/workspace/LearnVIORB/Thirdparty/g2o/lib/libg2o.so;general;/home/rasp/workspace/LearnVIORB/Thirdparty/cpr;general;/home/rasp/workspace/LearnVIORB/Thirdparty/json;general;cholmod;general;/usr/lib/x86_64-linux-gnu/libcholmod.so;general;/usr/lib/x86_64-linux-gnu/libamd.so;general;/usr/lib/x86_64-linux-gnu/libcolamd.so;general;/usr/lib/x86_64-linux-gnu/libcamd.so;general;/usr/lib/x86_64-linux-gnu/libccolamd.so;general;/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so;
 
 //Value Computed by CMake
 ORB_SLAM2_SOURCE_DIR:STATIC=/home/rasp/workspace/LearnVIORB
 
+//Path where debug 3rdparty OpenCV dependencies are located
+OpenCV_3RDPARTY_LIB_DIR_DBG:PATH=/usr/local/share/OpenCV/3rdparty/lib
+
+//Path where release 3rdparty OpenCV dependencies are located
+OpenCV_3RDPARTY_LIB_DIR_OPT:PATH=/usr/local/share/OpenCV/3rdparty/lib
+
+OpenCV_CONFIG_PATH:FILEPATH=/usr/local/share/OpenCV
+
 //The directory containing a CMake configuration file for OpenCV.
-OpenCV_DIR:PATH=OpenCV_DIR-NOTFOUND
+OpenCV_DIR:PATH=/usr/local/share/OpenCV
+
+//Path where debug OpenCV libraries are located
+OpenCV_LIB_DIR_DBG:PATH=
+
+//Path where release OpenCV libraries are located
+OpenCV_LIB_DIR_OPT:PATH=
+
+//The directory containing a CMake configuration file for Pangolin.
+Pangolin_DIR:PATH=/usr/local/lib/cmake/Pangolin
 
 //Path to a program.
 ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
+
+//Path to a library.
+SUITESPARSECONFIG_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
 
 
 ########################
@@ -355,6 +402,22 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 COMPILER_SUPPORTS_CXX0X:INTERNAL=1
 //Test COMPILER_SUPPORTS_CXX11
 COMPILER_SUPPORTS_CXX11:INTERNAL=1
+//ADVANCED property for variable: EIGEN3_INCLUDE_DIR
+EIGEN3_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//Details about finding CHOLMOD
+FIND_PACKAGE_MESSAGE_DETAILS_CHOLMOD:INTERNAL=[/usr/include/suitesparse][/usr/lib/x86_64-linux-gnu/libcholmod.so;/usr/lib/x86_64-linux-gnu/libamd.so;/usr/lib/x86_64-linux-gnu/libcolamd.so;/usr/lib/x86_64-linux-gnu/libcamd.so;/usr/lib/x86_64-linux-gnu/libccolamd.so;/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so][v()]
+//Details about finding Eigen3
+FIND_PACKAGE_MESSAGE_DETAILS_Eigen3:INTERNAL=[/usr/local/include/eigen3][TRUE][v(3.1.0)]
+//ADVANCED property for variable: OpenCV_3RDPARTY_LIB_DIR_DBG
+OpenCV_3RDPARTY_LIB_DIR_DBG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_3RDPARTY_LIB_DIR_OPT
+OpenCV_3RDPARTY_LIB_DIR_OPT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_CONFIG_PATH
+OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIB_DIR_DBG
+OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIB_DIR_OPT
+OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_getconf
 ProcessorCount_cmd_getconf-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl

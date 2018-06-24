@@ -353,6 +353,8 @@ public:
     uint32_t time_boot_ms_ref;
     bool b_unixtimereference, bDynamicTimeRef;
 
+
+
 private:
 
 	Serial_Port *serial_port;

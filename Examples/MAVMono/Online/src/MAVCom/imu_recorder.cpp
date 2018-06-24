@@ -6,11 +6,18 @@
 #include "geodetic_converter.cpp"
 
 IMU_Recorder::IMU_Recorder(MAV::ConfigParam *configParam_, bool active_) : active(active_),time_to_exit(false),configParam(configParam_) {
-
+    std::cout << "creating files for recording messages\n";
+    if (configParam->gpstime) {
+        datasetimu.open("./record_data/imu0.csv");
+        datasetimu << "timestamp" << sep << "omega_x" << sep << "omega_y" << sep << "omega_z" << sep << "alpha_x" << sep
+                   << "alpha_y" << sep << "alpha_z" << "\n";
+    }
 }
 
 IMU_Recorder::~IMU_Recorder() {
-
+    if (configParam->gpstime) {
+        datasetimu.close();
+    }
 }
 
 void IMU_Recorder::stop() {
@@ -29,26 +36,32 @@ void IMU_Recorder::start(Autopilot_Interface *autopilot_interface_) {
 
 }
 
+void IMU_Recorder::write_first(){
+    datasetimu << pixhawk_to_unix_time_ns(autopilot_interface->queueIMU.front().time_usec) << sep
+               << autopilot_interface->queueIMU.front().xgyro << sep
+               << autopilot_interface->queueIMU.front().ygyro << sep
+               << autopilot_interface->queueIMU.front().zgyro << sep
+               << autopilot_interface->queueIMU.front().xacc << sep
+               << autopilot_interface->queueIMU.front().yacc << sep
+               << autopilot_interface->queueIMU.front().zacc << endl;
+
+    autopilot_interface->queueIMU.pop();
+}
+
+std::queue<mavlink_highres_imu_t> IMU_Recorder::copy_queue(){
+    return autopilot_interface->queueIMU;
+}
+
+uint64_t IMU_Recorder::pixhawk_to_unix_time_ns(uint64_t time_since_boot){
+    uint64_t timestamp_ms = ref_system_time.time_unix_usec + (time_since_boot - (ref_system_time.time_boot_ms * 1000));
+    return timestamp_ms * 1000;
+}
+
 void IMU_Recorder::record(){
-    // write out queue
-    std::string sep = ",";
-    ofstream datasetimu, datasetimu2, datasetimu3, datasetimu4, datasetimu5, datasetgps, datasetgpsned, datasetOdometry, datasetAttitude;
-    double gpsx, gpsy, gpsz;
-    geodetic_converter::GeodeticConverter *geodeticConverter = new geodetic_converter::GeodeticConverter();
-
-    std::cout << "creating files for recording messages\n";
-    if (configParam->gpstime) {
-        datasetimu.open("./record_data/imu0.csv");
-    }
-
-    if (configParam->gpstime) {
-        datasetimu << "timestamp" << sep << "omega_x" << sep << "omega_y" << sep << "omega_z" << sep << "alpha_x" << sep
-                   << "alpha_y" << sep << "alpha_z" << "\n";
-    }
 
     pthread_mutex_lock(&autopilot_interface->mutexIMU);
     pthread_cond_wait(&autopilot_interface->unEmptyIMU, &autopilot_interface->mutexIMU);
-pthread_mutex_unlock(&autopilot_interface->mutexIMU);
+    pthread_mutex_unlock(&autopilot_interface->mutexIMU);
 
 
     while (!time_to_exit){// || !autopilot_interface->queueIMU.empty()) {
@@ -56,25 +69,9 @@ pthread_mutex_unlock(&autopilot_interface->mutexIMU);
         if(autopilot_interface->queueIMU.empty())
             pthread_cond_wait(&autopilot_interface->unEmptyIMU, &autopilot_interface->mutexIMU);
 
-        uint64_t timestamp_ms = ref_system_time.time_unix_usec + (autopilot_interface->queueIMU.front().time_usec -
-                                                                  (ref_system_time.time_boot_ms * 1000));
-        uint64_t timestamp_ns = timestamp_ms * 1000;
-
-
         if (configParam->gpstime) {
-            datasetimu << timestamp_ns << sep
-                       << autopilot_interface->queueIMU.front().xgyro << sep
-                       << autopilot_interface->queueIMU.front().ygyro << sep
-                       << autopilot_interface->queueIMU.front().zgyro << sep
-                       << autopilot_interface->queueIMU.front().xacc << sep
-                       << autopilot_interface->queueIMU.front().yacc << sep
-                       << autopilot_interface->queueIMU.front().zacc << endl;
+            write_first();
         }
-
-        autopilot_interface->queueIMU.pop();
-        autopilot_interface->queueIMUtime.pop();
-        autopilot_interface->queueIMUUnixRefTime.pop();
-        pthread_mutex_unlock(&autopilot_interface->mutexIMU);
     }
 }
 
