@@ -5,8 +5,10 @@
 #include<iostream>
 #include<algorithm>
 #include<fstream>
-#include <iostream>
 #include<chrono>
+#include<cstdio>//to pause console screen
+#include <typeinfo>
+
 
 #include"../../../../include/System.h"
 
@@ -170,7 +172,8 @@ int main(int argc, char **argv) {
     getchar();
 
     // Stop all threads
-    SLAM.Shutdown();
+    cout << "shuting down...";
+//    SLAM.Shutdown();
 
     return 0;
 }

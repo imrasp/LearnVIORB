@@ -90,7 +90,8 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
      * otherwise the vehicle will go into failsafe.
      *
      */
-    autopilot_interface = new Autopilot_Interface(serial_port);
+    location_manager = new Location_Manager();
+    autopilot_interface = new Autopilot_Interface(serial_port, location_manager);
 
     /*
      * Setup interrupt signal handler
@@ -102,6 +103,8 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
      */
     serial_port_quit = serial_port;
     autopilot_interface_quit = autopilot_interface;
+
+    location_manager = new Location_Manager();
 
 
 }
@@ -121,12 +124,23 @@ int Mavlink_Control::start() {
     serial_port->start();
     autopilot_interface->start();
 
-    //waiting for first gps message
 
+    //waiting for first gps message
+    cout << "waiting for GPS signal \n";
+    int count = 120;
+    while (!location_manager->isGeodeticInitialize() && count > 0){
+        sleep(1);
+        --count;
+    }
+    if (!location_manager->isGeodeticInitialize())
+    {
+        return -1;
+    }
     //check route
     int result = check_route();
-    if (!result) { return -1; }
+    if (!result) { return -2; }
 
+    // waiting for reference time
     while (!autopilot_interface->bTimeRef) {
 
         pthread_mutex_lock(&autopilot_interface->mutexTimeRef);
@@ -220,8 +234,7 @@ int Mavlink_Control::check_route(){
 //    cout << "current lat, lon = " << autopilot_interface->current_messages.global_position_int.lat << ", " << autopilot_interface->current_messages.global_position_int.lon << endl;
     if(lat != 0){
         //check distant between current and first waypoint
-        geodetic_converter::GeodeticConverter* gc = new geodetic_converter::GeodeticConverter();
-        double distant = gc->distanceInKmBetweenEarthCoordinates(lat, lon, autopilot_interface->current_messages.global_position_int.lat, autopilot_interface->current_messages.global_position_int.lon);
+        double distant = location_manager->distanceInKmBetweenEarthCoordinates(lat, lon, autopilot_interface->current_messages.global_position_int.lat, autopilot_interface->current_messages.global_position_int.lon);
         //if distant is longer than 50 meters in x y direction
         //return mission dinined because location of the route is to far from current location.
         if (distant > 50.0){

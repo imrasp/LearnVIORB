@@ -75,7 +75,7 @@ using namespace std;
 #include "serial_port.h"
 #include "../../../src/MAV/configParam.h"
 #include "imu_recorder.h"
-#include "geodetic_converter.cpp"
+#include "location_manager.h"
 
 
 using namespace MAV;
@@ -102,6 +102,7 @@ public:
     Autopilot_Interface *autopilot_interface_quit;
     Serial_Port *serial_port_quit;
     void quit_handler( int sig );
+    Location_Manager *location_manager;
 private:
     Serial_Port *serial_port;
     Autopilot_Interface *autopilot_interface;

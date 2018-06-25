@@ -34,7 +34,7 @@ inline bool exists_test (const std::string& name);
 
 int main(int argc, char **argv) {
     try {
-        std::cout << "\nConfigurating params \n";
+        std::cout << "\n Configurating params \n";
         MAV::ConfigParam configParam(argv[1]);
 
         //Check is configuration file is exist or not
@@ -62,8 +62,11 @@ int main(int argc, char **argv) {
         if(configParam.bEnableIMU) {
             int result = mavlinkControl.start();
             if (result == -1) {
-                cout << "Mission failed! Location of first waypoint in the route is to far from current location.";
+                cout << "Mission failed! Cannot find GPS signal. Please check GPS module.";
                 return 0;
+            } else if (result == -2) {
+                    cout << "Mission failed! Location of first waypoint in the route is to far from current location.";
+                    return 0;
             }
         }
 

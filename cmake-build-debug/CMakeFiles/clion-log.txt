@@ -1,8 +1,6 @@
 /home/rasp/Downloads/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/rasp/workspace/LearnVIORB
 Build type: Debug
 -- Using flag -std=c++11.
--- Found Eigen3: /usr/local/include/eigen3 (Required is at least version "3.1.0") 
--- Found CHOLMOD: /usr/include/suitesparse  
 -- Configuring done
 WARNING: Target "ORB_SLAM2" requests linking to directory "/home/rasp/workspace/LearnVIORB/Thirdparty/cpr".  Targets may link only to libraries.  CMake is dropping the item.
 WARNING: Target "ORB_SLAM2" requests linking to directory "/home/rasp/workspace/LearnVIORB/Thirdparty/json".  Targets may link only to libraries.  CMake is dropping the item.

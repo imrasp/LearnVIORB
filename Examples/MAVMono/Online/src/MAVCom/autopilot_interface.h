@@ -56,6 +56,7 @@
 // ------------------------------------------------------------------------------
 
 #include "serial_port.h"
+#include "location_manager.h"
 
 #include <signal.h>
 #include <time.h>
@@ -274,7 +275,7 @@ class Autopilot_Interface
 
 public:
 	Autopilot_Interface();
-	Autopilot_Interface(Serial_Port *serial_port_);
+	Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manager_);
 	~Autopilot_Interface();
 
 	char reading_status;
@@ -358,7 +359,7 @@ public:
 private:
 
 	Serial_Port *serial_port;
-
+	Location_Manager *location_manager;
 	bool time_to_exit;
 
     pthread_t read_tid;

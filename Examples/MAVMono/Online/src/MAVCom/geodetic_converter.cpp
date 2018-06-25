@@ -165,21 +165,15 @@ namespace geodetic_converter {
             ecef2Geodetic(x, y, z, latitude, longitude, altitude);
         }
 
-        double distanceInKmBetweenEarthCoordinates(double lat1, double lon1, double lat2, double lon2) {
-            double earthRadiusKm = 6371;
-
-            double dLat = deg2Rad(lat2-lat1);
-            double dLon = deg2Rad(lon2-lon1);
-
-            lat1 = deg2Rad(lat1);
-            lat2 = deg2Rad(lat2);
-
-            double a = sin(dLat/2) * sin(dLat/2) +
-                    sin(dLon/2) * sin(dLon/2) * cos(lat1) * cos(lat2);
-            double c = 2 * atan2(sqrt(a), sqrt(1-a));
-            return earthRadiusKm * c;
+        inline
+        double rad2Deg(const double radians) {
+            return (radians / M_PI) * 180.0;
         }
 
+        inline
+        double deg2Rad(const double degrees) {
+            return (degrees / 180.0) * M_PI;
+        }
     private:
         inline Eigen::Matrix3d nRe(const double lat_radians, const double lon_radians) {
             const double sLat = sin(lat_radians);
@@ -201,15 +195,7 @@ namespace geodetic_converter {
             return ret;
         }
 
-        inline
-        double rad2Deg(const double radians) {
-            return (radians / M_PI) * 180.0;
-        }
 
-        inline
-        double deg2Rad(const double degrees) {
-            return (degrees / 180.0) * M_PI;
-        }
 
         double initial_latitude_;
         double initial_longitude_;

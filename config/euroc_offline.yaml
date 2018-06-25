@@ -2,7 +2,7 @@
 
 system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
-system.record_path: "/home/rasp/Documents/datasets/MH_01_easy/offline_dataset"
+system.record_path: "/home/rasp/Documents/datasets/MH_01_easy_cut"
 system.fps: 20
 system.sec: 60
 system.cameraid: 0

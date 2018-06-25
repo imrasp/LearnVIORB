@@ -181,7 +181,7 @@ set_yaw_rate(float yaw_rate, mavlink_set_position_target_local_ned_t &sp) {
 //   Con/De structors
 // ------------------------------------------------------------------------------
 Autopilot_Interface::
-Autopilot_Interface(Serial_Port *serial_port_) {
+Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manager_): location_manager(location_manager_) {
     // initialize attributes
     write_count = 0;
 
@@ -320,19 +320,11 @@ read_messages() {
                     current_messages.time_stamps.local_position_ned = get_time_usec();
                     this_timestamps.local_position_ned = current_messages.time_stamps.local_position_ned;
 
-                    uint64_t localPosunixreftime = get_unixtimereference(current_messages.local_position_ned.time_boot_ms) * 1000; //milliseconds since system boot
-                    timestampLocalPos_ns = boost::lexical_cast<uint64_t>(
-                            std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                    std::chrono::system_clock::now().time_since_epoch()).count());
+                    location_manager->set_local_position(current_messages.local_position_ned.time_boot_ms,
+                                                         current_messages.local_position_ned.x,
+                                                         current_messages.local_position_ned.y,
+                                                         current_messages.local_position_ned.z);
 
-                    if(bTimeRef) {
-                        pthread_mutex_lock(&mutexLocalPos);
-                        queueLocalPos.push(current_messages.local_position_ned);
-                        queueLocalPostime.push(timestampLocalPos_ns);
-                        queueLocalPosUnixRefTime.push(localPosunixreftime);
-                        pthread_cond_signal(&unEmptyLocalPos);
-                        pthread_mutex_unlock(&mutexLocalPos);
-                    }
 
                     break;
                 }
@@ -342,20 +334,13 @@ read_messages() {
                     mavlink_msg_global_position_int_decode(&message, &(current_messages.global_position_int));
                     current_messages.time_stamps.global_position_int = get_time_usec();
                     this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
-
-                    uint64_t gpsunixreftime = get_unixtimereference(current_messages.global_position_int.time_boot_ms) * 1000; //milliseconds since system boot
-                    timestampgps_ns = boost::lexical_cast<uint64_t>(
-                            std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                    std::chrono::system_clock::now().time_since_epoch()).count());
-
-                    if(bTimeRef) {
-                        pthread_mutex_lock(&mutexGPS);
-                        queueGPS.push(current_messages.global_position_int);
-                        queueGPStime.push(timestampgps_ns);
-                        queueGPSUnixRefTime.push(gpsunixreftime);
-                        pthread_cond_signal(&unEmptyGPS);
-                        pthread_mutex_unlock(&mutexGPS);
+                    if(!location_manager->isGeodeticInitialize()){
+                        location_manager->set_initial_geodetic_pose(current_messages.global_position_int.time_boot_ms,
+                                                                    (double)current_messages.global_position_int.lat,
+                                                                    (double)current_messages.global_position_int.lon,
+                                                                    (double)current_messages.global_position_int.alt);
                     }
+
                     break;
                 }
 
@@ -481,7 +466,7 @@ read_messages() {
                         odroid_unix_ns_ref = ns;
                         time_boot_ms_ref = current_messages.system_time.time_boot_ms * 1000;
 
-                        cout << "odroid_unix_ns_ref & time_boot_ms_ref are " << ns << " and " << time_boot_ms_ref << endl;
+//                        cout << "odroid_unix_ns_ref & time_boot_ms_ref are " << ns << " and " << time_boot_ms_ref << endl;
                         //set_unixtimereference(current_messages.system_time);
                         bDynamicTimeRef = false;
 

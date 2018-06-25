@@ -3,7 +3,6 @@
 // @djangogirl /Bangkok
 
 #include "imu_recorder.h"
-#include "geodetic_converter.cpp"
 
 IMU_Recorder::IMU_Recorder(MAV::ConfigParam *configParam_, bool active_) : active(active_),time_to_exit(false),configParam(configParam_) {
     std::cout << "creating files for recording messages\n";

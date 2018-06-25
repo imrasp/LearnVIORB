@@ -398,6 +398,7 @@ void System::Reset()
 
 void System::Shutdown()
 {
+    cout<<"Shuting down SLAM ...\n";
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
     mpViewer->RequestFinish();
