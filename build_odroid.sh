@@ -1,4 +1,5 @@
 echo "Flashing newest version of software..."
+cd /home/odroid/workspace/LearnVIORB/
 git pull
 
 echo "Configuring and building ORB_SLAM2 ..."
@@ -14,7 +15,7 @@ rm -r build
 mkdir build
 cd build
 cmake ..
-make -j2
+make
 
 
 echo "Building Online SLAM"
@@ -24,5 +25,5 @@ rm -r build
 mkdir build
 cd build
 cmake ..
-make -j2
+make 
 

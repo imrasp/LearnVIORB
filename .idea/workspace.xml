@@ -12,9 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build_odroid.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build_odroid.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,20 +25,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="configParam.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MAV/configParam.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="359">
               <caret line="55" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build_odroid.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build_odroid.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -181,7 +179,6 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/config/odroid_mobius_online.yaml" />
-        <option value="$PROJECT_DIR$/build_odroid.sh" />
         <option value="$PROJECT_DIR$/start_mission.sh" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/imu_recorder.h" />
@@ -205,6 +202,7 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" />
+        <option value="$PROJECT_DIR$/build_odroid.sh" />
       </list>
     </option>
   </component>
@@ -411,12 +409,12 @@
       <workItem from="1528222451865" duration="679000" />
       <workItem from="1528227164578" duration="49321000" />
       <workItem from="1529821313762" duration="6432000" />
-      <workItem from="1529884334757" duration="39439000" />
+      <workItem from="1529884334757" duration="39816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203696000" />
+    <option name="totallyTimeSpent" value="204073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="-4" width="1855" height="1084" extended-state="6" />
@@ -651,13 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build_odroid.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -831,6 +822,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build_odroid.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
