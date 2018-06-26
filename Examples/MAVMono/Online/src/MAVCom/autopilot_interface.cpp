@@ -325,9 +325,9 @@ read_messages() {
                                                              current_messages.local_position_ned.x,
                                                              current_messages.local_position_ned.y,
                                                              current_messages.local_position_ned.z);
-                        std::cout << "LOCAL_NED_POSITION = " <<current_messages.local_position_ned.x << ", " <<
-                                current_messages.local_position_ned.y << ", " <<
-                                current_messages.local_position_ned.z << std::endl;
+//                        std::cout << "LOCAL_NED_POSITION = " <<current_messages.local_position_ned.x << ", " <<
+//                                current_messages.local_position_ned.y << ", " <<
+//                                current_messages.local_position_ned.z << std::endl;
                     }
 
                     break;
@@ -433,29 +433,6 @@ read_messages() {
                     this_timestamps.home_position = current_messages.time_stamps.home_position;
                     break;
                 }
-                //odometry
-                case MAVLINK_MSG_ID_ODOMETRY: { //331
-                    printf("MAVLINK_MSG_ID_ODOMETRY\n");
-                    mavlink_msg_odometry_decode(&message, &(current_messages.odometry));
-                    current_messages.time_stamps.odometry = get_time_usec();
-                    this_timestamps.odometry = current_messages.time_stamps.odometry;
-
-                    uint64_t odometryunixreftime = get_unixtimereference(current_messages.odometry.time_usec); //microseconds since system boot
-                    timestampOdometry_ns = boost::lexical_cast<uint64_t>(
-                            std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                    std::chrono::system_clock::now().time_since_epoch()).count());
-
-                    if(bTimeRef) {
-                        pthread_mutex_lock(&mutexOdometry);
-                        queueOdometry.push(current_messages.odometry);
-                        queueOdometrytime.push(timestampOdometry_ns);
-                        queueOdometryUnixRefTime.push(odometryunixreftime);
-                        pthread_cond_signal(&unEmptyOdometry);
-                        pthread_mutex_unlock(&mutexOdometry);
-                    }
-
-                    break;
-                }
 
                 case MAVLINK_MSG_ID_GPS_RAW_INT:
                 {
@@ -467,7 +444,7 @@ read_messages() {
                 }
 
                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
-                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
+//                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
                     mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
                     current_messages.time_stamps.system_time = get_time_usec();
                     this_timestamps.system_time = current_messages.time_stamps.system_time;

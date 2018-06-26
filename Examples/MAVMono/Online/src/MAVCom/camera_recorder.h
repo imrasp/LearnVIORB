@@ -48,6 +48,7 @@ public:
     cv::Mat current_image;
 
     pthread_mutex_t _mutexGrabFrame =  PTHREAD_MUTEX_INITIALIZER;
+    pthread_cond_t grabaFrame = PTHREAD_COND_INITIALIZER;
 
 private:
     ConfigParam *configParam;

@@ -25,7 +25,7 @@ namespace MAV {
         fSettings["system.vocabulary"] >> vocabulary;
             fSettings["system.route"] >> mission_route;
         sec = fSettings["system.sec"];
-        cameraid = fSettings["system.camera1"];
+        cameraid = fSettings["system.cameraid"];
         fps = fSettings["system.fps"];
         gpstime = fSettings["system.gpstime"];
         bEnableIMU = fSettings["system.useIMU"];

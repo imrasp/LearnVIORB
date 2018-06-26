@@ -28,6 +28,7 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
     std::cout << "Finish reading SLAM config file...\n";
 
     //create result file
+    std::cout << "create SLAM result file \n";
     std::ofstream visionpose;
     visionpose.open(mavconfigParam->record_path + "/slam_pose.csv");
 
@@ -43,12 +44,15 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
     cv::Mat matFrame;
     std::vector<ORB_SLAM2::IMUData> vimuData;
 
+    std::cout << "grab first frame \n";
     while (!time_to_exit) {
         // grab image
         pthread_mutex_lock(&camera_recorder->_mutexGrabFrame);
+        pthread_cond_wait(&camera_recorder->grabaFrame, &camera_recorder->_mutexGrabFrame);
         matFrame = camera_recorder->matFrameForward.clone();
         timestampcamera_ns = camera_recorder->timestampcamera_ns;
         pthread_mutex_unlock(&camera_recorder->_mutexGrabFrame);
+        std::cout << "grab frame for SLAM \n";
 
         // grab IMUs
         std::queue<mavlink_highres_imu_t> imu = imu_recorder->copy_queue();

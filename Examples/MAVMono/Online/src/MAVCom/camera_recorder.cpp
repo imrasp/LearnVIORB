@@ -74,6 +74,7 @@ void Camera_Recorder::cameraLoop() {
         //std::cout << "frame @ timestamp = " << timestampcamera_ns << std::endl;
         matFrameForward.convertTo(matFrameForward, CV_8U);
         cv::cvtColor(matFrameForward, matFrameForward, CV_BGR2GRAY);
+        pthread_cond_signal(&grabaFrame);
         pthread_mutex_unlock(&_mutexGrabFrame);
 
         pthread_mutex_lock(&_mutexFrameCam1Last);

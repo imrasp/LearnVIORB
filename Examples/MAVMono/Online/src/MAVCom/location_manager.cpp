@@ -29,7 +29,8 @@ Location_Manager::~Location_Manager() {
 void Location_Manager::set_initial_geodetic_pose() {
 
     while(true) {
-        if (c_local_timestamp < c_global_timestamp) {
+        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
+        if (c_local_timestamp < c_global_timestamp && c_local_timestamp > 0) {
 
             pthread_mutex_lock(&mutex_localpose);
             pthread_mutex_lock(&mutex_globalpose);
@@ -64,7 +65,8 @@ void Location_Manager::set_initial_geodetic_pose() {
             initializeGeodetic = true;
 
             std::cout << "\n\n initialize geodetic position complete with \n"
-                         "GPS position : " << c_lat << ", " << c_lon << ", " << c_alt << std::endl
+                      << "timestamp : " << c_global_timestamp << std::endl
+                      << "GPS position : " << c_lat << ", " << c_lon << ", " << c_alt << std::endl
                       << "NED position : " << init_nedx << ", " << init_nedy << ", " << init_nedz
                       << "\n ------------------------------------------------ \n\n";
 
@@ -74,7 +76,8 @@ void Location_Manager::set_initial_geodetic_pose() {
     }
 }
 
-void Location_Manager::set_local_position(uint64_t timestamp, double x, double y, double z){
+void Location_Manager::set_local_position(uint32_t timestamp, double x, double y, double z){
+    std::cout << "set local pose \n";
     pthread_mutex_lock(&mutex_localpose);
     c_local_timestamp = timestamp;
     cx = x;
@@ -83,7 +86,8 @@ void Location_Manager::set_local_position(uint64_t timestamp, double x, double y
     pthread_mutex_unlock(&mutex_localpose);
 }
 
-void Location_Manager::set_global_position(uint64_t timestamp, double lat, double lon, double alt){
+void Location_Manager::set_global_position(uint32_t timestamp, double lat, double lon, double alt){
+    std::cout << "set global pose \n";
     pthread_mutex_lock(&mutex_globalpose);
     c_global_timestamp = timestamp;
     c_lat = lat;
@@ -92,7 +96,7 @@ void Location_Manager::set_global_position(uint64_t timestamp, double lat, doubl
     pthread_mutex_unlock(&mutex_globalpose);
 }
 
-double Location_Manager::interpolate(uint64_t x1, uint64_t x2, uint64_t x_predict, double y1, double y2){
+double Location_Manager::interpolate(uint32_t x1, uint32_t x2, uint32_t x_predict, double y1, double y2){
     // predicted_y =
     return y2 + (x_predict -x2) * ((y2 - y1)/(x2 - x1));
 }
