@@ -47,12 +47,12 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
     std::cout << "grab first frame \n";
     while (!time_to_exit) {
         // grab image
-        pthread_mutex_lock(&camera_recorder->_mutexGrabFrame);
         pthread_cond_wait(&camera_recorder->grabaFrame, &camera_recorder->_mutexGrabFrame);
-        matFrame = camera_recorder->matFrameForward.clone();
-        timestampcamera_ns = camera_recorder->timestampcamera_ns;
-        pthread_mutex_unlock(&camera_recorder->_mutexGrabFrame);
+        std::queue<cv::Mat> images = camera_recorder->copy_image_queue();
+        std::queue<uint64_t> times = camera_recorder->copy_time_queue();
         std::cout << "grab frame for SLAM \n";
+        matFrame = images.back();
+        timestampcamera_ns = times.back();
 
         // grab IMUs
         std::queue<mavlink_highres_imu_t> imu = imu_recorder->copy_queue();

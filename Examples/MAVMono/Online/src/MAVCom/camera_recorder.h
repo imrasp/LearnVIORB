@@ -50,6 +50,10 @@ public:
     pthread_mutex_t _mutexGrabFrame =  PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t grabaFrame = PTHREAD_COND_INITIALIZER;
 
+    std::queue<cv::Mat> copy_image_queue();
+    std::queue<uint64_t> copy_time_queue();
+
+
 private:
     ConfigParam *configParam;
 

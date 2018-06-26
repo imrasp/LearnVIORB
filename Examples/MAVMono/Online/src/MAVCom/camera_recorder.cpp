@@ -56,6 +56,13 @@ double Camera_Recorder::frameDifference(cv::Mat &matFrameCurrent, cv::Mat &matFr
     return diff;
 }
 
+std::queue<cv::Mat> Camera_Recorder::copy_image_queue(){
+    return qFrame;
+}
+
+std::queue<uint64_t> Camera_Recorder::copy_time_queue(){
+    return qTime;
+}
 void Camera_Recorder::cameraLoop() {
     int totalFrame = 0;
 
