@@ -58,6 +58,8 @@
 Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_recorder_) : configParam(configParam_),
                                                                                            imu_recorder(imu_recorder_) {
 
+    location_manager = new Location_Manager();
+
     // --------------------------------------------------------------------------
     //   PORT and THREAD STARTUP
     // --------------------------------------------------------------------------
@@ -90,7 +92,7 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
      * otherwise the vehicle will go into failsafe.
      *
      */
-    location_manager = new Location_Manager();
+
     autopilot_interface = new Autopilot_Interface(serial_port, location_manager);
 
     /*
@@ -103,8 +105,6 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
      */
     serial_port_quit = serial_port;
     autopilot_interface_quit = autopilot_interface;
-
-    location_manager = new Location_Manager();
 
 
 }
@@ -127,7 +127,7 @@ int Mavlink_Control::start() {
 
     //waiting for first gps message
     cout << "waiting for GPS signal \n";
-    int count = 120;
+    int count = 30;
     while (!location_manager->isGeodeticInitialize() && count > 0){
         sleep(1);
         --count;
@@ -139,6 +139,7 @@ int Mavlink_Control::start() {
     //check route
     int result = check_route();
     if (!result) { return -2; }
+    std::cout << "route checked \n";
 
     // waiting for reference time
     while (!autopilot_interface->bTimeRef) {

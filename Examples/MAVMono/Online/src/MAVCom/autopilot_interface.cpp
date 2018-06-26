@@ -315,16 +315,20 @@ read_messages() {
                 }
 
                 case MAVLINK_MSG_ID_LOCAL_POSITION_NED: {
-                    //printf("MAVLINK_MSG_ID_LOCAL_POSITION_NED\n");
+//                    printf("MAVLINK_MSG_ID_LOCAL_POSITION_NED\n");
                     mavlink_msg_local_position_ned_decode(&message, &(current_messages.local_position_ned));
                     current_messages.time_stamps.local_position_ned = get_time_usec();
                     this_timestamps.local_position_ned = current_messages.time_stamps.local_position_ned;
 
-                    location_manager->set_local_position(current_messages.local_position_ned.time_boot_ms,
-                                                         current_messages.local_position_ned.x,
-                                                         current_messages.local_position_ned.y,
-                                                         current_messages.local_position_ned.z);
-
+                    if(!location_manager->isGeodeticInitialize()) {
+                        location_manager->set_local_position(current_messages.local_position_ned.time_boot_ms,
+                                                             current_messages.local_position_ned.x,
+                                                             current_messages.local_position_ned.y,
+                                                             current_messages.local_position_ned.z);
+                        std::cout << "LOCAL_NED_POSITION = " <<current_messages.local_position_ned.x << ", " <<
+                                current_messages.local_position_ned.y << ", " <<
+                                current_messages.local_position_ned.z << std::endl;
+                    }
 
                     break;
                 }
@@ -334,11 +338,19 @@ read_messages() {
                     mavlink_msg_global_position_int_decode(&message, &(current_messages.global_position_int));
                     current_messages.time_stamps.global_position_int = get_time_usec();
                     this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
-                    if(!location_manager->isGeodeticInitialize()){
-                        location_manager->set_initial_geodetic_pose(current_messages.global_position_int.time_boot_ms,
+                    if(!location_manager->isGeodeticInitialize()) {
+                        location_manager->set_global_position(current_messages.global_position_int.time_boot_ms,
                                                                     (double)current_messages.global_position_int.lat,
                                                                     (double)current_messages.global_position_int.lon,
                                                                     (double)current_messages.global_position_int.alt);
+                    } else {
+                        mavlink_vision_position_estimate_t vpe;
+                        location_manager->get_NED_from_geodetic((double)current_messages.global_position_int.lat,
+                                                                (double)current_messages.global_position_int.lon,
+                                                                (double)current_messages.global_position_int.alt,
+                                                                 &vpe.x, &vpe.y, &vpe.z);
+                        vpe.usec = current_messages.global_position_int.time_boot_ms;
+                        updateVisionEstimationPosition(vpe);
                     }
 
                     break;
@@ -455,6 +467,7 @@ read_messages() {
                 }
 
                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
+                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
                     mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
                     current_messages.time_stamps.system_time = get_time_usec();
                     this_timestamps.system_time = current_messages.time_stamps.system_time;
@@ -1224,9 +1237,9 @@ void Autopilot_Interface::updateVisionEstimationPosition(mavlink_vision_position
     int len = write_message(message);
 
     if (!len)
-        cout << "cannot write to VISION_POSITION_ESTIMATE";
-    else
-        cout << "write to VISION_POSITION_ESTIMATE";
+        cout << "cannot write to VISION_POSITION_ESTIMATE \n";
+//    else
+//        cout << "write to VISION_POSITION_ESTIMATE \n";
 }
 
 // TIME MANAGEMENTS
