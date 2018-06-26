@@ -23,7 +23,7 @@ Examples/Stereo/stereo_kitti
 Examples/ROS/ORB_VIO/VIO
 datasets
 
-rooute.txt
+route.txt
 callgrind*
 cmake-build-debug/
 .idea/
