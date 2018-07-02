@@ -34,6 +34,7 @@ public:
 private:
     geodetic_converter::GeodeticConverter *geodeticConverter;
 
+    bool time_to_exit;
     double cx,cy,cz;
     double c_lat, c_lon, c_alt;
     uint32_t c_local_timestamp, c_global_timestamp;
