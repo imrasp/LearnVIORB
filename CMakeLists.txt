@@ -33,8 +33,6 @@ find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(Cholmod REQUIRED)
 
-add_subdirectory(Thirdparty/cpr)
-add_subdirectory(Thirdparty/json)
 
 include_directories(
         ${PROJECT_SOURCE_DIR}
@@ -44,8 +42,6 @@ include_directories(
         ${Pangolin_INCLUDE_DIRS}
         ${CHOLMOD_INCLUDE_DIR}
         ${PROJECT_SOURCE_DIR}/Thirdparty/mavlink/include/mavlink/v2.0
-        ${CPR_INCLUDE_DIRS}
-	${PROJECT_SOURCE_DIR}/Thirdparty/json/single_include
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -106,8 +102,6 @@ target_link_libraries(${PROJECT_NAME}
         ${Pangolin_LIBRARIES}
         ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
-        ${CPR_LIBRARIES}
-	${PROJECT_SOURCE_DIR}/Thirdparty/json/single_include
         cholmod
         ${CHOLMOD_LIBRARIES}
         ${BLAS_LIBRARIES}

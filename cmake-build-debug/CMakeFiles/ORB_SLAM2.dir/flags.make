@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall   -O3 -march=native -std=c++11 -g -g -fPIC
 
 CXX_DEFINES = -DCOMPILEDWITHC11 -DORB_SLAM2_EXPORTS
 
-CXX_INCLUDES = -I/home/rasp/workspace/LearnVIORB -I/home/rasp/workspace/LearnVIORB/include -I/home/rasp/workspace/LearnVIORB/src -I/usr/local/include/eigen3 -I/usr/local/lib/cmake/Pangolin/../../../include -I/usr/include/suitesparse -I/home/rasp/workspace/LearnVIORB/Thirdparty/mavlink/include/mavlink/v2.0 -I/home/rasp/workspace/LearnVIORB/Thirdparty/cpr -I/home/rasp/workspace/LearnVIORB/Thirdparty/json 
+CXX_INCLUDES = -I/home/rasp/workspace/LearnVIORB -I/home/rasp/workspace/LearnVIORB/include -I/home/rasp/workspace/LearnVIORB/src -I/usr/local/include/eigen3 -I/usr/local/lib/cmake/Pangolin/../../../include -I/usr/include/suitesparse -I/home/rasp/workspace/LearnVIORB/Thirdparty/mavlink/include/mavlink/v2.0 
 

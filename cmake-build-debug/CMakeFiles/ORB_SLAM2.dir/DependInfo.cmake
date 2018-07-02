@@ -47,8 +47,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/lib/cmake/Pangolin/../../../include"
   "/usr/include/suitesparse"
   "../Thirdparty/mavlink/include/mavlink/v2.0"
-  "../Thirdparty/cpr"
-  "../Thirdparty/json"
   )
 
 # Targets to which this target links.

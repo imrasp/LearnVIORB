@@ -52,8 +52,6 @@
 					<Add directory="/usr/local/lib/cmake/Pangolin/../../../include"/>
 					<Add directory="/usr/include/suitesparse"/>
 					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/mavlink/include/mavlink/v2.0"/>
-					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/cpr"/>
-					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/json"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -85,8 +83,6 @@
 					<Add directory="/usr/local/lib/cmake/Pangolin/../../../include"/>
 					<Add directory="/usr/include/suitesparse"/>
 					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/mavlink/include/mavlink/v2.0"/>
-					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/cpr"/>
-					<Add directory="/home/rasp/workspace/LearnVIORB/Thirdparty/json"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
