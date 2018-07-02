@@ -78,6 +78,7 @@ void IMU_Recorder::set_ref_time(mavlink_system_time_t system_time) {
     ref_system_time = system_time;
 
     ref_boot_time_ms = system_time.time_boot_ms;
+    ref_unix_time = system_time.time_unix_usec;
     ref_timestampcamera_ns = boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
 }
 

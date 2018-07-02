@@ -338,6 +338,11 @@ read_messages() {
                     mavlink_msg_global_position_int_decode(&message, &(current_messages.global_position_int));
                     current_messages.time_stamps.global_position_int = get_time_usec();
                     this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
+
+                    location_manager->stream_global_position(current_messages.global_position_int.time_boot_ms,
+                                                             (double)current_messages.global_position_int.lat,
+                                                             (double)current_messages.global_position_int.lon,
+                                                             (double)current_messages.global_position_int.alt);
                     if(!location_manager->isGeodeticInitialize()) {
                         location_manager->set_global_position(current_messages.global_position_int.time_boot_ms,
                                                                     (double)current_messages.global_position_int.lat,

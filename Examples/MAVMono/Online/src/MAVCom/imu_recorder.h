@@ -38,7 +38,7 @@ private:
     bool active;
     bool time_to_exit;
     Autopilot_Interface *autopilot_interface;
-    uint64_t unix_time_ref, boot_time_ref, ref_boot_time_ms, ref_timestampcamera_ns;
+    uint64_t ref_unix_time, boot_time_ref, ref_boot_time_ms, ref_timestampcamera_ns;
     mavlink_system_time_t ref_system_time;
 
     boost::thread threadRecordIMU;

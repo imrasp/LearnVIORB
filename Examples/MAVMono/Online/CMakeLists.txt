@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 2.4.6)
+cmake_minimum_required(VERSION 3.5)
+project(MonoMAV_online)
+
 IF (NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Release)
 ENDIF ()
@@ -11,7 +13,7 @@ include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 if (COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -L ./cpr/lib")
     add_definitions(-DCOMPILEDWITHC11)
     message(STATUS "Using flag -std=c++11.")
 elseif (COMPILER_SUPPORTS_CXX0X)
@@ -25,13 +27,14 @@ endif ()
 add_definitions(-DBOOST_NO_CXX11_SCOPED_ENUMS)
 add_definitions(-DBOOST_ALL_DYN_LINK)
 
-LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../cmake_modules)
+#LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../cmake_modules)
 
 find_package(OpenCV 3.0.0 REQUIRED)
 #find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
-# PCL #######################
-#find_package(PCL 1.7 REQUIRED COMPONENTS common io)
+
+add_subdirectory(cpr)
+add_subdirectory(json)
 
 include_directories(
         ${PROJECT_SOURCE_DIR}
@@ -39,35 +42,14 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/../../../src
         ${PROJECT_SOURCE_DIR}/../../../include
         ${PROJECT_SOURCE_DIR}/../../../Thirdparty/mavlink/include/mavlink/v2.0
-        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/cpr/include
-        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/json/include
         ${Pangolin_INCLUDE_DIRS}
-        #        ${PCL_INCLUDE_DIRS}
+
+        ${CPR_INCLUDE_DIRS}
+        ${CMAKE_SOURCE_DIR}/json/single_include/
 )
 
-set(LIBS
-        -lpthread
-        ${EIGEN3_LIBS}
-        -lboost_date_time
-        -lboost_chrono
-        -lboost_system
-        -lboost_thread
-        -lboost_filesystem
-        ${OpenCV_LIBS}
-        ${EIGEN3_LIBS}
-        ${Pangolin_LIBRARIES}
-        #        ${PCL_LIBRARY_DIRS}
-        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
-        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
-        ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
-        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/cpr
-        )
-
-# Node for monocular camera
-add_executable(MonoMAV_online
-
+set(SOURCE_FILES
         src/mono_mav_live.cpp
-
         src/MAVCom/autopilot_interface.cpp
         src/MAVCom/autopilot_interface.h
         src/MAVCom/camera_recorder.cpp
@@ -87,6 +69,21 @@ add_executable(MonoMAV_online
         src/MAVCom/slam_interface.h
         )
 
+add_executable(MonoMAV_online ${SOURCE_FILES})
+
 target_link_libraries(MonoMAV_online
-        ${LIBS}
+        -lpthread
+        -lboost_date_time
+        -lboost_chrono
+        -lboost_system
+        -lboost_thread
+        -lboost_filesystem
+        ${OpenCV_LIBS}
+        ${EIGEN3_LIBS}
+        ${Pangolin_LIBRARIES}
+        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
+        ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
+        ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
+        ${CPR_LIBRARIES}
+        ${CMAKE_SOURCE_DIR}/json/single_include/
         )
