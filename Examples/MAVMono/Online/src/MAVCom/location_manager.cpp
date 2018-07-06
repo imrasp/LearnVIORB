@@ -29,7 +29,7 @@ Location_Manager::~Location_Manager() {
 void Location_Manager::set_initial_geodetic_pose() {
     std::cout << "Start set_initial_geodetic_pose thread..." << std::endl;
     while(!time_to_exit) {
-        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
+//        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
         if (c_local_timestamp < c_global_timestamp && c_local_timestamp > 0) {
 
             pthread_mutex_lock(&mutex_localpose);
