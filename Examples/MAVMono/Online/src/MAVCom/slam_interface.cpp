@@ -47,16 +47,24 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
     std::cout << "grab first frame \n";
     while (!time_to_exit) {
         // grab image
-        pthread_cond_wait(&camera_recorder->grabaFrame, &camera_recorder->_mutexGrabFrame);
-        std::queue<cv::Mat> images = camera_recorder->copy_image_queue();
-        std::queue<uint64_t> times = camera_recorder->copy_time_queue();
+        int OldPrio = 0;
+        pthread_mutex_setprioceiling(&camera_recorder->_mutexFrameCam1Last, 2, &OldPrio);
+        pthread_mutex_lock(&camera_recorder->_mutexFrameCam1Last);
+
+//        pthread_cond_wait(&camera_recorder->grabaFrame, &camera_recorder->_mutexGrabFrame);
+//        std::queue<cv::Mat> images = camera_recorder->copy_image_queue();
+//        std::queue<uint64_t> times = camera_recorder->copy_time_queue();
+
+//        matFrame = images.back();
+//        timestampcamera_ns = times.back();
+        matFrame = camera_recorder->matFrameForward;
+        timestampcamera_ns = camera_recorder->timestampcamera_ns;
         std::cout << "grab frame for SLAM \n";
-        matFrame = images.back();
-        timestampcamera_ns = times.back();
+        pthread_mutex_unlock(&camera_recorder->_mutexFrameCam1Last);
 
         // grab IMUs
         std::queue<mavlink_highres_imu_t> imu = imu_recorder->copy_queue();
-
+        std::cout << "processing IMU queue... \n";
         while (imu_recorder->get_ns_time_ref_odroid(imu.front().time_usec) <= timestampcamera_ns) {
             float xgyro = imu.front().xgyro;
             float ygyro = imu.front().ygyro;

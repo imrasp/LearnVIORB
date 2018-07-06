@@ -339,7 +339,7 @@ read_messages() {
                     current_messages.time_stamps.global_position_int = get_time_usec();
                     this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
 
-                    location_manager->stream_global_position(currset_initial_geodetic_poseent_messages.global_position_int.time_boot_ms,
+                    location_manager->stream_global_position(current_messages.global_position_int.time_boot_ms,
                                                              (double)current_messages.global_position_int.lat,
                                                              (double)current_messages.global_position_int.lon,
                                                              (double)current_messages.global_position_int.alt);
@@ -449,7 +449,7 @@ read_messages() {
                 }
 
                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
-//                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
+                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
                     mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
                     current_messages.time_stamps.system_time = get_time_usec();
                     this_timestamps.system_time = current_messages.time_stamps.system_time;

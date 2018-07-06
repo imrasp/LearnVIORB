@@ -53,14 +53,14 @@ public:
     std::queue<cv::Mat> copy_image_queue();
     std::queue<uint64_t> copy_time_queue();
 
+    pthread_mutex_t _mutexFrameCam1Last = PTHREAD_MUTEX_INITIALIZER;
+    pthread_cond_t frameQueueCondNotempty = PTHREAD_COND_INITIALIZER;
+    pthread_cond_t frameQueueCondEmpty = PTHREAD_COND_INITIALIZER;
 
 private:
     ConfigParam *configParam;
 
     boost::thread threadCamera, threadRecord;
-    pthread_mutex_t _mutexFrameCam1Last = PTHREAD_MUTEX_INITIALIZER;
-    pthread_cond_t frameQueueCondNotempty = PTHREAD_COND_INITIALIZER;
-    pthread_cond_t frameQueueCondEmpty = PTHREAD_COND_INITIALIZER;
 
 };
 #endif //C_UART_INTERFACE_EXAMPLE_CAMERA_RECORDER_H

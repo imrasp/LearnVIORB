@@ -137,13 +137,13 @@ int Mavlink_Control::start() {
         return -1;
     }
     //check route
+    std::cout << "start route check\n";
     int result = check_route();
     if (!result) { return -2; }
     std::cout << "route checked \n";
 
     // waiting for reference time
     while (!autopilot_interface->bTimeRef) {
-
         pthread_mutex_lock(&autopilot_interface->mutexTimeRef);
         pthread_cond_wait(&autopilot_interface->timeRef, &autopilot_interface->mutexTimeRef);
         pthread_mutex_unlock(&autopilot_interface->mutexTimeRef);
@@ -206,7 +206,7 @@ int Mavlink_Control::check_route(){
     // find first gps waypoint
     if (input.is_open()) {
         while (getline(input,line)) {
-            cout << line << endl;
+            cout << "read route line : " << line << endl;
             stringstream s (line);
             int i = 0;
 

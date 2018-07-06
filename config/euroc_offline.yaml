@@ -2,7 +2,18 @@
 
 system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
-system.record_path: "/home/rasp/Documents/datasets/MH_01_easy_cut"
+#system.record_path: "/home/rasp/Documents/datasets/MH_01_easy_cut"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_02_easy/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_03_medium/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_04_dificult/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_05_dificult/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/V1_01_easy/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/V1_02_medium/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/V1_03_difficult/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/V2_01_easy/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/EUROC/V2_02_medium/offline_dataset"
+system.record_path: "/home/rasp/Documents/datasets/EUROC/V2_03_difficult/offline_dataset"
+
 system.fps: 20
 system.sec: 60
 system.cameraid: 0
