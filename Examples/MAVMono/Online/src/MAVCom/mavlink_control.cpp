@@ -124,6 +124,13 @@ int Mavlink_Control::start() {
     serial_port->start();
     autopilot_interface->start();
 
+    // --------------------------------------------------------------------------
+    //   RUN INITIAL COMMANDS
+    // --------------------------------------------------------------------------
+    mavlink_set_position_target_local_ned_t sp;
+    mavlink_set_position_target_local_ned_t ip = autopilot_interface->
+            initial_position;
+    autopilot_interface->update_setpoint(sp);
 
     //waiting for first gps message
     cout << "waiting for GPS signal \n";

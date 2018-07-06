@@ -12,14 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/euroc_offline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/euroc_offline.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +46,8 @@
       <file leaf-file-name="autopilot_interface.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="452" column="25" selection-start-line="452" selection-start-column="25" selection-end-line="452" selection-end-column="25" />
+            <state relative-caret-position="281">
+              <caret line="352" column="38" selection-start-line="352" selection-start-column="38" selection-end-line="352" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -108,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1020">
-              <caret line="209" column="34" selection-start-line="209" selection-start-column="34" selection-end-line="209" selection-end-column="34" />
+              <caret line="216" column="34" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -358,10 +351,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../stream_position" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../c_uart_imu/src/mavlink_control.cpp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../ORB_SLAM2-imu_preint_init_only/src/LoopClosing.cc" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../c_uart_imu/src/mavlink_control.cpp" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -422,16 +415,15 @@
       <workItem from="1530639315660" duration="600000" />
       <workItem from="1530668620330" duration="4624000" />
       <workItem from="1530763578361" duration="5385000" />
-      <workItem from="1530849075643" duration="6790000" />
+      <workItem from="1530849075643" duration="8470000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270385000" />
+    <option name="totallyTimeSpent" value="272065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25039124" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -789,13 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -827,14 +812,21 @@
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
-          <caret line="209" column="34" selection-start-line="209" selection-start-column="34" selection-end-line="209" selection-end-column="34" />
+          <caret line="216" column="34" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="452" column="25" selection-start-line="452" selection-start-column="25" selection-end-line="452" selection-end-column="25" />
+        <state relative-caret-position="281">
+          <caret line="352" column="38" selection-start-line="352" selection-start-column="38" selection-end-line="352" selection-end-column="38" />
         </state>
       </provider>
     </entry>
