@@ -21,7 +21,7 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
 
     std::cout << "Starting SLAM...\n";
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(mavconfigParam->vocabulary, configfile, ORB_SLAM2::System::MONOCULAR, true);
+    ORB_SLAM2::System SLAM(mavconfigParam->vocabulary, configfile, ORB_SLAM2::System::MONOCULAR, false);
 
     std::cout << "Reading SLAM config file...\n";
     ORB_SLAM2::ConfigParam config(configfile);
