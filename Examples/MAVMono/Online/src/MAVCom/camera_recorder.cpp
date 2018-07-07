@@ -91,7 +91,7 @@ void Camera_Recorder::cameraLoop() {
         pthread_cond_signal(&frameQueueCondNotempty);
         pthread_mutex_unlock(&_mutexFrameCam1Last);
 
-//        std::cout << "read matFrameForward size : " << matFrameForward.size() << std::endl;
+        std::cout << "read matFrameForward size : " << matFrameForward.size() << std::endl;
 //        cv::imshow("Camera", matFrameForward);
 //        if (cv::waitKey(1) >= 0) break;
 

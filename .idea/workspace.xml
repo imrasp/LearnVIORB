@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,20 +41,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="camera_recorder.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="camera_recorder.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="54" />
+            <state relative-caret-position="689">
+              <caret line="123" column="54" lean-forward="true" selection-start-line="123" selection-start-column="54" selection-end-line="123" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+            <state relative-caret-position="225">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -412,12 +410,12 @@
       <workItem from="1530639315660" duration="600000" />
       <workItem from="1530668620330" duration="4624000" />
       <workItem from="1530763578361" duration="5385000" />
-      <workItem from="1530849075643" duration="23940000" />
+      <workItem from="1530849075643" duration="24292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287535000" />
+    <option name="totallyTimeSpent" value="287887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="-4" width="1855" height="1084" extended-state="6" />
@@ -814,17 +812,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp">
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="54" />
+        <state relative-caret-position="225">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+        <state relative-caret-position="689">
+          <caret line="123" column="54" lean-forward="true" selection-start-line="123" selection-start-column="54" selection-end-line="123" selection-end-column="54" />
         </state>
       </provider>
     </entry>
