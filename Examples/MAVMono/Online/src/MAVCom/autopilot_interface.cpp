@@ -454,21 +454,7 @@ read_messages() {
                     current_messages.time_stamps.system_time = get_time_usec();
                     this_timestamps.system_time = current_messages.time_stamps.system_time;
 
-                    if (bDynamicTimeRef) {
-                        uint64_t ns = boost::lexical_cast<uint64_t>(
-                                std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                        std::chrono::system_clock::now().time_since_epoch()).count());
-                        odroid_unix_ns_ref = ns;
-                        time_boot_ms_ref = current_messages.system_time.time_boot_ms * 1000;
-
-//                        cout << "odroid_unix_ns_ref & time_boot_ms_ref are " << ns << " and " << time_boot_ms_ref << endl;
-                        //set_unixtimereference(current_messages.system_time);
-                        bDynamicTimeRef = false;
-
-                    }
-//cout<< "receive system_time message\n";
                     if (!bTimeRef) {
-//cout<< "signal time ref \n "; 
                         pthread_mutex_lock(&mutexTimeRef);
                         pthread_cond_signal(&timeRef);
                         pthread_mutex_unlock(&mutexTimeRef);
