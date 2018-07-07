@@ -11,7 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="" />
+    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,8 +73,8 @@
       <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-195">
-              <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
+            <state relative-caret-position="690">
+              <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -98,8 +100,8 @@
       <file leaf-file-name="mavlink_control.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="139" column="16" lean-forward="true" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+            <state relative-caret-position="435">
+              <caret line="177" column="18" lean-forward="true" selection-start-line="177" selection-start-column="18" selection-end-line="177" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -199,9 +201,9 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/autopilot_interface.cpp" />
       </list>
     </option>
   </component>
@@ -216,10 +218,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="14" />
-    <option name="y" value="24" />
+    <option name="x" value="1145" />
+    <option name="y" value="-4" />
     <option name="width" value="1297" />
-    <option name="height" value="700" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -413,18 +415,18 @@
       <workItem from="1530639315660" duration="600000" />
       <workItem from="1530668620330" duration="4624000" />
       <workItem from="1530763578361" duration="5385000" />
-      <workItem from="1530849075643" duration="9088000" />
+      <workItem from="1530849075643" duration="14053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272683000" />
+    <option name="totallyTimeSpent" value="277648000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <frame x="1431" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25039124" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17467248" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.49921754" weight="0.13850997" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007825" side_tool="true" weight="0.13884555" />
@@ -801,13 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="29" column="74" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/slam_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
@@ -822,10 +817,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/location_manager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="139" column="16" lean-forward="true" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+        <state relative-caret-position="435">
+          <caret line="177" column="18" lean-forward="true" selection-start-line="177" selection-start-column="18" selection-end-line="177" selection-end-column="18" />
         </state>
       </provider>
     </entry>

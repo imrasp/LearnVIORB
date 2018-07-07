@@ -139,10 +139,12 @@ int Mavlink_Control::start() {
         sleep(1);
         --count;
     }
+
     if (!location_manager->isGeodeticInitialize())
     {
         return -1;
     }
+
     //check route
     std::cout << "start route check\n";
     int result = check_route();
