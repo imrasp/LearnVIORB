@@ -46,6 +46,8 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
 
     std::cout << "grab first frame \n";
     while (!time_to_exit) {
+
+        pthread_cond_signal(&camera_recorder->frameQueueCondEmpty);
         // grab image
         int OldPrio = 0;
         pthread_mutex_setprioceiling(&camera_recorder->_mutexFrameCam1Last, 2, &OldPrio);
