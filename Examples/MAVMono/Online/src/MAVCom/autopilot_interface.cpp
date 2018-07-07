@@ -349,13 +349,13 @@ read_messages() {
                                                                     (double)current_messages.global_position_int.lon,
                                                                     (double)current_messages.global_position_int.alt);
                     } else {
-                        mavlink_vision_position_estimate_t vpe;
-                        location_manager->get_NED_from_geodetic((double)current_messages.global_position_int.lat,
-                                                                (double)current_messages.global_position_int.lon,
-                                                                (double)current_messages.global_position_int.alt,
-                                                                 &vpe.x, &vpe.y, &vpe.z);
-                        vpe.usec = current_messages.global_position_int.time_boot_ms;
-                        updateVisionEstimationPosition(vpe);
+//                        mavlink_vision_position_estimate_t vpe;
+//                        location_manager->get_NED_from_geodetic((double)current_messages.global_position_int.lat,
+//                                                                (double)current_messages.global_position_int.lon,
+//                                                                (double)current_messages.global_position_int.alt,
+//                                                                 &vpe.x, &vpe.y, &vpe.z);
+//                        vpe.usec = current_messages.global_position_int.time_boot_ms;
+//                        updateVisionEstimationPosition(vpe);
                     }
 
                     break;

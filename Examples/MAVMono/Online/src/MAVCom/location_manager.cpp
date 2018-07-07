@@ -27,6 +27,7 @@ Location_Manager::~Location_Manager() {
 }
 
 void Location_Manager::set_initial_geodetic_pose() {
+
     std::cout << "Start set_initial_geodetic_pose thread..." << std::endl;
     while(!time_to_exit) {
         std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
@@ -97,10 +98,10 @@ void Location_Manager::set_global_position(uint32_t timestamp, double lat, doubl
 }
 
 void Location_Manager::stream_global_position(uint32_t timestamp, double lat, double lon, double alt){
-    nlohmann::json drone_position = {{"misison_id", 1}, {"time", timestamp}, {"lat", lat},{"lon", lon}, {"alt", alt}};
-    auto r = cpr::Post(cpr::Url{"192.168.1.132:3000/current_pos"},
-                       cpr::Body{drone_position.dump()}
-    );
+//    nlohmann::json drone_position = {{"misison_id", 1}, {"time", timestamp}, {"lat", lat},{"lon", lon}, {"alt", alt}};
+//    auto r = cpr::Post(cpr::Url{"192.168.1.132:3000/current_pos"},
+//                       cpr::Body{drone_position.dump()}
+//    );
 }
 
 double Location_Manager::interpolate(uint32_t x1, uint32_t x2, uint32_t x_predict, double y1, double y2){
