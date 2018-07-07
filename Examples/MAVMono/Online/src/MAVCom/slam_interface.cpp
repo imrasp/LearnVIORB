@@ -59,7 +59,7 @@ int SLAM_Interface::start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_re
 //        timestampcamera_ns = times.back();
         matFrame = camera_recorder->matFrameForward;
         timestampcamera_ns = camera_recorder->timestampcamera_ns;
-        std::cout << "grab frame for SLAM \n";
+        std::cout << "grab frame for SLAM : size = " << matFrame.size() << std::endl; ;
         pthread_mutex_unlock(&camera_recorder->_mutexFrameCam1Last);
 
         // grab IMUs
