@@ -80,7 +80,7 @@ int main(int argc, char **argv) {
 
         if(configParam.bEnableSLAM) {
             slam.start(&cameraRecorder, &imu_recorder, argv[1]);
-        } 
+        }
 
         mavlinkControl.cmd();
 
