@@ -43,7 +43,7 @@ Location_Manager::~Location_Manager() {
 void Location_Manager::set_initial_geodetic_pose() {
     std::cout << "Start set_initial_geodetic_pose thread..." << std::endl;
     while (!time_to_exit) {
-//        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
+        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
         if (c_local_timestamp < c_global_timestamp && c_local_timestamp > 0) {
 
             pthread_mutex_lock(&mutex_localpose);
@@ -91,7 +91,7 @@ void Location_Manager::set_initial_geodetic_pose() {
 }
 
 void Location_Manager::set_local_position(uint32_t timestamp, double x, double y, double z) {
-    std::cout << "set local pose \n";
+//    std::cout << "set local pose \n";
     pthread_mutex_lock(&mutex_localpose);
     c_local_timestamp = timestamp;
     cx = x;
@@ -101,7 +101,7 @@ void Location_Manager::set_local_position(uint32_t timestamp, double x, double y
 }
 
 void Location_Manager::set_global_position(uint32_t timestamp, double lat, double lon, double alt) {
-    std::cout << "set global pose \n";
+//    std::cout << "set global pose \n";
     pthread_mutex_lock(&mutex_globalpose);
     c_global_timestamp = timestamp;
     c_lat = lat;
