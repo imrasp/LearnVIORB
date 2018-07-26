@@ -35,22 +35,6 @@ void IMU_Recorder::start(Autopilot_Interface *autopilot_interface_) {
 
 }
 
-void IMU_Recorder::write_first(){
-    datasetimu << pixhawk_to_unix_time_ns(autopilot_interface->queueIMU.front().time_usec) << sep
-               << autopilot_interface->queueIMU.front().xgyro << sep
-               << autopilot_interface->queueIMU.front().ygyro << sep
-               << autopilot_interface->queueIMU.front().zgyro << sep
-               << autopilot_interface->queueIMU.front().xacc << sep
-               << autopilot_interface->queueIMU.front().yacc << sep
-               << autopilot_interface->queueIMU.front().zacc << endl;
-
-    autopilot_interface->queueIMU.pop();
-}
-
-std::queue<mavlink_highres_imu_t> IMU_Recorder::copy_queue(){
-    return autopilot_interface->queueIMU;
-}
-
 uint64_t IMU_Recorder::pixhawk_to_unix_time_ns(uint64_t time_since_boot){
     uint64_t timestamp_ms = ref_system_time.time_unix_usec + (time_since_boot - (ref_system_time.time_boot_ms * 1000));
     return timestamp_ms * 1000;
@@ -69,7 +53,7 @@ void IMU_Recorder::record(){
             pthread_cond_wait(&autopilot_interface->unEmptyIMU, &autopilot_interface->mutexIMU);
 
         if (configParam->gpstime) {
-            write_first();
+//            write_first();
         }
     }
 }

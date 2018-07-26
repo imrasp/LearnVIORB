@@ -56,7 +56,6 @@
 // ------------------------------------------------------------------------------
 
 #include "serial_port.h"
-#include "location_manager.h"
 
 #include <signal.h>
 #include <time.h>
@@ -67,6 +66,7 @@
 
 #include <common/mavlink.h>
 #include <queue>
+#include "location_manager.h"
 
 using namespace std;
 // ------------------------------------------------------------------------------
@@ -162,7 +162,8 @@ struct Time_Stamps
 	uint64_t home_position;
 	uint64_t system_time;
 	uint64_t odometry;
-    uint64_t gps_raw_int;
+	uint64_t scaled_imu;
+	uint64_t gps_raw_int;
 
 	void
 	reset_timestamps()
@@ -180,6 +181,7 @@ struct Time_Stamps
 		home_position = 0;
         system_time = 0;
 		odometry = 0;
+		scaled_imu =0;
 		gps_raw_int =0;
 	}
 
@@ -220,6 +222,9 @@ struct Mavlink_Messages {
 	// HiRes IMU
 	mavlink_highres_imu_t highres_imu;
 
+	// Scaled IMU
+	mavlink_scaled_imu_t scaled_imu;
+
 	// Attitude
 	mavlink_attitude_t attitude;
 
@@ -227,16 +232,16 @@ struct Mavlink_Messages {
 	mavlink_odometry_t odometry;
 
 	// Home Position
-    	mavlink_home_position_t home_position;
+	mavlink_home_position_t home_position;
 
 	//extended_sys_state
-    	mavlink_extended_sys_state_t extended_sys_state;
+	mavlink_extended_sys_state_t extended_sys_state;
 
     // System Time
     mavlink_system_time_t system_time;
 
-    // Gps Raw INT
-    mavlink_gps_raw_int_t gps_raw_int;
+    // GPS Raw
+	mavlink_gps_raw_int_t gps_raw_int;
 
 	// System Parameters?
 
@@ -313,6 +318,7 @@ public:
 	void arm_control();
 	void disarm_control();
 	int toggle_arm_control( bool flag );
+
 	void enable_takeoff(float height,float velocity);
 	void enable_land();
 	void enable_hold(double sec);
@@ -324,9 +330,10 @@ public:
 	void goto_positon_ned(float x, float y, float z);
 	void goto_positon_offset_ned(float x, float y, float z);
 
-    bool IsInWaypointLocal(float radius);
+	bool IsInWaypointLocal(float radius);
 
-    bool bTimeRef;
+
+	bool bTimeRef;
     pthread_cond_t timeRef, noTimeRef, unEmptyIMU, emptyIMU,
 			unEmptyGPS, emptyGPS,
 			unEmptyLocalPos, emptyLocalPos,
@@ -346,7 +353,7 @@ public:
 			queueOdometrytime, queueOdometryUnixRefTime,
             queueAttitudetime, queueAttitudeUnixRefTime;
 
-	uint64_t timestampimu_ns, timestampgps_ns, timestampLocalPos_ns, timestampOdometry_ns, timestampAttitude_ns;
+	uint64_t timestampcamera_ns, timestampgps_ns, timestampLocalPos_ns, timestampOdometry_ns, timestampAttitude_ns;
 
     void set_unixtimereference(mavlink_system_time_t time);
 	uint64_t get_unixtimereference(uint32_t time);
@@ -354,12 +361,11 @@ public:
     uint32_t time_boot_ms_ref;
     bool b_unixtimereference, bDynamicTimeRef;
 
-
-
 private:
 
 	Serial_Port *serial_port;
 	Location_Manager *location_manager;
+
 	bool time_to_exit;
 
     pthread_t read_tid;

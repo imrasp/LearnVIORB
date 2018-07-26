@@ -55,10 +55,7 @@
 
 #include "mavlink_control.h"
 
-Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_recorder_) : configParam(configParam_),
-                                                                                           imu_recorder(imu_recorder_) {
-
-    location_manager = new Location_Manager();
+Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, Location_Manager *location_manager_) : configParam(configParam_), location_manager(location_manager_) {
 
     // --------------------------------------------------------------------------
     //   PORT and THREAD STARTUP
@@ -92,7 +89,6 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
      * otherwise the vehicle will go into failsafe.
      *
      */
-
     autopilot_interface = new Autopilot_Interface(serial_port, location_manager);
 
     /*
@@ -112,11 +108,7 @@ Mavlink_Control::Mavlink_Control(ConfigParam *configParam_, IMU_Recorder *imu_re
 Mavlink_Control::~Mavlink_Control() {
 }
 
-int Mavlink_Control::start() {
-    /* return:
-     * 1 success
-     * -1 mission dinined because location of the route is to far from current location.
-     * */
+void Mavlink_Control::start() {
     /*
      * Start the port and autopilot_interface
      * This is where the port is opened, and read and write threads are started.
@@ -124,13 +116,6 @@ int Mavlink_Control::start() {
     serial_port->start();
     autopilot_interface->start();
 
-    // --------------------------------------------------------------------------
-    //   RUN INITIAL COMMANDS
-    // --------------------------------------------------------------------------
-    mavlink_set_position_target_local_ned_t sp;
-    mavlink_set_position_target_local_ned_t ip = autopilot_interface->
-            initial_position;
-    autopilot_interface->update_setpoint(sp);
 
     //waiting for first gps message
     cout << "waiting for GPS signal \n";
@@ -142,42 +127,13 @@ int Mavlink_Control::start() {
 
     if (!location_manager->isGeodeticInitialize())
     {
-        return -1;
+        throw 20; // gps not found
     }
 
     //check route
     std::cout << "start route check\n";
     int result = check_route();
-    if (!result) { return -2; }
     std::cout << "route checked \n";
-
-    // waiting for reference time
-    while (!autopilot_interface->bTimeRef) {
-        pthread_mutex_lock(&autopilot_interface->mutexTimeRef);
-        pthread_cond_wait(&autopilot_interface->timeRef, &autopilot_interface->mutexTimeRef);
-        pthread_mutex_unlock(&autopilot_interface->mutexTimeRef);
-        mavlink_system_time_t sys_time = autopilot_interface->current_messages.system_time;
-
-        uint64_t current_unix_time = boost::lexical_cast<uint64_t>(
-                std::chrono::duration_cast<std::chrono::microseconds>(
-                        std::chrono::system_clock::now().time_since_epoch()).count());
-
-        cout << "waiting for time reference\n";
-        cout << "current_unix_time(" << current_unix_time <<
-             ")  - sys_time.time_unix_usec(" << sys_time.time_unix_usec << ") = " <<
-             abs(current_unix_time - sys_time.time_unix_usec) << "\n";
-
-//        if (current_unix_time - sys_time.time_unix_usec < 1e7) {
-            location_manager->set_ref_time(autopilot_interface->current_messages.system_time);
-            cout << "set time referenced = " << autopilot_interface->bTimeRef << "!! \n";
-            autopilot_interface->bTimeRef = true;
-//        } else if (!configParam->gpstime) {
-//            autopilot_interface->bTimeRef = true;
-//            imu_recorder->start(autopilot_interface);
-//            break;
-//        }
-        pthread_cond_signal(&autopilot_interface->noTimeRef);
-    }
 
 }
 
@@ -187,23 +143,91 @@ void Mavlink_Control::cmd() {
     // --------------------------------------------------------------------------
     autopilot_interface->enable_offboard_control();
 
-    autopilot_interface->arm_control();
-
-    follow_route_file();
-
-    autopilot_interface->disarm_control();
-
     // --------------------------------------------------------------------------
-    //   STOP OFFBOARD MODE
+    //   RUN INITIAL COMMANDS to maintain the connection
     // --------------------------------------------------------------------------
+    mavlink_set_position_target_local_ned_t sp;
+    mavlink_set_position_target_local_ned_t ip = autopilot_interface->
+            initial_position;
+    set_position( ip.x , // [m]
+                  ip.y , // [m]
+                  ip.z , // [m]
+                  sp         );
+    autopilot_interface->update_setpoint(sp);
+
+//    autopilot_interface->arm_control();
+
+    usleep(100); // give some time to let it sink in
+//    cout << " waiting for " << configParam->sec << " sec.\n";
+//    // stack imu in queue for 60 seconds
+//    sleep(configParam->sec);
+//
+//    cout << "start 1 hr record \n";
+//    sleep(3600);
+//    cout << "start 2 hr record \n";
+//    sleep(3600);
+//    cout << "start 3 hr record \n";
+//    sleep(3600);
+//    cout << "start 4 hr record \n";
+//    sleep(3600);
+    sleep(10);
+//    cout << "move \n";
+//    sleep(30);
+
+
+
+//    autopilot_interface->disarm_control();
+
+// --------------------------------------------------------------------------
+//   STOP OFFBOARD MODE
+// --------------------------------------------------------------------------
 
     autopilot_interface->disable_offboard_control();
 
-    // --------------------------------------------------------------------------
-    //   END OF COMMANDS
-    // --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+//   END OF COMMANDS
+// --------------------------------------------------------------------------
 
     return;
+}
+
+void Mavlink_Control::stop() {
+    // --------------------------------------------------------------------------
+    //   THREAD and PORT SHUTDOWN
+    // --------------------------------------------------------------------------
+
+    /*
+     * Now that we are done we can stop the threads and close the port
+     */
+    autopilot_interface->stop();
+    serial_port->stop();
+}
+
+// ------------------------------------------------------------------------------
+//   Quit Signal Handler
+// ------------------------------------------------------------------------------
+// this function is called when you press Ctrl-C
+void
+Mavlink_Control::quit_handler(int sig) {
+    printf("\n");
+    printf("TERMINATING AT USER REQUEST\n");
+    printf("\n");
+
+    // autopilot interface
+    try {
+        autopilot_interface_quit->handle_quit(sig);
+    }
+    catch (int error) {}
+
+    // serial port
+    try {
+        serial_port_quit->handle_quit(sig);
+    }
+    catch (int error) {}
+
+    // end program here
+    exit(0);
+
 }
 
 int Mavlink_Control::check_route(){
@@ -247,7 +271,7 @@ int Mavlink_Control::check_route(){
         //if distant is longer than 50 meters in x y direction
         //return mission dinined because location of the route is to far from current location.
         if (distant > 50.0){
-            return 0;
+            throw 21; // route mismatch
         }
 
     }
@@ -337,48 +361,9 @@ int Mavlink_Control::follow_route_file(){
                 }
             }
         }
-    } else
-        cout << "ERROR: Cannot Open  File" << '\n';
+    } else throw 22;
     input.close();
 }
 
-void Mavlink_Control::stop() {
-    // --------------------------------------------------------------------------
-    //   THREAD and PORT SHUTDOWN
-    // --------------------------------------------------------------------------
-
-    /*
-     * Now that we are done we can stop the threads and close the port
-     */
-    autopilot_interface->stop();
-    serial_port->stop();
-}
-
-// ------------------------------------------------------------------------------
-//   Quit Signal Handler
-// ------------------------------------------------------------------------------
-// this function is called when you press Ctrl-C
-void
-Mavlink_Control::quit_handler(int sig) {
-    printf("\n");
-    printf("TERMINATING AT USER REQUEST\n");
-    printf("\n");
-
-    // autopilot interface
-    try {
-        autopilot_interface_quit->handle_quit(sig);
-    }
-    catch (int error) {}
-
-    // serial port
-    try {
-        serial_port_quit->handle_quit(sig);
-    }
-    catch (int error) {}
-
-    // end program here
-    exit(0);
-
-}
 
 

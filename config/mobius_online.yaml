@@ -15,11 +15,16 @@ system.useSLAM: 1 #1:Enable SLAM 0:Disable
 system.cameraid: 1
 system.gpstime: 1 #use gps time 1:yes 0:no
 system.vocabulary: "/home/rasp/workspace/LearnVIORB_mavlink/Vocabulary/ORBvoc.bin"
-system.route: "/home/rasp/workspace/LearnVIORB/route.txt"
+system.mission_route: "/home/rasp/workspace/LearnVIORB/config/route.txt"
+system.setting: "/home/rasp/workspace/LearnVIORB/config/mobius_online.yaml"
+system.camera_time_offset: 0.24
+system.xacc_offset: 0.0
+system.yacc_offset: 0.0
+system.zacc_offset: 0.0
 
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
-system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2"
+system.record_path: "/home/rasp/Documents/datasets/record"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi128"
 #system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
 #system.record_path: "/home/rasp/Documents/datasets/ds8-bhidecsim"

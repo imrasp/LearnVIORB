@@ -28,10 +28,14 @@ public:
 
     int start(Camera_Recorder *camera_recorder, IMU_Recorder *imu_recorder, std::string configfile);
     int stop();
+    void set_imu_pose(uint32_t timestamp, float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro);
 
 private:
     MAV::ConfigParam *mavconfigParam;
     bool time_to_exit;
+
+    std::vector<ORB_SLAM2::IMUData> vimuData;
+
 };
 
 #endif //ORB_SLAM2_SLAM_INTERFACE_H

@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
         if(configParam.bEnableCamera) {
             int con = cameraRecorder.start();
             if(!con){
-                cout << "Camera is not working. Please turn on the camera.";
+                cout << "Mission failed! Camera is not working. Please turn on the camera.";
                 return 0;
             }
         }

@@ -49,24 +49,26 @@ include_directories(
 )
 
 set(SOURCE_FILES
-        src/mono_mav_live.cpp
-        src/MAVCom/autopilot_interface.cpp
-        src/MAVCom/autopilot_interface.h
-        src/MAVCom/camera_recorder.cpp
-        src/MAVCom/camera_recorder.h
-        src/MAVCom/imu_recorder.cpp
-        src/MAVCom/imu_recorder.h
-        src/MAVCom/geodetic_converter.cpp
-        src/MAVCom/location_manager.cpp
-        src/MAVCom/location_manager.h
-        src/MAVCom/log.cpp
-        src/MAVCom/log.h
-        src/MAVCom/mavlink_control.cpp
-        src/MAVCom/mavlink_control.h
-        src/MAVCom/serial_port.cpp
-        src/MAVCom/serial_port.h
-        src/MAVCom/slam_interface.cpp
-        src/MAVCom/slam_interface.h
+        src/autopilot_interface.cpp
+        src/autopilot_interface.h
+        src/configParam.cpp
+        src/configParam.h
+        src/main.cpp
+        src/mavlink_control.cpp
+        src/mavlink_control.h
+        src/serial_port.cpp
+        src/serial_port.h
+        src/camera_recorder.cpp
+        src/camera_recorder.h
+        src/log.cpp
+        src/log.h
+        src/imu_recorder.cpp
+        src/imu_recorder.h
+        src/time_recorder.cpp
+        src/time_recorder.h
+        src/geodetic_converter.cpp
+        src/slam_interface.h
+        src/slam_interface.cpp
         )
 
 add_executable(MonoMAV_online ${SOURCE_FILES})

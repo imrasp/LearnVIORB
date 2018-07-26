@@ -14,6 +14,12 @@ system.useIMU: 1 #1:Enable IMU 0:Disable
 system.useSLAM: 1 #1:Enable SLAM 0:Disable
 system.cameraid: 0
 system.gpstime: 1 #use gps time 1:yes 0:no
+system.camera_time_offset: 0.24
+system.xacc_offset: 0.0
+system.yacc_offset: 0.0
+system.zacc_offset: 0.0
+
+system.setting: "/home/odroid/workspace/LearnVIORB/config/odroid_mobius_online.yaml"
 system.vocabulary: "/home/odroid/workspace/LearnVIORB/Vocabulary/ORBvoc.bin"
 system.route: "/home/odroid/workspace/LearnVIORB/route.txt"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"

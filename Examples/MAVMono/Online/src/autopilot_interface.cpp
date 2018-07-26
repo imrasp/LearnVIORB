@@ -181,7 +181,8 @@ set_yaw_rate(float yaw_rate, mavlink_set_position_target_local_ned_t &sp) {
 //   Con/De structors
 // ------------------------------------------------------------------------------
 Autopilot_Interface::
-Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manager_): location_manager(location_manager_) {
+Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manager_) : location_manager(
+        location_manager_) {
     // initialize attributes
     write_count = 0;
 
@@ -224,14 +225,14 @@ Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manage
     emptyLocalPos = PTHREAD_COND_INITIALIZER;
     mutexLocalPos = PTHREAD_MUTEX_INITIALIZER;
 
-    unEmptyOdometry= PTHREAD_COND_INITIALIZER;
+    unEmptyOdometry = PTHREAD_COND_INITIALIZER;
     emptyOdometry = PTHREAD_COND_INITIALIZER;
     mutexOdometry = PTHREAD_MUTEX_INITIALIZER;
 
-    unEmptyAttitude= PTHREAD_COND_INITIALIZER;
+    unEmptyAttitude = PTHREAD_COND_INITIALIZER;
     emptyAttitude = PTHREAD_COND_INITIALIZER;
     mutexAttitude = PTHREAD_MUTEX_INITIALIZER;
-    
+
     b_unixtimereference = false;
     bDynamicTimeRef = true;
 
@@ -315,21 +316,15 @@ read_messages() {
                 }
 
                 case MAVLINK_MSG_ID_LOCAL_POSITION_NED: {
-//                    printf("MAVLINK_MSG_ID_LOCAL_POSITION_NED\n");
+                    //printf("MAVLINK_MSG_ID_LOCAL_POSITION_NED\n");
                     mavlink_msg_local_position_ned_decode(&message, &(current_messages.local_position_ned));
                     current_messages.time_stamps.local_position_ned = get_time_usec();
                     this_timestamps.local_position_ned = current_messages.time_stamps.local_position_ned;
 
-                    if(!location_manager->isGeodeticInitialize()) {
-                        location_manager->set_local_position(current_messages.local_position_ned.time_boot_ms,
-                                                             current_messages.local_position_ned.x,
-                                                             current_messages.local_position_ned.y,
-                                                             current_messages.local_position_ned.z);
-//                        std::cout << "LOCAL_NED_POSITION = " <<current_messages.local_position_ned.x << ", " <<
-//                                current_messages.local_position_ned.y << ", " <<
-//                                current_messages.local_position_ned.z << std::endl;
-                    }
-
+                    location_manager->set_local_position(current_messages.local_position_ned.time_boot_ms,
+                                                         current_messages.local_position_ned.x,
+                                                         current_messages.local_position_ned.y,
+                                                         current_messages.local_position_ned.z);
                     break;
                 }
 
@@ -339,25 +334,10 @@ read_messages() {
                     current_messages.time_stamps.global_position_int = get_time_usec();
                     this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
 
-                    location_manager->stream_global_position(current_messages.global_position_int.time_boot_ms,
-                                                             (double)current_messages.global_position_int.lat,
-                                                             (double)current_messages.global_position_int.lon,
-                                                             (double)current_messages.global_position_int.alt);
-                    if(!location_manager->isGeodeticInitialize()) {
-                        location_manager->set_global_position(current_messages.global_position_int.time_boot_ms,
-                                                                    (double)current_messages.global_position_int.lat,
-                                                                    (double)current_messages.global_position_int.lon,
-                                                                    (double)current_messages.global_position_int.alt);
-                    } else {
-//                        mavlink_vision_position_estimate_t vpe;
-//                        location_manager->get_NED_from_geodetic((double)current_messages.global_position_int.lat,
-//                                                                (double)current_messages.global_position_int.lon,
-//                                                                (double)current_messages.global_position_int.alt,
-//                                                                 &vpe.x, &vpe.y, &vpe.z);
-//                        vpe.usec = current_messages.global_position_int.time_boot_ms;
-//                        updateVisionEstimationPosition(vpe);
-                    }
-
+                    location_manager->set_global_position(current_messages.global_position_int.time_boot_ms,
+                                                          current_messages.global_position_int.lat,
+                                                          current_messages.global_position_int.lon,
+                                                          current_messages.global_position_int.alt);
                     break;
                 }
 
@@ -376,6 +356,9 @@ read_messages() {
                                                                   &(current_messages.position_target_global_int));
                     current_messages.time_stamps.position_target_global_int = get_time_usec();
                     this_timestamps.position_target_global_int = current_messages.time_stamps.position_target_global_int;
+
+                    // Pass INT position to location manager
+
                     break;
                 }
 
@@ -385,32 +368,31 @@ read_messages() {
                     current_messages.time_stamps.highres_imu = get_time_usec();
                     this_timestamps.highres_imu = current_messages.time_stamps.highres_imu;
 
-                    timestampimu_ns = boost::lexical_cast<uint64_t>(
-                            std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                    std::chrono::system_clock::now().time_since_epoch()).count());
-                    location_manager->set_imu_pose(timestampimu_ns, current_messages.highres_imu);
+                    location_manager->set_highres_imu(current_messages.highres_imu.time_usec,
+                                                      current_messages.highres_imu.xacc,
+                                                      current_messages.highres_imu.yacc,
+                                                      current_messages.highres_imu.zacc,
+                                                      current_messages.highres_imu.xgyro,
+                                                      current_messages.highres_imu.ygyro,
+                                                      current_messages.highres_imu.zgyro);
 
-                    // get first message and set reference time
-                    // then for each of messages (especially imu) use this ref to convert to unix time ( as same as mavlink)
-                    // collect imu time_since_boot ms also (use for further expriments)
-                    // check camera timestamp
-                    if(bTimeRef) {
-                        //uint64_t unixreftime = get_unixtimereference(current_messages.highres_imu.time_usec);
-                        uint64_t imuunixreftime = odroid_unix_ns_ref + ((current_messages.highres_imu.time_usec - time_boot_ms_ref) * 1000);
-                        //cout << "!! odroid_unix_ns_ref & time_boot_ms_ref are " << odroid_unix_ns_ref << " and " << time_boot_ms_ref
-                        //     << " ms is " << current_messages.highres_imu.time_usec << " and result is " << imuunixreftime << endl;
+                    break;
+                }
 
-                        timestampimu_ns = boost::lexical_cast<uint64_t>(
-                                std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                        std::chrono::system_clock::now().time_since_epoch()).count());
+                case MAVLINK_MSG_ID_SCALED_IMU: {
+//                    printf("MAVLINK_MSG_ID_SCALED_IMU\n");
+                    mavlink_msg_scaled_imu_decode(&message, &(current_messages.scaled_imu));
+                    current_messages.time_stamps.scaled_imu = get_time_usec();
+                    this_timestamps.scaled_imu = current_messages.time_stamps.scaled_imu;
 
-                        pthread_mutex_lock(&mutexIMU);
-                        queueIMU.push(current_messages.highres_imu);
-                        queueIMUtime.push(timestampimu_ns);
-                        queueIMUUnixRefTime.push(imuunixreftime);
-                        pthread_cond_signal(&unEmptyIMU);
-                        pthread_mutex_unlock(&mutexIMU);
-                    }
+                    location_manager->set_scaled_imu(current_messages.scaled_imu.time_boot_ms,
+                                                     current_messages.scaled_imu.xacc,
+                                                     current_messages.scaled_imu.yacc,
+                                                     current_messages.scaled_imu.zacc,
+                                                     current_messages.scaled_imu.xgyro,
+                                                     current_messages.scaled_imu.ygyro,
+                                                     current_messages.scaled_imu.zgyro);
+
                     break;
                 }
 
@@ -420,19 +402,6 @@ read_messages() {
                     current_messages.time_stamps.attitude = get_time_usec();
                     this_timestamps.attitude = current_messages.time_stamps.attitude;
 
-                    if(bTimeRef) {
-                        uint64_t attitudeunixreftime = get_unixtimereference(current_messages.attitude.time_boot_ms); //Timestamp
-                        timestampAttitude_ns = boost::lexical_cast<uint64_t>(
-                                std::chrono::duration_cast<std::chrono::nanoseconds>(
-                                        std::chrono::system_clock::now().time_since_epoch()).count());
-
-                        pthread_mutex_lock(&mutexAttitude);
-                        queueAttitude.push(current_messages.attitude);
-                        queueAttitudetime.push(timestampAttitude_ns);
-                        queueAttitudeUnixRefTime.push(attitudeunixreftime);
-                        pthread_cond_signal(&unEmptyAttitude);
-                        pthread_mutex_unlock(&mutexAttitude);
-                    }
                     break;
                 }
 
@@ -441,6 +410,16 @@ read_messages() {
                     mavlink_msg_home_position_decode(&message, &(current_messages.home_position));
                     current_messages.time_stamps.home_position = get_time_usec();
                     this_timestamps.home_position = current_messages.time_stamps.home_position;
+                    break;
+                }
+
+                case MAVLINK_MSG_ID_SYSTEM_TIME: {
+                    mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
+                    current_messages.time_stamps.system_time = get_time_usec();
+                    this_timestamps.system_time = current_messages.time_stamps.system_time;
+
+//                    location_manager->set_time(current_messages.system_time.time_boot_ms, current_messages.system_time.time_unix_usec);
+
                     break;
                 }
 
@@ -453,19 +432,6 @@ read_messages() {
                     break;
                 }
 
-                case MAVLINK_MSG_ID_SYSTEM_TIME: {
-                    printf("MAVLINK_MSG_ID_SYSTEM_TIME\n");
-                    mavlink_msg_system_time_decode(&message, &(current_messages.system_time));
-                    current_messages.time_stamps.system_time = get_time_usec();
-                    this_timestamps.system_time = current_messages.time_stamps.system_time;
-
-                    if (!bTimeRef) {
-                        pthread_mutex_lock(&mutexTimeRef);
-                        pthread_cond_signal(&timeRef);
-                        pthread_mutex_unlock(&mutexTimeRef);
-                    }
-                    break;
-                }
                 default: {
                     // printf("Warning, did not handle message id %i\n",message.msgid);
                     break;
@@ -530,7 +496,7 @@ write_setpoint() {
 
     // double check some system parameters
     if (not sp.time_boot_ms)
-        sp.time_boot_ms = (uint32_t) (get_time_usec() / 1000);
+        sp.time_boot_ms = (uint32_t)(get_time_usec() / 1000);
     sp.target_system = system_id;
     sp.target_component = autopilot_id;
 
@@ -1026,121 +992,6 @@ int Autopilot_Interface::toggle_arm_control(bool flag) {
 // ------------------------------------------------------------------------------
 //SET AND UPDATE SETPOINT
 // ------------------------------------------------------------------------------
-void Autopilot_Interface::enable_takeoff(float height, float velocity) {
-    printf("Mode TAKEOFF\n"); //Drone décolle
-    float precision_distance = 0.1; // [m]
-    mavlink_set_position_target_local_ned_t sp_target;
-    sp_target.vx = 0;
-    sp_target.vy = 0;
-    sp_target.vz = -velocity;
-    sp_target.z = -height;
-    sp_target.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_TAKEOFF;
-    sp_target.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
-
-    update_setpoint(sp_target);
-
-    while ((current_messages.extended_sys_state.landed_state != MAV_LANDED_STATE_IN_AIR)
-           && (fabs(current_messages.local_position_ned.z - current_messages.position_target_local_ned.z) <
-               precision_distance)) {
-        sleep(0.5);
-    }
-
-    cout << "takeoff complete!" << endl;
-}
-
-void Autopilot_Interface::enable_land() {
-    printf("Mode land\n"); //Drone atterrit
-    mavlink_set_position_target_local_ned_t setpoint;
-    setpoint.vx = 0;
-    setpoint.vy = 0;
-    setpoint.vz = 0.5;
-    setpoint.z = 0.00;
-    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_LAND;
-    setpoint.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
-
-    update_setpoint(setpoint);
-
-    //while( (current_messages.extended_sys_state.landed_state != MAV_LANDED_STATE_ON_GROUND) || (current_messages.local_position_ned.z <= 0.00))
-    while (current_messages.local_position_ned.z <= -0.05) {
-        cout << " current landing z is " << current_messages.local_position_ned.z << endl;
-        sleep(0.5);
-    }
-    cout << "landed complete!\n" << endl;
-}
-
-void Autopilot_Interface::enable_hold(double sec) {
-}
-
-
-void Autopilot_Interface::enable_idle(double sec)
-{
-    printf("Mode Hold Position\n");
-    mavlink_set_position_target_local_ned_t setpoint;
-    setpoint.vx = 0;
-    setpoint.vy = 0;
-    setpoint.vz = 0;
-    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_IDLE;
-    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
-
-    update_setpoint(setpoint);
-    sleep(sec);
-}
-
-void Autopilot_Interface::goto_positon_ned(float x, float y, float z){
-
-    printf("Goto Position\n");
-    mavlink_set_position_target_local_ned_t setpoint;
-    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
-
-    setpoint.x = cp.x+x;
-    setpoint.y = cp.y+y;
-    setpoint.z = cp.z+z;
-    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
-    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
-
-    update_setpoint(setpoint);
-    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
-    //wait message to update
-    while(cp.x+x != current_messages.position_target_local_ned.x && cp.y+y != current_messages.position_target_local_ned.y && cp.z+z != current_messages.position_target_local_ned.z){
-        sleep(1);
-    }
-
-    while(!IsInWaypointLocal(0.5)){
-        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
-        sleep(0.1);
-    }
-    cout << "reached! \n";
-}
-
-void Autopilot_Interface::goto_positon_offset_ned(float x, float y, float z){
-
-    printf("Goto Position\n");
-    mavlink_set_position_target_local_ned_t setpoint;
-    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
-    if (x != 0) setpoint.vx = x / fabs(x);
-    if (y != 0) setpoint.vy = y / fabs(y);
-    if (z != 0) setpoint.vz = z / fabs(z);
-    setpoint.x = x;
-    setpoint.y = y;
-    setpoint.z = z;
-    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
-    setpoint.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
-
-    update_setpoint(setpoint);
-    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
-    //wait message to update
-    while( cp.x+x != current_messages.position_target_local_ned.x && cp.y+y != current_messages.position_target_local_ned.y && cp.z+z != current_messages.position_target_local_ned.z){
-        cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x+x << " , " << cp.y + y << " , " << cp.z + z << endl;
-        sleep(1);
-    }
-
-    while(!IsInWaypointLocal(0.5)){
-        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
-        sleep(0.1);
-    }
-    cout << "reached! \n";
-}
-
 
 // Request MSG streaming rate
 // param 1 = message ID and param 2 = interval in microseconds
@@ -1203,6 +1054,130 @@ void Autopilot_Interface::set_home() {
     }
 }
 
+// ------------------------------------------------------------------------------
+//SET AND UPDATE SETPOINT
+// ------------------------------------------------------------------------------
+void Autopilot_Interface::enable_takeoff(float height, float velocity) {
+    printf("Mode TAKEOFF\n"); //Drone décolle
+    float precision_distance = 0.1; // [m]
+    mavlink_set_position_target_local_ned_t sp_target;
+    sp_target.vx = 0;
+    sp_target.vy = 0;
+    sp_target.vz = -velocity;
+    sp_target.z = -height;
+    sp_target.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_TAKEOFF;
+    sp_target.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
+
+    update_setpoint(sp_target);
+
+    while ((current_messages.extended_sys_state.landed_state != MAV_LANDED_STATE_IN_AIR)
+           && (fabs(current_messages.local_position_ned.z - current_messages.position_target_local_ned.z) <
+               precision_distance)) {
+        sleep(0.5);
+    }
+
+    cout << "takeoff complete!" << endl;
+}
+
+void Autopilot_Interface::enable_land() {
+    printf("Mode land\n"); //Drone atterrit
+    mavlink_set_position_target_local_ned_t setpoint;
+    setpoint.vx = 0;
+    setpoint.vy = 0;
+    setpoint.vz = 0.5;
+    setpoint.z = 0.00;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_LAND;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
+
+    update_setpoint(setpoint);
+
+    //while( (current_messages.extended_sys_state.landed_state != MAV_LANDED_STATE_ON_GROUND) || (current_messages.local_position_ned.z <= 0.00))
+    while (current_messages.local_position_ned.z <= -0.05) {
+        cout << " current landing z is " << current_messages.local_position_ned.z << endl;
+        sleep(0.5);
+    }
+    cout << "landed complete!\n" << endl;
+}
+
+void Autopilot_Interface::enable_hold(double sec) {
+}
+
+
+void Autopilot_Interface::enable_idle(double sec) {
+    printf("Mode Hold Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    setpoint.vx = 0;
+    setpoint.vy = 0;
+    setpoint.vz = 0;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_IDLE;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
+
+    update_setpoint(setpoint);
+    sleep(sec);
+}
+
+void Autopilot_Interface::goto_positon_ned(float x, float y, float z) {
+
+    printf("Goto Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
+
+    setpoint.x = cp.x + x;
+    setpoint.y = cp.y + y;
+    setpoint.z = cp.z + z;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_NED;
+
+    update_setpoint(setpoint);
+    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x + x << " , "
+         << cp.y + y << " , " << cp.z + z << endl;
+    //wait message to update
+    while (cp.x + x != current_messages.position_target_local_ned.x &&
+           cp.y + y != current_messages.position_target_local_ned.y &&
+           cp.z + z != current_messages.position_target_local_ned.z) {
+        sleep(1);
+    }
+
+    while (!IsInWaypointLocal(0.5)) {
+        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
+        sleep(0.1);
+    }
+    cout << "reached! \n";
+}
+
+void Autopilot_Interface::goto_positon_offset_ned(float x, float y, float z) {
+
+    printf("Goto Position\n");
+    mavlink_set_position_target_local_ned_t setpoint;
+    mavlink_local_position_ned_t cp = current_messages.local_position_ned;
+    if (x != 0) setpoint.vx = x / fabs(x);
+    if (y != 0) setpoint.vy = y / fabs(y);
+    if (z != 0) setpoint.vz = z / fabs(z);
+    setpoint.x = x;
+    setpoint.y = y;
+    setpoint.z = z;
+    setpoint.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    setpoint.coordinate_frame = MAV_FRAME_LOCAL_OFFSET_NED;
+
+    update_setpoint(setpoint);
+    cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x + x << " , "
+         << cp.y + y << " , " << cp.z + z << endl;
+    //wait message to update
+    while (cp.x + x != current_messages.position_target_local_ned.x &&
+           cp.y + y != current_messages.position_target_local_ned.y &&
+           cp.z + z != current_messages.position_target_local_ned.z) {
+        cout << "current position : " << cp.x << " , " << cp.y << " , " << cp.z << " expected " << cp.x + x << " , "
+             << cp.y + y << " , " << cp.z + z << endl;
+        sleep(1);
+    }
+
+    while (!IsInWaypointLocal(0.5)) {
+        //cout << "current x is " << current_messages.local_position_ned.x << " expect " << current_messages.position_target_local_ned.x << endl;
+        sleep(0.1);
+    }
+    cout << "reached! \n";
+}
+
 void Autopilot_Interface::updateVisionEstimationPosition(mavlink_vision_position_estimate_t vpe) {
     mavlink_message_t message;
     mavlink_msg_vision_position_estimate_encode(system_id, companion_id, &message, &vpe);
@@ -1211,13 +1186,13 @@ void Autopilot_Interface::updateVisionEstimationPosition(mavlink_vision_position
 
     if (!len)
         cout << "cannot write to VISION_POSITION_ESTIMATE \n";
-//    else
-//        cout << "write to VISION_POSITION_ESTIMATE \n";
+    else
+        cout << "write to VISION_POSITION_ESTIMATE \n";
 }
 
 // TIME MANAGEMENTS
 
-void Autopilot_Interface::set_unixtimereference(mavlink_system_time_t time){
+void Autopilot_Interface::set_unixtimereference(mavlink_system_time_t time) {
 
 
     // set dynamic offset an ignore time drift in system_time message
@@ -1231,32 +1206,33 @@ void Autopilot_Interface::set_unixtimereference(mavlink_system_time_t time){
 //        offset_time_ref = odroid_unix_ns_ref - gps_unix_ns_ref; // offset of gps time which is slower than odroid
         b_unixtimereference = true;
     }
-    cout << "set unix time reference with ns = " << ns <<"\n";
+    cout << "set unix time reference with ns = " << ns << "\n";
 }
 
-uint64_t Autopilot_Interface::get_unixtimereference(uint32_t time){
+uint64_t Autopilot_Interface::get_unixtimereference(uint32_t time) {
 //    if(b_unixtimereference){
 //        uint64_t a = odroid_unix_ns_ref + ((time - time_boot_ms_ref) * 1e3);
 //        return (a);
 //    }
 //    else
-        return (odroid_unix_ns_ref + ((time - time_boot_ms_ref) * 1e3));
+    return (odroid_unix_ns_ref + ((time - time_boot_ms_ref) * 1e3));
 }
 
-bool Autopilot_Interface::IsInWaypointLocal(float radius)
-{
+bool Autopilot_Interface::IsInWaypointLocal(float radius) {
     // Radios is in meters
     float dx = current_messages.position_target_local_ned.x - current_messages.local_position_ned.x;
     float dy = current_messages.position_target_local_ned.y - current_messages.local_position_ned.y;
     float dz = current_messages.position_target_local_ned.z - current_messages.local_position_ned.z;
-    float distance = sqrtf(pow(dx,2) + pow(dy,2) + pow(dz,2));
+    float distance = sqrtf(pow(dx, 2) + pow(dy, 2) + pow(dz, 2));
 
     //printf("distance to next position : %lf \n", distance);
 
-    if(distance < radius) {
+    if (distance < radius) {
         //printf("Is in Waypoint");
         return true;
-    }
-    else
+    } else
         return false;
 }
+
+
+
