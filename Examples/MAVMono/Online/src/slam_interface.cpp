@@ -75,14 +75,14 @@ void SLAM_Interface::add_imu_to_queue(uint64_t timestamp, double xacc, double ya
 int SLAM_Interface::start() {
 
     //create result file
-    std::cout << "create SLAM result file \n";
+//    std::cout << "create SLAM result file \n";
     std::ofstream visionpose, processing_time;
     visionpose.open(mavconfigParam->record_path + "/slam_pose.csv");
     processing_time.open(mavconfigParam->record_path + "/processing_time.csv");
     processing_time << "t1" << "," << "t2" << "," << "dt" << "," << "state" << std::endl;
 
     while (!time_to_exit) {
-        cout << "SLAM :: process frame \n";
+//        cout << "SLAM :: process frame \n";
             pthread_cond_wait(&grabFrame, &mutexFrame);
             pthread_cond_wait(&unEmptyIMU, &mutexIMU);
         if (vimuData.size() < 5) {
@@ -91,12 +91,12 @@ int SLAM_Interface::start() {
         }
 //        pthread_mutex_lock(&mutexFrame);
 //        pthread_mutex_lock(&mutexIMU);
-        cout << "SLAM :: TrackMonoVI \n";
-        std::cout << "-------------------" << '\n';
-        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
-        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
-        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
-        std::cout << "-------------------" << '\n';
+//        cout << "SLAM :: TrackMonoVI \n";
+//        std::cout << "-------------------" << '\n';
+//        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
+//        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
+//        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
+//        std::cout << "-------------------" << '\n';
 
         uint64_t  cp_time1 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count()));
@@ -119,6 +119,7 @@ int SLAM_Interface::start() {
          OK=2,
          LOST=3
          */
+        std::cout << SLAM->get_state() << std::endl;
         processing_time << cp_time1 << "," << cp_time2 << "," << cp_time2 - cp_time1 << "," << SLAM->get_state() << std::endl;
 
     }
