@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     MAV::ConfigParam configmav(argv[1]);
    std::cout << "Starting SLAM...\n";
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, true);
+    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, false);
 
     std::cout << "Reading SLAM config file...\n";
     ORB_SLAM2::ConfigParam config(argv[1]);

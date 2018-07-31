@@ -13,7 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tracking.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tracking.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/odroid_mobius_online.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/odroid_mobius_online.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,41 +54,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tracking.cc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Tracking.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="2077" column="4" selection-start-line="2077" selection-start-column="4" selection-end-line="2077" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slam_interface.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mono_mav.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2190">
-              <caret line="146" selection-start-line="146" selection-end-line="146" />
+            <state relative-caret-position="116">
+              <caret line="1868" selection-start-line="1868" selection-end-line="1868" />
               <folding>
-                <element signature="e#40#58#0" expanded="true" />
+                <element signature="e#31991#32013#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="imudata.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -95,8 +69,47 @@
       <file leaf-file-name="mobius_online.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="345">
+              <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="odroid_mobius_online.yaml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Viewer.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Viewer.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Viewer.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/Viewer.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mono_mav.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="35" column="93" selection-start-line="35" selection-start-column="93" selection-end-line="35" selection-end-column="93" />
+              <folding>
+                <element signature="e#40#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,8 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/start_mission.sh" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/log.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/mavlink_control.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/geodetic_converter.cpp" />
         <option value="$PROJECT_DIR$/build.sh" />
@@ -180,7 +191,6 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/imu_recorder.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/configParam.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/configParam.cpp" />
-        <option value="$PROJECT_DIR$/config/odroid_mobius_online.yaml" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp" />
@@ -201,8 +211,11 @@
         <option value="$PROJECT_DIR$/include/Tracking.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/config/mobius_offline.yaml" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" />
         <option value="$PROJECT_DIR$/src/Tracking.cc" />
+        <option value="$PROJECT_DIR$/include/Viewer.h" />
+        <option value="$PROJECT_DIR$/src/Viewer.cc" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" />
+        <option value="$PROJECT_DIR$/config/odroid_mobius_online.yaml" />
       </list>
     </option>
   </component>
@@ -386,12 +399,12 @@
       <workItem from="1532768245982" duration="15919000" />
       <workItem from="1532851771240" duration="2443000" />
       <workItem from="1532918901994" duration="11016000" />
-      <workItem from="1533018115021" duration="2107000" />
+      <workItem from="1533018115021" duration="2911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="404716000" />
+    <option name="totallyTimeSpent" value="405520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1299" height="744" extended-state="4" />
@@ -456,20 +469,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build_odroid.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" selection-start-line="28" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/json/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -618,13 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -723,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
@@ -755,16 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="75" column="101" lean-forward="true" selection-start-line="74" selection-start-column="7" selection-end-line="75" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2190">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-          <folding>
-            <element signature="e#40#58#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -805,8 +780,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="2077" column="4" selection-start-line="2077" selection-start-column="4" selection-end-line="2077" selection-end-column="4" />
+        <state relative-caret-position="116">
+          <caret line="1868" selection-start-line="1868" selection-end-line="1868" />
+          <folding>
+            <element signature="e#31991#32013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/Viewer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Viewer.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="35" column="93" selection-start-line="35" selection-start-column="93" selection-end-line="35" selection-end-column="93" />
+          <folding>
+            <element signature="e#40#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
         </state>
       </provider>
     </entry>
