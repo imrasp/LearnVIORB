@@ -15,7 +15,7 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
     cout << "Starting SLAM..." << endl;
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, true);
+    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, false);
     config = new ORB_SLAM2::ConfigParam(mavconfigParam->setting);
 
     imageMsgDelaySec = config->GetImageDelayToIMU();

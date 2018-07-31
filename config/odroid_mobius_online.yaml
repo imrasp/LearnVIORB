@@ -21,7 +21,7 @@ system.zacc_offset: 0.0
 
 system.setting: "/home/odroid/workspace/LearnVIORB/config/odroid_mobius_online.yaml"
 system.vocabulary: "/home/odroid/workspace/LearnVIORB/Vocabulary/ORBvoc.bin"
-system.route: "/home/odroid/workspace/LearnVIORB/route.txt"
+system.mission_route: "/home/odroid/workspace/LearnVIORB/route.txt"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
 system.record_path: "/home/odroid/workspace/LearnVIORB/datasets/record"
