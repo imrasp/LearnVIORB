@@ -120,6 +120,7 @@ void Location_Manager::set_global_position(uint32_t timestamp, double lat, doubl
     c_alt = alt;
     pthread_mutex_unlock(&mutex_globalpose);
 
+    uint64_t c_timestamp;
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(timestamp * 1e6);
         imu_recorder_gps->add_imu_to_queue(c_timestamp, lat, lon, alt, 0, 0, 0);

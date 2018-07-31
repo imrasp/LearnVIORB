@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1827">
-              <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+              <caret line="168" selection-start-line="168" selection-end-line="168" />
             </state>
           </provider>
         </entry>
@@ -61,20 +61,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1390">
-              <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
+            <state relative-caret-position="290">
+              <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="59" column="97" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="97" />
+              <caret line="59" column="94" selection-start-line="59" selection-start-column="94" selection-end-line="59" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -209,8 +209,8 @@
         <option value="$PROJECT_DIR$/config/odroid_mobius_online.yaml" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
       </list>
     </option>
   </component>
@@ -395,12 +395,12 @@
       <workItem from="1532851771240" duration="2443000" />
       <workItem from="1532918901994" duration="11016000" />
       <workItem from="1533018115021" duration="3522000" />
-      <workItem from="1533028115142" duration="1617000" />
+      <workItem from="1533028115142" duration="1875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="407748000" />
+    <option name="totallyTimeSpent" value="408006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1301" height="744" extended-state="4" />
@@ -783,7 +783,7 @@
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1827">
-          <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+          <caret line="168" selection-start-line="168" selection-end-line="168" />
         </state>
       </provider>
     </entry>
@@ -808,17 +808,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1390">
-          <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="59" column="97" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="97" />
+          <caret line="59" column="94" selection-start-line="59" selection-start-column="94" selection-end-line="59" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
         </state>
       </provider>
     </entry>
