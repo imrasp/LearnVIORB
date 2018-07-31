@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,26 +28,17 @@
       <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="1815">
               <caret line="121" column="47" selection-start-line="121" selection-start-column="47" selection-end-line="121" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mavlink_control.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mavlink_control.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="130" column="5" lean-forward="true" selection-start-line="122" selection-start-column="17" selection-end-line="130" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="euroc_offline.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/euroc_offline.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="-1827">
+              <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
             </state>
           </provider>
         </entry>
@@ -55,20 +46,26 @@
       <file leaf-file-name="System.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="-814">
               <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tracking.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
+      <file leaf-file-name="autopilot_interface.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28020">
-              <caret line="1868" selection-start-line="1868" selection-end-line="1868" />
-              <folding>
-                <element signature="e#31991#32013#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1275">
+              <caret line="421" selection-start-line="421" selection-end-line="421" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="423">
+              <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -199,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/MAV/configParam.h" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.cpp" />
         <option value="$PROJECT_DIR$/config/euroc_offline.yaml" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
         <option value="$PROJECT_DIR$/src/IMU/imudata.cpp" />
         <option value="$PROJECT_DIR$/config/route.txt" />
         <option value="$PROJECT_DIR$/config/mobius_online.yaml" />
@@ -214,6 +210,7 @@
         <option value="$PROJECT_DIR$/config/odroid_mobius_online.yaml" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
       </list>
     </option>
   </component>
@@ -398,12 +395,12 @@
       <workItem from="1532851771240" duration="2443000" />
       <workItem from="1532918901994" duration="11016000" />
       <workItem from="1533018115021" duration="3522000" />
-      <workItem from="1533028115142" duration="263000" />
+      <workItem from="1533028115142" duration="1361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="406394000" />
+    <option name="totallyTimeSpent" value="407492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1301" height="744" extended-state="4" />
@@ -637,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="421" selection-start-line="421" selection-end-line="421" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/route.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -690,13 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2625">
-          <caret line="175" column="8" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -756,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28020">
@@ -811,17 +787,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1827">
+          <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="1815">
           <caret line="121" column="47" selection-start-line="121" selection-start-column="47" selection-end-line="121" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
+    <entry file="file://$PROJECT_DIR$/src/System.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="130" column="5" lean-forward="true" selection-start-line="122" selection-start-column="17" selection-end-line="130" selection-end-column="5" />
+        <state relative-caret-position="-814">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="421" selection-start-line="421" selection-end-line="421" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
         </state>
       </provider>
     </entry>

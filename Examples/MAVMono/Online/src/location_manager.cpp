@@ -31,6 +31,8 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
     imu_recorder_highres->start();
 //    imu_recorder_scaled = new IMU_Recorder("scaled_imu0.csv", record_path);
 //    imu_recorder_scaled->start();
+    imu_recorder_gps = new IMU_Recorder("gps.csv", record_path);
+    imu_recorder_gps->start();
 }
 
 Location_Manager::~Location_Manager() {
@@ -117,6 +119,11 @@ void Location_Manager::set_global_position(uint32_t timestamp, double lat, doubl
     c_lon = lon;
     c_alt = alt;
     pthread_mutex_unlock(&mutex_globalpose);
+
+    if (b_pixhawk_time_ref) {
+        c_timestamp = get_unixtime(timestamp * 1e6);
+        imu_recorder_gps->add_imu_to_queue(c_timestamp, lat, lon, alt, 0, 0, 0);
+    }
 }
 
 void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, float yacc, float zacc, float xgyro,
