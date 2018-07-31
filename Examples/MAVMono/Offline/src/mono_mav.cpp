@@ -8,7 +8,7 @@
 #include<chrono>
 #include<cstdio>//to pause console screen
 #include <typeinfo>
-
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #include"../../../../include/System.h"
 
@@ -52,8 +52,10 @@ int main(int argc, char **argv) {
     }
 
     //create result file
-    std::ofstream visionpose;
+    std::ofstream visionpose, processing_time;
     visionpose.open(configmav.record_path + "/slam_pose.csv");
+    processing_time.open(configmav.record_path + "/processing_time.csv");
+    processing_time << "t1" << "," << "t2" << "," << "dt" << "," << "state" << std::endl;
     // Read all images from folder order by name(default)
     std::vector<cv::String> fn;
     cv::glob(configmav.record_path + "/cam0/*.png", fn, false);
@@ -77,7 +79,7 @@ int main(int argc, char **argv) {
     size_t count = fn.size(); //number of png files in images folder
     for (size_t i=0; i<count; i++) {
         std::string stimestamp = fn[i].substr(fn[i].find_last_of("/") + 1, 19);
-        double timestamp_camera = std::stod(stimestamp) / 1e9;
+        double timestamp_camera = std::stod(stimestamp) / 1e9 - configmav.camera_time_offset;
         image = cv::imread(fn[i]);
 
         std::vector<ORB_SLAM2::IMUData> vimuData;
@@ -92,11 +94,11 @@ int main(int argc, char **argv) {
             getline(imu, getval, ',');
             zgyro = atof(getval.c_str()); // cout << " zgyro : " << zgyro << endl;
             getline(imu, getval, ',');
-            ax = atof(getval.c_str()); // cout << " xacc : " << xacc << endl;
+            ax = atof(getval.c_str()) - configmav.xacc_offset; // cout << " xacc : " << xacc << endl;
             getline(imu, getval, ',');
-            ay = atof(getval.c_str()); // cout << " yacc : " << yacc << endl;
+            ay = atof(getval.c_str()) - configmav.yacc_offset; // cout << " yacc : " << yacc << endl;
             getline(imu, getval, '\n');
-            az = atof(getval.c_str()); // cout << " zacc : " << zacc << endl;
+            az = atof(getval.c_str()) - configmav.zacc_offset; // cout << " zacc : " << zacc << endl;
             if (bAccMultiply98) {
                 ax *= g3dm;
                 ay *= g3dm;
@@ -136,9 +138,15 @@ int main(int argc, char **argv) {
                         continue;
                     }
 
+                    uint64_t  cp_time1 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+                            std::chrono::system_clock::now().time_since_epoch()).count()));
+
                     // Pass the image to the SLAM system
                     vision_estimated_pose = SLAM.TrackMonoVI(image, vimuData, timestamp_camera - imageMsgDelaySec);
-                    cout << "visionpose : " << vision_estimated_pose << endl;
+//                    cout << "visionpose : " << vision_estimated_pose << endl;
+
+                    uint64_t  cp_time2 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+                            std::chrono::system_clock::now().time_since_epoch()).count()));
 
                     if(!vision_estimated_pose.empty()) {
                         visionpose << ',' << vision_estimated_pose.at<double>(0,3)
@@ -148,6 +156,9 @@ int main(int argc, char **argv) {
 //                        float yaw,pitch,roll;
 //                        boost::tie(yaw,pitch,roll) = quaternionToYawPitchRoll(vision_estimated_pose);
                     }
+
+                    processing_time << cp_time1 << "," << cp_time2 << "," << cp_time2 - cp_time1 << "," << SLAM.get_state() << std::endl;
+
                     vimuData.clear();
                     // angular_velocity.x, angular_velocity.y, angular_velocity.z, linear_acceleration ax, ay, az, timestamp
                     ORB_SLAM2::IMUData imudata(xgyro, ygyro, zgyro, ax, ay, az, timestamp);

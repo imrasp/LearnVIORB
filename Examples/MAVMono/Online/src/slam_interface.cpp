@@ -15,7 +15,7 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
     cout << "Starting SLAM..." << endl;
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, false);
+    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, true);
     config = new ORB_SLAM2::ConfigParam(mavconfigParam->setting);
 
     imageMsgDelaySec = config->GetImageDelayToIMU();
@@ -29,72 +29,10 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
 SLAM_Interface::~SLAM_Interface() {
     stop();
-    threadSLAM.join();
 }
 
 int SLAM_Interface::stop() {
     time_to_exit = true;
-
-
-}
-
-void SLAM_Interface::set_current_frame(cv::Mat frame, uint64_t timestamp) {
-//    pthread_mutex_lock(&mutexFrame);
-//    c_frame = frame.clone();
-//    c_frame_timestamp = timestamp * 1e-9;
-//    pthread_cond_signal(&grabFrame);
-//    pthread_mutex_unlock(&mutexFrame);
-}
-
-void SLAM_Interface::add_imu_to_queue(uint64_t timestamp, double xacc, double yacc, double zacc,
-                                    double xgyro, double ygyro, double zgyro) {
-    if (bAccMultiply98) {
-        xacc *= g3dm;
-        yacc *= g3dm;
-        zacc *= g3dm;
-    }
-
-    // add IMU to queue
-    pthread_mutex_lock(&mutexIMU);
-    ORB_SLAM2::IMUData imudata(xgyro, ygyro, zgyro, xacc, yacc, zacc, timestamp * 1e-9);
-    vimuData.push_back(imudata);
-    pthread_cond_signal(&unEmptyIMU);
-    pthread_mutex_unlock(&mutexIMU);
-}
-
-
-int SLAM_Interface::start() {
-
-    //create result file
-    std::cout << "create SLAM result file \n";
-    std::ofstream visionpose;
-    visionpose.open(mavconfigParam->record_path + "/slam_pose.csv");
-
-    while (!time_to_exit) {
-
-        pthread_mutex_lock(&mutexFrame);
-        pthread_mutex_lock(&mutexIMU);
-
-        if (c_frame.rows == 0 || c_frame.cols == 0) {
-            pthread_cond_wait(&grabFrame, &mutexIMU);
-        }
-        if (vimuData.size() == 0) {
-            cout << "skip frame imu size = 0 \n";
-            continue;
-        }
-
-        std::cout << "-------------------" << '\n';
-        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
-        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
-        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
-        std::cout << "-------------------" << '\n';
-
-        cv::Mat vision_estimated_pose = SLAM->TrackMonoVI(c_frame, vimuData, c_frame_timestamp - imageMsgDelaySec);
-        vimuData.clear();
-
-        pthread_mutex_unlock(&mutexFrame);
-        pthread_mutex_unlock(&mutexIMU);
-    }
 
     // Save camera trajectory
     SLAM->SaveKeyFrameTrajectoryTUM(mavconfigParam->record_path + "/KeyFrameTrajectory.txt");
@@ -102,6 +40,90 @@ int SLAM_Interface::start() {
 
     // Stop all threads
     SLAM->Shutdown();
+
+    threadSLAM.join();
+}
+
+void SLAM_Interface::set_current_frame(cv::Mat frame, uint64_t timestamp) {
+//    pthread_mutex_lock(&mutexFrame);
+//    std::cout << "SLAM :: get frame \n";
+    c_frame = frame.clone();
+    c_frame_timestamp = timestamp * 1e-9;
+    pthread_cond_signal(&grabFrame);
+//    pthread_mutex_unlock(&mutexFrame);
+}
+
+void SLAM_Interface::add_imu_to_queue(uint64_t timestamp, double xacc, double yacc, double zacc,
+                                    double xgyro, double ygyro, double zgyro) {
+
+    if (bAccMultiply98) {
+        xacc *= g3dm;
+        yacc *= g3dm;
+        zacc *= g3dm;
+    }
+
+    // add IMU to queue
+//    pthread_mutex_lock(&mutexIMU);
+//    std::cout << "SLAM :: add IMU to queue \n";
+    ORB_SLAM2::IMUData imudata(xgyro, ygyro, zgyro, xacc, yacc, zacc, timestamp * 1e-9);
+    vimuData.push_back(imudata);
+    pthread_cond_signal(&unEmptyIMU);
+//    pthread_mutex_unlock(&mutexIMU);
+}
+
+
+int SLAM_Interface::start() {
+
+    //create result file
+    std::cout << "create SLAM result file \n";
+    std::ofstream visionpose, processing_time;
+    visionpose.open(mavconfigParam->record_path + "/slam_pose.csv");
+    processing_time.open(mavconfigParam->record_path + "/processing_time.csv");
+    processing_time << "t1" << "," << "t2" << "," << "dt" << "," << "state" << std::endl;
+
+    while (!time_to_exit) {
+        cout << "SLAM :: process frame \n";
+            pthread_cond_wait(&grabFrame, &mutexFrame);
+            pthread_cond_wait(&unEmptyIMU, &mutexIMU);
+        if (vimuData.size() < 5) {
+            cout << "skip frame imu size < 5 \n";
+            continue;
+        }
+//        pthread_mutex_lock(&mutexFrame);
+//        pthread_mutex_lock(&mutexIMU);
+        cout << "SLAM :: TrackMonoVI \n";
+        std::cout << "-------------------" << '\n';
+        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
+        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
+        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
+        std::cout << "-------------------" << '\n';
+
+        uint64_t  cp_time1 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()));
+
+        cv::Mat vision_estimated_pose = SLAM->TrackMonoVI(c_frame, vimuData, c_frame_timestamp - imageMsgDelaySec);
+        vimuData.clear();
+
+        uint64_t  cp_time2 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()));
+
+//        pthread_mutex_unlock(&mutexFrame);
+//        pthread_mutex_unlock(&mutexIMU);
+        pthread_cond_signal(&noFrame);
+        pthread_cond_signal(&emptyIMU);
+
+        /* Tracking states
+         SYSTEM_NOT_READY=-1,
+         NO_IMAGES_YET=0,
+         NOT_INITIALIZED=1,
+         OK=2,
+         LOST=3
+         */
+        processing_time << cp_time1 << "," << cp_time2 << "," << cp_time2 - cp_time1 << "," << SLAM->get_state() << std::endl;
+
+    }
+
+
 
     visionpose.close();
 

@@ -1,11 +1,18 @@
 %YAML:1.0
-
+#./Examples/MAVMono/Offline/build/MonoMAV /home/rasp/workspace/LearnVIORB/config/mobius_offline.yaml
+#./Examples/MAVMono/Online/build/MonoMAV_online /home/rasp/workspace/LearnVIORB/config/mobius_online.yaml
 system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
 
+system.camera_time_offset: 0.24
+system.xacc_offset: 0.21125624375235968
+system.yacc_offset: -0.3928618810342792
+system.zacc_offset: 0.0
+
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
-system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5/"
+#system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5/"
+system.record_path: "/home/rasp/Documents/datasets/test/ds2-home-recalibrate"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi128"
 #system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
 #system.record_path: "/home/rasp/Documents/datasets/ds10"

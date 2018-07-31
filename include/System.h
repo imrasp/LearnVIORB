@@ -119,6 +119,8 @@ public:
     // SaveMap(const string &filename);
     // LoadMap(const string &filename);
 
+    int get_state();
+
 private:
 
     // Input sensor

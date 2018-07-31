@@ -44,12 +44,12 @@ namespace ORB_SLAM2 {
     //PIXHAWK
     //0.022906 & 5.0e-3 first close loop
     // 0.000195 * 0.000195*10 & 0.022906 * 0.022906*10
-    double IMUData::_gyrBiasRw2 = 0.000195 * 0.000195 *100/*10*/;  //2e-12*1e3
-    double IMUData::_accBiasRw2 = 0.022906 * 0.022906 *100/*10*/;  //4.5e-8*1e2
-    Matrix3d IMUData::_gyrMeasCov =
-            Matrix3d::Identity() * 0.024137 * 0.024137 / 0.005 /* 100*/;       // sigma_g * sigma_g / dt, ~6e-6*10
-    Matrix3d IMUData::_accMeasCov =
-            Matrix3d::Identity() * 0.018879 * 0.018879 / 0.005 * 100;       // sigma_a * sigma_a / dt, ~8e-4*10
+//    double IMUData::_gyrBiasRw2 = 0.000195 * 0.000195 *100/*10*/;  //2e-12*1e3
+//    double IMUData::_accBiasRw2 = 0.022906 * 0.022906 *100/*10*/;  //4.5e-8*1e2
+//    Matrix3d IMUData::_gyrMeasCov =
+//            Matrix3d::Identity() * 0.024137 * 0.024137 / 0.005 /* 100*/;       // sigma_g * sigma_g / dt, ~6e-6*10
+//    Matrix3d IMUData::_accMeasCov =
+//            Matrix3d::Identity() * 0.018879 * 0.018879 / 0.005 * 100;       // sigma_a * sigma_a / dt, ~8e-4*10
 
     // Pixhawk 2nd test
 //    double IMUData::_gyrBiasRw2 = 0.00491657 * 0.00491657 *100/*10*/;  //2e-12*1e3
@@ -58,6 +58,19 @@ namespace ORB_SLAM2 {
 //            Matrix3d::Identity() * 0.00840670 * 0.00840670 / 0.004348 /* 100*/;       // sigma_g * sigma_g / dt, ~6e-6*10
 //    Matrix3d IMUData::_accMeasCov =
 //            Matrix3d::Identity() * 0.06555126 * 0.06555126 / 0.004348;// * 100;       // sigma_a * sigma_a / dt, ~8e-4*10
+
+    //pixhawk re calibrate
+    double a_noise = 0.01409313; // 0.01456691
+    double a_randomwalk =  0.00003508; // 0.00001823
+    double g_noise = 0.03065576; // 0.03160971
+    double g_randomwalk = 0.00418477; // 0.00380947
+
+    double IMUData::_gyrBiasRw2 = g_randomwalk * g_randomwalk * 100 /*10*/;  //2e-12*1e3
+    double IMUData::_accBiasRw2 = a_randomwalk * a_randomwalk * 100 /*10*/;  //4.5e-8*1e2
+    Matrix3d IMUData::_gyrMeasCov =
+            Matrix3d::Identity() * g_noise * g_noise / 0.005 /* 100*/;       // sigma_g * sigma_g / dt, ~6e-6*10
+    Matrix3d IMUData::_accMeasCov =
+            Matrix3d::Identity() * a_noise * a_noise / 0.005 * 100;       // sigma_a * sigma_a / dt, ~8e-4*10
 
 // covariance of bias random walk
     Matrix3d IMUData::_gyrBiasRWCov = Matrix3d::Identity() * _gyrBiasRw2;     // sigma_gw * sigma_gw * dt, ~2e-12

@@ -2,6 +2,12 @@
 
 system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
+
+system.camera_time_offset: 0.0
+system.xacc_offset: 0.0
+system.yacc_offset: 0.0
+system.zacc_offset: 0.0
+
 #system.record_path: "/home/rasp/Documents/datasets/MH_01_easy_cut"
 #system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_02_easy/offline_dataset"
 #system.record_path: "/home/rasp/Documents/datasets/EUROC/MH_03_medium/offline_dataset"

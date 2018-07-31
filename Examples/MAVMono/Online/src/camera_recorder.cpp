@@ -3,9 +3,9 @@
 //
 #include "camera_recorder.h"
 
-Camera_Recorder::Camera_Recorder(int camid_, int time_offset_, bool bViewer_, SLAM_Interface *slam_interface_, string record_path) : camid(camid_),
+Camera_Recorder::Camera_Recorder(int camid_, int time_offset_, bool bViewer_, SLAM_Interface *slam_interface_, string record_path_) : camid(camid_),
                                                                                 time_offset(time_offset_),
-                                                                                bViewer(bViewer_), slam_interface(slam_interface_) {
+                                                                                bViewer(bViewer_), slam_interface(slam_interface_), record_path(record_path_) {
     lframe.open(record_path + "/frame_cam" + std::to_string(camid) + ".csv");
     lframe << "timestamp" << "\n";
 }
@@ -70,7 +70,7 @@ void Camera_Recorder::cameraLoop() {
 
     while (!time_to_exit) {
         std::cout << "";
-        std::cout << "read frame \n";
+//        std::cout << "read frame \n";
         stream1 >> matFrameForward;
         timestampcamera_ns = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count())) - (time_offset * 1e9);
@@ -80,8 +80,8 @@ void Camera_Recorder::cameraLoop() {
         matFrameForward.convertTo(matFrameForward, CV_8U);
 
 //        if(slam_interface != nullptr)
-//        slam_interface->set_current_frame(matFrameForward, timestampcamera_ns);
-
+        slam_interface->set_current_frame(matFrameForward, timestampcamera_ns);
+//        std::cout << "passed image to SLAM interface \n";
         pthread_mutex_lock(&_mutexFrameCam1Last);
         qFrame.push(matFrameForward);
         qTime.push(timestampcamera_ns);
@@ -118,7 +118,7 @@ void Camera_Recorder::cameraRecord() {
             qFrame.pop();
             qTime.pop();
 
-            imwrite("./record_data/cam0/" + std::to_string(timestampcamera) + ".png", recFrameForward);
+            imwrite(record_path + "/cam0/" + std::to_string(timestampcamera) + ".png", recFrameForward);
             lframe << timestampcamera << "\n";
             totalRecord++;
 
@@ -146,8 +146,9 @@ void Camera_Recorder::stop() {
     //join thread
     time_to_exit = true;
     lframe.close();
-    stream1.release();
+
     threadCamera.join();
     threadRecord.join();
+    stream1.release();
     std::cout << "Finish recording frames." << std::endl;
 }

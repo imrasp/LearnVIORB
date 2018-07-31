@@ -14,9 +14,7 @@ IMU_Recorder::IMU_Recorder(string filename_, string record_path_) : time_to_exit
 }
 
 IMU_Recorder::~IMU_Recorder() {
-    time_to_exit = true;
-    threadRecordIMU.join();
-    std::cout << "Finish recording IMU." << std::endl;
+    stop();
 }
 
 void IMU_Recorder::stop() {
@@ -36,6 +34,7 @@ void IMU_Recorder::start() {
 
 void IMU_Recorder::add_imu_to_queue(uint64_t timestamp, double xacc, double yacc, double zacc,
                                     double xgyro, double ygyro, double zgyro) {
+//    std::cout << "add IMU to queue \n";
     imu_data imu;
     imu.timestamp = timestamp;
     imu.xacc = xacc;
@@ -60,9 +59,10 @@ void IMU_Recorder::write_imu_from_queue() {
 
 //    std::cout << "creating files for recording messages with header\n";
     datasetimu.open(record_path + "/" + filename);
+    if (datasetimu.bad()) throw 40;
     datasetimu << "timestamp" << sep << "omega_x" << sep << "omega_y" << sep << "omega_z" << sep << "alpha_x" << sep
                << "alpha_y" << sep << "alpha_z" << "\n";
-
+//    cout << "wrote header for " << record_path << "/" << filename << std::endl;
     // waiting for imu message
 //    pthread_mutex_lock(&mutexIMU);
 //    pthread_cond_wait(&unEmptyIMU, &mutexIMU);
@@ -70,6 +70,7 @@ void IMU_Recorder::write_imu_from_queue() {
 //
     while (!time_to_exit ) { // || !autopilot_interface->queueIMU.empty()) {
         std::cout << "";// << time_to_exit << " : time exit \n";
+//        std::cout << "write IMU from queue \n";
 //        pthread_mutex_lock(&mutexIMU);
         if (!queueIMU.empty()) {
 

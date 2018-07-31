@@ -57,6 +57,7 @@ int main(int argc, char **argv) {
         mavlinkControl->cmd();
 
         cameraRecorder->stop();
+        location_manager->stop();
         mavlinkControl->stop();
 
 

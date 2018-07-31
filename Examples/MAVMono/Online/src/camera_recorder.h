@@ -52,6 +52,7 @@ private:
     SLAM_Interface *slam_interface;
     int camid;
     int time_offset;
+    string record_path;
 
     boost::thread threadCamera, threadRecord;
     pthread_mutex_t _mutexFrameCam1Last = PTHREAD_MUTEX_INITIALIZER;

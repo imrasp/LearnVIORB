@@ -418,7 +418,7 @@ read_messages() {
                     current_messages.time_stamps.system_time = get_time_usec();
                     this_timestamps.system_time = current_messages.time_stamps.system_time;
 
-//                    location_manager->set_time(current_messages.system_time.time_boot_ms, current_messages.system_time.time_unix_usec);
+                    location_manager->set_time(current_messages.system_time.time_boot_ms, current_messages.system_time.time_unix_usec);
 
                     break;
                 }

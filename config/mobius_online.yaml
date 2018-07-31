@@ -1,5 +1,9 @@
 %YAML:1.0
-
+#    //pixhawk re calibrate
+#    double a_noise = 0.01456691; // 0.01456691
+#    double a_randomwalk =  0.00001823; // 0.00001823
+#    double g_noise = 0.03160971; // 0.03160971
+#    double g_randomwalk = 0.00380947; // 0.00380947
 ##################################################################
 ### SYSTEM SETTING
 # these ststem configuration need to be config for online SLAM
@@ -18,13 +22,13 @@ system.vocabulary: "/home/rasp/workspace/LearnVIORB_mavlink/Vocabulary/ORBvoc.bi
 system.mission_route: "/home/rasp/workspace/LearnVIORB/config/route.txt"
 system.setting: "/home/rasp/workspace/LearnVIORB/config/mobius_online.yaml"
 system.camera_time_offset: 0.24
-system.xacc_offset: 0.0
-system.yacc_offset: 0.0
+system.xacc_offset: 0.21125624375235968
+system.yacc_offset: -0.3928618810342792
 system.zacc_offset: 0.0
 
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
-system.record_path: "/home/rasp/Documents/datasets/record"
+system.record_path: "/home/rasp/Documents/datasets/test/rec1"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi128"
 #system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
 #system.record_path: "/home/rasp/Documents/datasets/ds8-bhidecsim"

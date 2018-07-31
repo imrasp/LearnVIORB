@@ -2152,6 +2152,9 @@ void Tracking::InformOnlyTracking(const bool &flag)
     mbOnlyTracking = flag;
 }
 
+int Tracking::get_state(){
+    return mState;
+}
 
 
 } //namespace ORB_SLAM

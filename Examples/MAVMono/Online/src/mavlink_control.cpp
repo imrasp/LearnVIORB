@@ -120,15 +120,15 @@ void Mavlink_Control::start() {
     //waiting for first gps message
     cout << "waiting for GPS signal \n";
     int count = 30;
-    while (!location_manager->isGeodeticInitialize() && count > 0){
-        sleep(1);
-        --count;
-    }
-
-    if (!location_manager->isGeodeticInitialize())
-    {
-        throw 20; // gps not found
-    }
+//    while (!location_manager->isGeodeticInitialize() && count > 0){
+//        sleep(1);
+//        --count;
+//    }
+//
+//    if (!location_manager->isGeodeticInitialize())
+//    {
+//        throw 20; // gps not found
+//    }
 
     //check route
     std::cout << "start route check\n";
@@ -161,18 +161,7 @@ void Mavlink_Control::cmd() {
 //    cout << " waiting for " << configParam->sec << " sec.\n";
 //    // stack imu in queue for 60 seconds
 //    sleep(configParam->sec);
-//
-//    cout << "start 1 hr record \n";
-//    sleep(3600);
-//    cout << "start 2 hr record \n";
-//    sleep(3600);
-//    cout << "start 3 hr record \n";
-//    sleep(3600);
-//    cout << "start 4 hr record \n";
-//    sleep(3600);
-    sleep(10);
-//    cout << "move \n";
-//    sleep(30);
+    follow_route_file();
 
 
 

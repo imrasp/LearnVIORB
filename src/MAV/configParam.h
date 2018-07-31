@@ -29,6 +29,11 @@ namespace MAV {
         static int bEnableIMU;
         static int bEnableSLAM;
 
+        static double camera_time_offset;
+        static double xacc_offset;
+        static double yacc_offset;
+        static double zacc_offset;
+
         ConfigParam(std::string configfile);
 //        int get_bEnableIMU();
 

@@ -20,6 +20,7 @@ public:
     Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path);
     ~Location_Manager();
 
+    void stop();
     bool initializeGeodetic;
     double init_nedx, init_nedy, init_nedz;
     void set_initial_geodetic_pose();
@@ -43,6 +44,7 @@ public:
 
 private:
     geodetic_converter::GeodeticConverter *geodeticConverter;
+    boost::thread threadInitialGeodetic;
 
     bool update_gps_position, update_slam_position;
     bool time_to_exit;
@@ -51,8 +53,8 @@ private:
     uint32_t c_local_timestamp, c_global_timestamp;
 
     // time reference from pixhawk
-    uint32_t pixhawk_ms_ref;
-    uint64_t pixhawk_unix_ref;
+    uint32_t pixhawk_ns_ref;
+    uint64_t pixhawk_unix_ns_ref;
 
 
     IMU_Recorder *imu_recorder, *imu_recorder_highres, *imu_recorder_scaled;

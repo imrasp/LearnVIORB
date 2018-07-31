@@ -23,27 +23,36 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
     mutex_globalpose = PTHREAD_MUTEX_INITIALIZER;
 
     time_to_exit = false;
-    boost::thread threadInitialGeodetic = boost::thread(&Location_Manager::set_initial_geodetic_pose, this);
+    threadInitialGeodetic = boost::thread(&Location_Manager::set_initial_geodetic_pose, this);
 
-    imu_recorder = new IMU_Recorder("imu0.csv", record_path);
-    imu_recorder->start();
+//    imu_recorder = new IMU_Recorder("imu0.csv", record_path);
+//    imu_recorder->start();
     imu_recorder_highres = new IMU_Recorder("highres_imu0.csv", record_path);
     imu_recorder_highres->start();
-    imu_recorder_scaled = new IMU_Recorder("scaled_imu0.csv", record_path);
-    imu_recorder_scaled->start();
+//    imu_recorder_scaled = new IMU_Recorder("scaled_imu0.csv", record_path);
+//    imu_recorder_scaled->start();
 }
 
 Location_Manager::~Location_Manager() {
+    stop();
+}
+
+void Location_Manager::stop(){
+    std::cout << "stop location manager... \n";
     time_to_exit = true;
-    imu_recorder->stop();
-    imu_recorder_scaled->stop();
+
+//    imu_recorder->stop();
+//    imu_recorder_scaled->stop();
     imu_recorder_highres->stop();
+    threadInitialGeodetic.join();
+    std::cout << "stopped location manager... \n";
 }
 
 void Location_Manager::set_initial_geodetic_pose() {
     std::cout << "Start set_initial_geodetic_pose thread..." << std::endl;
     while (!time_to_exit) {
-        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
+        std::cout << "";
+//        std::cout << "local time = " << c_local_timestamp << " global time = " << c_global_timestamp << std::endl;
         if (c_local_timestamp < c_global_timestamp && c_local_timestamp > 0) {
 
             pthread_mutex_lock(&mutex_localpose);
@@ -117,11 +126,13 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
         slam_interface->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
-        imu_recorder_highres->
-                add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro
-        );
+        imu_recorder_highres->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
-//    else c_timestamp = boot_timestamp * 1e3;
+    else {
+        c_timestamp = boot_timestamp * 1e3;
+//        imu_recorder_highres->
+//            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+    }
 
 
 
@@ -170,16 +181,21 @@ void Location_Manager::set_scaled_imu(uint32_t boot_timestamp, int16_t xacc, int
 }
 
 void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp) {
-    pixhawk_ms_ref = boot_timestamp;
-    pixhawk_unix_ref = unix_timestamp;
-    b_pixhawk_time_ref = true;
+    uint64_t unix_time_ms = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
+            std::chrono::system_clock::now().time_since_epoch()).count()));
+    if (unix_time_ms - unix_timestamp < 1e7) {
+        pixhawk_ns_ref = boot_timestamp * 1e6;
+        pixhawk_unix_ns_ref = unix_timestamp * 1e3;
+        b_pixhawk_time_ref = true;
+    }
+    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
 }
 
 // get ns time return ns time
 uint64_t Location_Manager::get_unixtime(uint32_t time) {
     if (b_pixhawk_time_ref) {
-        uint64_t timestamp_ms = (pixhawk_unix_ref * 1e3) + (time - (pixhawk_ms_ref * 1e6));
-        return timestamp_ms * 1000;
+        uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);
+        return timestamp_ns;
     } else return 0;
 }
 
