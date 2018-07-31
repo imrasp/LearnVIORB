@@ -46,6 +46,7 @@ void Location_Manager::stop(){
 //    imu_recorder->stop();
 //    imu_recorder_scaled->stop();
     imu_recorder_highres->stop();
+    imu_recorder_gps->stop();
     threadInitialGeodetic.join();
     std::cout << "stopped location manager... \n";
 }
