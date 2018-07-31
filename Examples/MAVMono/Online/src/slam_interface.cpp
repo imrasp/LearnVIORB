@@ -24,7 +24,7 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
 
     cout << "Start SLAM thread..." << endl;
-    threadSLAM = boost::thread(&SLAM_Interface::start, this);
+//    threadSLAM = boost::thread(&SLAM_Interface::start, this);
 }
 
 SLAM_Interface::~SLAM_Interface() {
