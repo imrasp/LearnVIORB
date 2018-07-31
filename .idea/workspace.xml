@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,11 +61,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
+            <state relative-caret-position="-1390">
+              <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="59" column="97" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -93,15 +102,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="825">
               <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Viewer.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/Viewer.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
-              <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -192,7 +192,6 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/imu_recorder.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.cpp" />
         <option value="$PROJECT_DIR$/route.txt" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.h" />
         <option value="$PROJECT_DIR$/src/MAV/configParam.cpp" />
         <option value="$PROJECT_DIR$/config/euroc_offline.yaml" />
@@ -211,6 +210,7 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" />
       </list>
     </option>
   </component>
@@ -395,12 +395,12 @@
       <workItem from="1532851771240" duration="2443000" />
       <workItem from="1532918901994" duration="11016000" />
       <workItem from="1533018115021" duration="3522000" />
-      <workItem from="1533028115142" duration="1361000" />
+      <workItem from="1533028115142" duration="1617000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="407492000" />
+    <option name="totallyTimeSpent" value="407748000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1301" height="744" extended-state="4" />
@@ -641,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/configParam.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -817,8 +810,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="125" column="4" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
+        <state relative-caret-position="-1390">
+          <caret line="124" column="80" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="59" column="97" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="97" />
         </state>
       </provider>
     </entry>

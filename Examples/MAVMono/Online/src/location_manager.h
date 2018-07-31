@@ -57,7 +57,7 @@ private:
     uint64_t pixhawk_unix_ns_ref;
 
 
-    IMU_Recorder *imu_recorder, *imu_recorder_highres, *imu_recorder_scaled;
+    IMU_Recorder *imu_recorder, *imu_recorder_highres, *imu_recorder_scaled, *imu_recorder_scaled;
     SLAM_Interface *slam_interface;
 
     pthread_mutex_t mutex_localpose, mutex_globalpose;
