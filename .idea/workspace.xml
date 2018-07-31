@@ -13,26 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/imu_recorder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/imu_recorder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/euroc_offline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/euroc_offline.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mobius_offline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/mobius_offline.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mobius_online.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/mobius_online.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/System.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Tracking.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Tracking.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.txt" beforeDir="false" afterPath="$PROJECT_DIR$/route.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IMU/imudata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/IMU/imudata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAV/configParam.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAV/configParam.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAV/configParam.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAV/configParam.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/System.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/System.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tracking.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tracking.cc" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -46,11 +26,38 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slam_interface.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="114" column="11" lean-forward="true" selection-start-line="114" selection-start-column="11" selection-end-line="119" selection-end-column="15" />
+              <caret line="114" column="11" selection-start-line="114" selection-start-column="11" selection-end-line="119" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="euroc_offline.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/euroc_offline.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tracking.cc" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="2077" column="4" selection-start-line="2077" selection-start-column="4" selection-end-line="2077" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -58,7 +65,7 @@
       <file leaf-file-name="slam_interface.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-26">
+            <state relative-caret-position="210">
               <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="52" />
             </state>
           </provider>
@@ -67,7 +74,7 @@
       <file leaf-file-name="mono_mav.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
+            <state relative-caret-position="2190">
               <caret line="146" selection-start-line="146" selection-end-line="146" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
@@ -79,7 +86,7 @@
       <file leaf-file-name="imudata.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
+            <state relative-caret-position="945">
               <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
             </state>
           </provider>
@@ -88,7 +95,7 @@
       <file leaf-file-name="mobius_online.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1107">
+            <state relative-caret-position="435">
               <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
             </state>
           </provider>
@@ -97,8 +104,8 @@
       <file leaf-file-name="mobius_offline.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1212">
-              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="9" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -107,7 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nCandidates</find>
       <find>isBad</find>
       <find>mbBad</find>
       <find>PROJECT_SOURCE_DIR</find>
@@ -137,6 +143,7 @@
       <find>bAccMultiply98</find>
       <find>config</find>
       <find>SLAM</find>
+      <find>system reseting</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,11 +198,11 @@
         <option value="$PROJECT_DIR$/config/mobius_online.yaml" />
         <option value="$PROJECT_DIR$/src/System.cc" />
         <option value="$PROJECT_DIR$/include/System.h" />
-        <option value="$PROJECT_DIR$/src/Tracking.cc" />
         <option value="$PROJECT_DIR$/include/Tracking.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
         <option value="$PROJECT_DIR$/config/mobius_offline.yaml" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" />
+        <option value="$PROJECT_DIR$/src/Tracking.cc" />
       </list>
     </option>
   </component>
@@ -210,7 +217,7 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="67" />
+    <option name="x" value="75" />
     <option name="y" value="24" />
     <option name="width" value="1299" />
     <option name="height" value="744" />
@@ -379,26 +386,27 @@
       <workItem from="1532768245982" duration="15919000" />
       <workItem from="1532851771240" duration="2443000" />
       <workItem from="1532918901994" duration="11016000" />
+      <workItem from="1533018115021" duration="2107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402609000" />
+    <option name="totallyTimeSpent" value="404716000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="24" width="1299" height="744" extended-state="4" />
+    <frame x="75" y="24" width="1299" height="744" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22727273" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49921754" weight="0.13850997" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007825" side_tool="true" weight="0.13884555" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49530515" weight="0.34876034" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -409,23 +417,23 @@
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32952693" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49921754" weight="0.13850997" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22805643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.3289256" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49530515" weight="0.34876034" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007825" side_tool="true" weight="0.13884555" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3298193" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.3289256" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49921754" weight="0.13850997" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -673,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/euroc_offline.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="43" selection-start-line="2" selection-start-column="12" selection-end-line="18" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MAV/configParam.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -724,22 +725,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1107">
+        <state relative-caret-position="435">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IMU/imudata.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
+        <state relative-caret-position="945">
           <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="567" column="21" selection-start-line="567" selection-start-column="21" selection-end-line="567" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -747,13 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="2154" column="23" selection-start-line="2154" selection-start-column="23" selection-end-line="2154" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -771,16 +758,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1212">
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
+        <state relative-caret-position="2190">
           <caret line="146" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="e#40#58#0" expanded="true" />
@@ -790,7 +770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
+        <state relative-caret-position="210">
           <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="52" />
         </state>
       </provider>
@@ -798,7 +778,35 @@
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="114" column="11" lean-forward="true" selection-start-line="114" selection-start-column="11" selection-end-line="119" selection-end-column="15" />
+          <caret line="114" column="11" selection-start-line="114" selection-start-column="11" selection-end-line="119" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/euroc_offline.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tracking.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="2077" column="4" selection-start-line="2077" selection-start-column="4" selection-end-line="2077" selection-end-column="4" />
         </state>
       </provider>
     </entry>

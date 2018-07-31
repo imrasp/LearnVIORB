@@ -28,7 +28,7 @@ namespace ORB_SLAM2
 
 Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
-    mbFinishRequested(false), mbFinished(true), mbStopped(false), mbStopRequested(false)
+    mbFinishRequested(false), mbFinished(true), mbStopped(false), mbStopRequested(false), bRunViewer(false)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
@@ -53,6 +53,7 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
 
 void Viewer::Run()
 {
+    bRunViewer = true;
     mbFinished = false;
 
     pangolin::CreateWindowAndBind("ORB-SLAM2: Map Viewer",1024,768);
