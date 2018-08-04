@@ -131,7 +131,7 @@ void Location_Manager::set_global_position(uint32_t timestamp, double lat, doubl
 
 void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, float yacc, float zacc, float xgyro,
                                        float ygyro, float zgyro) {
-//    std::cout << "Get HIGHRES_IMU messaage \n";
+
     uint64_t c_timestamp;
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
@@ -144,6 +144,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
 //            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
 
+    std::cout << "Get HIGHRES_IMU message time = " << boot_timestamp << "convert to " << c_timestamp <<  "\n";
 
 
 }
