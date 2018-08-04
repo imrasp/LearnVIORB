@@ -144,7 +144,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
 //            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
 
-    std::cout << "Get HIGHRES_IMU message time = " << boot_timestamp << " (" << boot_timestamp * 1e3 << ") convert to " << c_timestamp <<  "\n";
+    std::cout << std::setprecision(19) << "Get HIGHRES_IMU message time = " << boot_timestamp << " (" << boot_timestamp * 1e3 << ") convert to " << c_timestamp <<  "\n";
 
 
 }
@@ -205,7 +205,7 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
 }
 
 // get ns time return ns time
-uint64_t Location_Manager::get_unixtime(uint32_t time) {
+uint64_t Location_Manager::get_unixtime(uint64_t time) {
     if (b_pixhawk_time_ref) {
         pthread_mutex_lock(&mutexTime);
         uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);

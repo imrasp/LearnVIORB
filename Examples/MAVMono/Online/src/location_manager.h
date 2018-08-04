@@ -39,7 +39,7 @@ public:
     double interpolate(uint32_t x1, uint32_t x2, uint32_t x_predict, double y1, double y2);
     void stream_global_position(uint32_t timestamp, double lat, double lon, double alt);
 
-    uint64_t get_unixtime(uint32_t time);
+    uint64_t get_unixtime(uint64_t time);
     bool b_pixhawk_time_ref;
 
 private:
