@@ -53,7 +53,7 @@ private:
     uint32_t c_local_timestamp, c_global_timestamp;
 
     // time reference from pixhawk
-    uint32_t pixhawk_ns_ref;
+    uint64_t pixhawk_ns_ref;
     uint64_t pixhawk_unix_ns_ref;
 
 
