@@ -119,16 +119,16 @@ void Mavlink_Control::start() {
 
     //waiting for first gps message
     cout << "waiting for GPS signal \n";
-//    int count = 30;
-//    while (!location_manager->isGeodeticInitialize() && count > 0){
-//        sleep(1);
-//        --count;
-//    }
-//
-//    if (!location_manager->isGeodeticInitialize())
-//    {
-//        throw 20; // gps not found
-//    }
+    int count = 30;
+    while (!location_manager->isGeodeticInitialize() && count > 0){
+        sleep(1);
+        --count;
+    }
+
+    if (!location_manager->isGeodeticInitialize())
+    {
+        throw 20; // gps not found
+    }
 
     //check route
     std::cout << "start route check\n";

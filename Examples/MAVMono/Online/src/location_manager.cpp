@@ -139,8 +139,8 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
     }
     else {
         c_timestamp = boot_timestamp * 1e3;
-        imu_recorder_highres->
-            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+//        imu_recorder_highres->
+//            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
 
 
