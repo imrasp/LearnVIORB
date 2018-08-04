@@ -192,17 +192,20 @@ void Location_Manager::set_scaled_imu(uint32_t boot_timestamp, int16_t xacc, int
 }
 
 void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp) {
+    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
+
     uint64_t unix_time_ms = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now().time_since_epoch()).count()));
     if (unix_time_ms - unix_timestamp < 1e7) {
         pthread_mutex_lock(&mutexTime);
         pixhawk_ns_ref = boot_timestamp * 1e6;
         pixhawk_unix_ns_ref = unix_timestamp * 1e3;
+        std::cout << "pixhawk_unix_ns_ref is " << pixhawk_unix_ns_ref << std::endl;
+        std::cout << "pixhawk_ns_ref is " << pixhawk_ns_ref << std::endl;
         pthread_mutex_unlock(&mutexTime);
         b_pixhawk_time_ref = true;
     }
-    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
-}
+    }
 
 // get ns time return ns time
 uint64_t Location_Manager::get_unixtime(uint64_t time) {
