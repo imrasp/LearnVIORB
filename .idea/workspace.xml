@@ -12,8 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mobius_offline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/mobius_offline.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,29 +29,26 @@
       <file leaf-file-name="mavlink_control.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
+            <state relative-caret-position="153">
               <caret line="131" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="131" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="705">
               <caret line="142" column="18" lean-forward="true" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mono_mav.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2250">
-              <caret line="150" column="20" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
-              <folding>
-                <element signature="e#40#58#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-255">
+              <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -65,11 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mobius_online.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/mobius_online.yaml">
+      <file leaf-file-name="mono_mav.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" selection-end-column="72" />
+            <state relative-caret-position="122">
+              <caret line="110" column="25" lean-forward="true" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+              <folding>
+                <element signature="e#40#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,20 +101,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mobius_offline.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="camera_recorder.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/camera_recorder.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="960">
               <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mobius_offline.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -206,12 +206,12 @@
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" />
-        <option value="$PROJECT_DIR$/config/mobius_offline.yaml" />
-        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" />
         <option value="$PROJECT_DIR$/config/route.txt" />
         <option value="$PROJECT_DIR$/config/euroc_offline.yaml" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" />
         <option value="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" />
+        <option value="$PROJECT_DIR$/config/mobius_offline.yaml" />
+        <option value="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" />
       </list>
     </option>
   </component>
@@ -225,11 +225,11 @@
     <packageJsonPaths />
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="75" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -243,11 +243,6 @@
             <path>
               <item name="ORB_SLAM2" type="b2602c69:ProjectViewProjectNode" />
               <item name="LearnVIORB" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ORB_SLAM2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LearnVIORB" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ORB_SLAM2" type="b2602c69:ProjectViewProjectNode" />
@@ -398,15 +393,15 @@
       <workItem from="1533018115021" duration="3522000" />
       <workItem from="1533028115142" duration="5622000" />
       <workItem from="1533084891059" duration="2101000" />
-      <workItem from="1533289958854" duration="8579000" />
+      <workItem from="1533289958854" duration="10768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422433000" />
+    <option name="totallyTimeSpent" value="424622000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="24" width="1301" height="744" extended-state="4" />
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22691706" />
@@ -735,41 +730,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2250">
-          <caret line="150" column="20" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
-          <folding>
-            <element signature="e#40#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -808,17 +772,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="131" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="131" />
+        <state relative-caret-position="-255">
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/odroid_mobius_online.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="705">
           <caret line="142" column="18" lean-forward="true" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="131" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mobius_offline.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="110" column="25" lean-forward="true" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+          <folding>
+            <element signature="e#40#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

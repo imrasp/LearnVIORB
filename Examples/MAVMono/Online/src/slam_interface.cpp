@@ -92,11 +92,11 @@ int SLAM_Interface::start() {
 //        pthread_mutex_lock(&mutexFrame);
 //        pthread_mutex_lock(&mutexIMU);
 //        cout << "SLAM :: TrackMonoVI \n";
-//        std::cout << "-------------------" << '\n';
-//        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
-//        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
-//        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
-//        std::cout << "-------------------" << '\n';
+        std::cout << "-------------------" << '\n';
+        std::cout << std::setprecision(19) << "Frame timestamp: " << c_frame_timestamp << '\n';
+        std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << vimuData.back()._t << '\n';
+        std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
+        std::cout << "-------------------" << '\n';
 
         uint64_t  cp_time1 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count()));

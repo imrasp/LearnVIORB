@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 
             if (timestamp >= timestamp_camera) {
                 if(vimuData.size()==0) {
-//                    cout << "no imu message between images! \n";
+                    cout << "no imu message between images! \n";
                     break;
                 }
                 // Consider delay of image message
@@ -120,6 +120,7 @@ int main(int argc, char **argv) {
                     image = cv::Mat::zeros(image.rows,image.cols,image.type());
 
 //                std::cout << "-------------------" << '\n';
+                std::cout << std::setprecision(19) << "Camera timestamp: " << (timestamp_camera + configmav.camera_time_offset) * 1e9 << '\n';
 //                std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << timestamp << '\n';
                 std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
 //                std::cout << "-------------------" << '\n';
