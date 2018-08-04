@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     MAV::ConfigParam configmav(argv[1]);
    std::cout << "Starting SLAM...\n";
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, false);
+    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, true);
 
     std::cout << "Reading SLAM config file...\n";
     ORB_SLAM2::ConfigParam config(argv[1]);
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 
             if (timestamp >= timestamp_camera) {
                 if(vimuData.size()==0) {
-                    cout << "no imu message between images! \n";
+//                    cout << "no imu message between images! \n";
                     break;
                 }
                 // Consider delay of image message
@@ -121,7 +121,7 @@ int main(int argc, char **argv) {
 
 //                std::cout << "-------------------" << '\n';
 //                std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << timestamp << '\n';
-//                std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
+                std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
 //                std::cout << "-------------------" << '\n';
 
                 //skip first frame
