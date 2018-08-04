@@ -4,7 +4,7 @@
 system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
 
-system.camera_time_offset: 0.24
+system.camera_time_offset: 0.25
 system.xacc_offset: 0.21125624375235968
 system.yacc_offset: -0.3928618810342792
 system.zacc_offset: 0.0

@@ -21,6 +21,7 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
 
     mutex_localpose = PTHREAD_MUTEX_INITIALIZER;
     mutex_globalpose = PTHREAD_MUTEX_INITIALIZER;
+    mutexTime = PTHREAD_MUTEX_INITIALIZER;
 
     time_to_exit = false;
     threadInitialGeodetic = boost::thread(&Location_Manager::set_initial_geodetic_pose, this);
@@ -193,8 +194,10 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
     uint64_t unix_time_ms = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now().time_since_epoch()).count()));
     if (unix_time_ms - unix_timestamp < 1e7) {
+        pthread_mutex_lock(&mutexTime);
         pixhawk_ns_ref = boot_timestamp * 1e6;
         pixhawk_unix_ns_ref = unix_timestamp * 1e3;
+        pthread_mutex_unlock(&mutexTime);
         b_pixhawk_time_ref = true;
     }
 //    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
@@ -203,7 +206,9 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
 // get ns time return ns time
 uint64_t Location_Manager::get_unixtime(uint32_t time) {
     if (b_pixhawk_time_ref) {
+        pthread_mutex_lock(&mutexTime);
         uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);
+        pthread_mutex_unlock(&mutexTime);
         return timestamp_ns;
     } else return 0;
 }

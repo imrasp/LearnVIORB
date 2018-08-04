@@ -61,6 +61,8 @@ private:
     SLAM_Interface *slam_interface;
 
     pthread_mutex_t mutex_localpose, mutex_globalpose;
+
+    pthread_mutex_t mutexTime;
 };
 
 #endif //C_UART_IMU_LOCATION_MANAGER_H
