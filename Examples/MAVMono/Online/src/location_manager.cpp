@@ -144,7 +144,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
 //            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
 
-    std::cout << "Get HIGHRES_IMU message time = " << boot_timestamp << "convert to " << c_timestamp <<  "\n";
+    std::cout << "Get HIGHRES_IMU message time = " << boot_timestamp << " (" << boot_timestamp * 1e3 << ") convert to " << c_timestamp <<  "\n";
 
 
 }

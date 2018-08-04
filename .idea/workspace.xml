@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,7 +44,7 @@
       <file leaf-file-name="location_manager.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="1231">
               <caret line="210" column="78" lean-forward="true" selection-start-line="210" selection-start-column="78" selection-end-line="210" selection-end-column="78" />
             </state>
           </provider>
@@ -400,12 +398,12 @@
       <workItem from="1533018115021" duration="3522000" />
       <workItem from="1533028115142" duration="5622000" />
       <workItem from="1533084891059" duration="2101000" />
-      <workItem from="1533289958854" duration="18390000" />
+      <workItem from="1533289958854" duration="18745000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="432244000" />
+    <option name="totallyTimeSpent" value="432599000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -822,7 +820,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="1231">
           <caret line="210" column="78" lean-forward="true" selection-start-line="210" selection-start-column="78" selection-end-line="210" selection-end-column="78" />
         </state>
       </provider>
