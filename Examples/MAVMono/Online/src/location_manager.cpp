@@ -208,6 +208,7 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
 uint64_t Location_Manager::get_unixtime(uint64_t time) {
     if (b_pixhawk_time_ref) {
         pthread_mutex_lock(&mutexTime);
+        std::cout << " pixhawk_unix_ns_ref is " << pixhawk_unix_ns_ref << ",  pixhawk_ns_ref is " << pixhawk_ns_ref << std::endl;
         uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);
         std::cout << " get_unixtime return " << timestamp_ns << " from input = " << time << std::endl;
         pthread_mutex_unlock(&mutexTime);
