@@ -197,7 +197,7 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
         pixhawk_unix_ns_ref = unix_timestamp * 1e3;
         b_pixhawk_time_ref = true;
     }
-    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
+//    std::cout << "record time reference at pixhawk " << boot_timestamp << " = " << unix_timestamp << " record on board time " << unix_time_ms << std::endl;
 }
 
 // get ns time return ns time
