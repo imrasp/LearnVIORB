@@ -192,14 +192,14 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
 }
 
 // get ns time return ns time
-uint64_t Location_Manager::get_unixtime(uint32_t time) {
+uint64_t Location_Manager::get_unixtime(uint64_t time) {
     if (b_pixhawk_time_ref) {
         uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);
         return timestamp_ns;
     } else return 0;
 }
 
-void Location_Manager::stream_global_position(uint32_t timestamp, double lat, double lon, double alt) {
+void Location_Manager::stream_global_position(uint64_t timestamp, double lat, double lon, double alt) {
 //    nlohmann::json drone_position = {{"misison_id", 1}, {"time", timestamp}, {"lat", lat},{"lon", lon}, {"alt", alt}};
 //    auto r = cpr::Post(cpr::Url{"192.168.1.132:3000/current_pos"},
 //                       cpr::Body{drone_position.dump()}
