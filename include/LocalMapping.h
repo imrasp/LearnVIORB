@@ -26,6 +26,7 @@
 #include "LoopClosing.h"
 #include "Tracking.h"
 #include "KeyFrameDatabase.h"
+#include <iomanip>
 
 #include <mutex>
 #include "IMU/configparam.h"

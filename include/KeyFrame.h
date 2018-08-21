@@ -30,6 +30,7 @@
 #include "KeyFrameDatabase.h"
 
 #include <mutex>
+#include <iomanip>
 #include "IMU/imudata.h"
 #include "IMU/NavState.h"
 #include "IMU/IMUPreintegrator.h"

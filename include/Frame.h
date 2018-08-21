@@ -31,6 +31,7 @@
 #include "ORBextractor.h"
 
 #include <opencv2/opencv.hpp>
+#include <iomanip>
 
 #include <IMU/imudata.h>
 #include <IMU/NavState.h>

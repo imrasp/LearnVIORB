@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" afterDir="false" />
-    </list>
+    <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -103,16 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slam_interface.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
@@ -121,6 +110,13 @@
                 <element signature="e#117#135#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-495" />
           </provider>
         </entry>
       </file>
@@ -407,16 +403,15 @@
       <workItem from="1533980364495" duration="403000" />
       <workItem from="1534134559474" duration="979000" />
       <workItem from="1534817036854" duration="850000" />
-      <workItem from="1534832642508" duration="1825000" />
+      <workItem from="1534832642508" duration="4268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="442539000" />
+    <option name="totallyTimeSpent" value="444982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1299" height="744" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22648902" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -477,13 +472,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/cpr/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/MAVCom/camera_recorder.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
@@ -836,6 +824,11 @@
             <element signature="e#117#135#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-495" />
       </provider>
     </entry>
   </component>
