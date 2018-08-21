@@ -3,12 +3,14 @@
 //
 
 #include "location_manager.h"
+#include "autopilot_interface.h"
 
 Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path)
         : initializeGeodetic(false),
           update_gps_position(_update_gps_position), update_slam_position(_update_slam_position),
           b_pixhawk_time_ref(false), slam_interface(slam_interface_) {
 
+    slam_interface->set_location_manager(this);
     geodeticConverter = new geodetic_converter::GeodeticConverter();
     cx = 0;
     cy = 0;
@@ -31,12 +33,25 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
     imu_recorder_highres->start();
 //    imu_recorder_scaled = new IMU_Recorder("scaled_imu0.csv", record_path);
 //    imu_recorder_scaled->start();
+    imu_recorder_gps = new IMU_Recorder("gps0.csv", record_path);
+    imu_recorder_gps->start();
+
+    imu_recorder_ned = new IMU_Recorder("ned0.csv", record_path);
+    imu_recorder_ned->start();
+
+    imu_recorder_highres_time = new IMU_Recorder("time_imu0.csv", record_path);
+    imu_recorder_highres_time->start();
+
+    previous_state = 0;
 }
 
 Location_Manager::~Location_Manager() {
     stop();
 }
 
+void Location_Manager::set_autopilot_interface(Autopilot_Interface *autopilot_interface_){
+    autopilot_interface = autopilot_interface_;
+}
 void Location_Manager::stop(){
     std::cout << "stop location manager... \n";
     time_to_exit = true;
@@ -44,6 +59,10 @@ void Location_Manager::stop(){
 //    imu_recorder->stop();
 //    imu_recorder_scaled->stop();
     imu_recorder_highres->stop();
+    imu_recorder_ned->stop();
+    imu_recorder_gps->stop();
+    imu_recorder_highres_time->stop();
+
     threadInitialGeodetic.join();
     std::cout << "stopped location manager... \n";
 }
@@ -58,7 +77,7 @@ void Location_Manager::set_initial_geodetic_pose() {
             pthread_mutex_lock(&mutex_localpose);
             pthread_mutex_lock(&mutex_globalpose);
 
-            geodeticConverter->initialiseReference(c_lat / 10e7, c_lon / 10e7, c_alt / 10e7);
+            geodeticConverter->initialiseReference(c_lat / 1e7, c_lon / 1e7, c_alt / 1e3);
 
             // get initial position use for interpolation
             uint64_t i_time = c_local_timestamp;
@@ -107,6 +126,11 @@ void Location_Manager::set_local_position(uint32_t timestamp, double x, double y
     cy = y;
     cz = z;
     pthread_mutex_unlock(&mutex_localpose);
+
+    if (b_pixhawk_time_ref) {
+        uint64_t c_timestamp = get_unixtime(timestamp * 1e6);
+        imu_recorder_ned->add_imu_to_queue(c_timestamp, x, y, z, 0, 0, 0);
+    }
 }
 
 void Location_Manager::set_global_position(uint32_t timestamp, double lat, double lon, double alt) {
@@ -117,6 +141,54 @@ void Location_Manager::set_global_position(uint32_t timestamp, double lat, doubl
     c_lon = lon;
     c_alt = alt;
     pthread_mutex_unlock(&mutex_globalpose);
+
+    if (geodeticConverter->isInitialised())
+    {
+        double n, e, d;
+        geodeticConverter->geodetic2Ned(lat/1e7,lon/1e7,alt/1e3, &n, &e, &d);
+//        autopilot_interface->updateVisionEstimationPosition(timestamp, n, e, d, 0, 0, 0);
+        n = n - init_nedx;
+        e = e - init_nedy;
+        d = d - init_nedz;
+
+        if (b_pixhawk_time_ref) {
+            uint64_t c_timestamp = get_unixtime(timestamp * 1e6);
+            imu_recorder_gps->add_imu_to_queue(c_timestamp, n, e, d, 0, 0, 0);
+        }
+    }
+
+}
+
+void Location_Manager::set_slam_position(uint64_t timestamp, double x, double y, double z, double roll, double pitch, double yaw, int state) {
+//    std::cout << "set SLAM pose \n";
+
+    /* Tracking states
+         SYSTEM_NOT_READY=-1,
+         NO_IMAGES_YET=0,
+         NOT_INITIALIZED=1,
+         OK=2,
+         LOST=3
+         */
+    // not initialize then OK
+    if(previous_state == 1 && state == 2){
+
+    }
+    // OK then not initialize
+    if(previous_state == 2 && state == 1){
+        init_slam_x = 0;
+        init_slam_y = 0;
+        init_slam_z = 0;
+    }
+    // OK then Lost
+    if(previous_state == 2 && state == 3){
+
+    }
+    // Lost then OK
+    if(previous_state == 3 && state == 2){
+
+    }
+    previous_state = state;
+
 }
 
 void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, float yacc, float zacc, float xgyro,
@@ -127,16 +199,15 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
         slam_interface->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         imu_recorder_highres->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+        imu_recorder_highres_time->add_imu_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref, 0, 0);
     }
     else {
         c_timestamp = boot_timestamp * 1e3;
 //        imu_recorder_highres->
 //            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
     }
-
-
-
 }
+
 void Location_Manager::set_scaled_imu(uint32_t boot_timestamp, int16_t xacc, int16_t yacc, int16_t zacc, int16_t xgyro,
                                       int16_t ygyro, int16_t zgyro) {
     /**

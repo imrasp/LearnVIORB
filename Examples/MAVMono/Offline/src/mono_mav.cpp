@@ -19,6 +19,7 @@
 #include <boost/foreach.hpp>
 #include <boost/filesystem.hpp>
 #include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Dense>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ int main(int argc, char **argv) {
     MAV::ConfigParam configmav(argv[1]);
    std::cout << "Starting SLAM...\n";
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, false);
+    ORB_SLAM2::System SLAM(configmav.vocabulary, argv[1], ORB_SLAM2::System::MONOCULAR, true);
 
     std::cout << "Reading SLAM config file...\n";
     ORB_SLAM2::ConfigParam config(argv[1]);
@@ -53,7 +54,7 @@ int main(int argc, char **argv) {
 
     //create result file
     std::ofstream visionpose, processing_time;
-    visionpose.open(configmav.record_path + "/slam_pose.csv");
+    visionpose.open(configmav.record_path + "/slam_pose.txt");
     processing_time.open(configmav.record_path + "/processing_time.csv");
     processing_time << "t1" << "," << "t2" << "," << "dt" << "," << "state" << std::endl;
     // Read all images from folder order by name(default)
@@ -148,10 +149,29 @@ int main(int argc, char **argv) {
                     uint64_t  cp_time2 = (boost::lexical_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
                             std::chrono::system_clock::now().time_since_epoch()).count()));
 
+
                     if(!vision_estimated_pose.empty()) {
-                        visionpose << ',' << vision_estimated_pose.at<double>(0,3)
-                                   << ',' << vision_estimated_pose.at<double>(1,3)
-                                   << ',' << vision_estimated_pose.at<double>(2,3) << '\n';
+                        cout << "vision_pose : " << vision_estimated_pose << endl;
+
+                        // extract rotation matrix
+                        Eigen::Matrix<double,3,3> rot;
+                        rot << vision_estimated_pose.at<float>(0,0), vision_estimated_pose.at<float>(0,1), vision_estimated_pose.at<float>(0,2),
+                                vision_estimated_pose.at<float>(1,0), vision_estimated_pose.at<float>(1,1), vision_estimated_pose.at<float>(1,2),
+                                vision_estimated_pose.at<float>(2,0), vision_estimated_pose.at<float>(2,1), vision_estimated_pose.at<float>(2,2);
+                        Eigen::Quaterniond q(rot);
+                        Eigen::Matrix<double,3,1> euler = rot.eulerAngles(2, 1, 0);
+                        cout << "to Euler angles:" << endl;
+                        cout << euler << endl << endl;
+
+                        visionpose << timestamp_camera / 1e9
+                                   << ' ' << vision_estimated_pose.at<double>(0,3)
+                                   << ' ' << vision_estimated_pose.at<double>(1,3)
+                                   << ' ' << vision_estimated_pose.at<double>(2,3)
+                                   << ' ' << q.x()
+                                   << ' ' << q.y()
+                                   << ' ' << q.z()
+                                   << ' ' << q.w()
+                                   << '\n';
 
 //                        float yaw,pitch,roll;
 //                        boost::tie(yaw,pitch,roll) = quaternionToYawPitchRoll(vision_estimated_pose);

@@ -3,6 +3,7 @@
 //
 
 #include "slam_interface.h"
+#include "location_manager.h"
 
 SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(mavconfigParam_), time_to_exit(false) {
 
@@ -15,7 +16,7 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
     cout << "Starting SLAM..." << endl;
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, false);
+    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, true);
     config = new ORB_SLAM2::ConfigParam(mavconfigParam->setting);
 
     imageMsgDelaySec = config->GetImageDelayToIMU();
@@ -29,6 +30,10 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
 
 SLAM_Interface::~SLAM_Interface() {
     stop();
+}
+
+void SLAM_Interface::set_location_manager(Location_Manager *location_manager_) {
+    location_manager = location_manager_;
 }
 
 int SLAM_Interface::stop() {
@@ -119,6 +124,7 @@ int SLAM_Interface::start() {
          OK=2,
          LOST=3
          */
+//        visionpose <<
         processing_time << cp_time1 << "," << cp_time2 << "," << cp_time2 - cp_time1 << "," << SLAM->get_state() << std::endl;
 
     }

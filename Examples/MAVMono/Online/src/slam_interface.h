@@ -10,6 +10,7 @@
 #include<fstream>
 #include<chrono>
 #include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Dense>
 
 #include <boost/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -21,6 +22,8 @@
 
 using namespace std;
 
+class Location_Manager;
+
 class SLAM_Interface {
 public:
     SLAM_Interface(ConfigParam *configParam_);
@@ -29,7 +32,10 @@ public:
     int start();
     int stop();
 
+    void set_location_manager(Location_Manager *location_manager_);
+
     void add_imu_to_queue(uint64_t timestamp, double xacc, double yacc, double zacc, double xgyro, double ygyro, double zgyro);
+
     std::vector<ORB_SLAM2::IMUData> vimuData;
 
     void set_current_frame(cv::Mat frame, uint64_t timestamp);
@@ -41,6 +47,8 @@ private:
     boost::thread threadSLAM;
     ORB_SLAM2::System *SLAM;
     ORB_SLAM2::ConfigParam *config;
+
+    Location_Manager *location_manager;
 
     // mutex with condition signal
     pthread_cond_t unEmptyIMU, emptyIMU;

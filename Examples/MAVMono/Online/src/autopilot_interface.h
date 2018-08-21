@@ -326,7 +326,7 @@ public:
 
 	void set_message_interval( int msg_id, int hz );
 	void set_home();
-	void updateVisionEstimationPosition(mavlink_vision_position_estimate_t vpe);
+	void updateVisionEstimationPosition(uint64_t usec, float x, float y, float z, float roll, float pitch, float yaw);
 	void goto_positon_ned(float x, float y, float z);
 	void goto_positon_offset_ned(float x, float y, float z);
 

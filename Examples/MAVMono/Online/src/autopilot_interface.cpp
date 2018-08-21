@@ -236,6 +236,8 @@ Autopilot_Interface(Serial_Port *serial_port_, Location_Manager *location_manage
     b_unixtimereference = false;
     bDynamicTimeRef = true;
 
+    location_manager->set_autopilot_interface(this);
+
 }
 
 Autopilot_Interface::
@@ -1178,7 +1180,17 @@ void Autopilot_Interface::goto_positon_offset_ned(float x, float y, float z) {
     cout << "reached! \n";
 }
 
-void Autopilot_Interface::updateVisionEstimationPosition(mavlink_vision_position_estimate_t vpe) {
+void Autopilot_Interface::updateVisionEstimationPosition(uint64_t usec, float x, float y, float z, float roll, float pitch, float yaw) {
+
+    mavlink_vision_position_estimate_t vpe;
+    vpe.usec =  usec; /*< [us] Timestamp (UNIX time or time since system boot)*/
+    vpe.x = x; /*< [m] Global X position*/
+    vpe.y = y; /*< [m] Global Y position*/
+    vpe.z = z; /*< [m] Global Z position*/
+    vpe.roll = roll; /*< [rad] Roll angle*/
+    vpe.pitch = pitch; /*< [rad] Pitch angle*/
+    vpe.yaw = yaw; /*< [rad] Yaw angle*/
+
     mavlink_message_t message;
     mavlink_msg_vision_position_estimate_encode(system_id, companion_id, &message, &vpe);
 

@@ -7,16 +7,17 @@ system.uart_name: /dev/ttyUSB0
 system.camera_time_offset: 0.24
 system.xacc_offset: 0.21125624375235968
 system.yacc_offset: -0.3928618810342792
+#system.xacc_offset: 0.0
+#system.yacc_offset: 0.0
 system.zacc_offset: 0.0
 
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/dataset_car"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds2-emptygarage"
 #system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds5-soi120-2/ds5/"
 #system.record_path: "/home/rasp/Documents/datasets/test/ds2-home-recalibrate"
-system.record_path: "/home/rasp/Documents/datasets/test/ds6-test"
-#system.record_path: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi128"
-#system.record_path: "/home/rasp/Documents/datasets/ds7-ait-secretgarden/ds7"
-#system.record_path: "/home/rasp/Documents/datasets/ds10"
+system.record_path: "/home/rasp/Documents/datasets/test/record"
+#system.record_path: "/home/rasp/Documents/datasets/test/ds5-road-home/offline_dataset"
+#system.record_path: "/home/rasp/Documents/datasets/test/ds6-test"
 
 system.fps: 20
 system.sec: 60
