@@ -12,16 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b9059ce-a88b-4998-8c87-74afe1b12546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Offline/src/mono_mav.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/autopilot_interface.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/mavlink_control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/MAVMono/Online/src/slam_interface.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mobius_offline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/mobius_offline.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,8 +115,8 @@
       <file leaf-file-name="location_manager.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="64" column="141" selection-start-line="64" selection-start-column="141" selection-end-line="64" selection-end-column="141" />
+            <state relative-caret-position="260">
+              <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
               <folding>
                 <element signature="e#117#135#0" expanded="true" />
               </folding>
@@ -416,12 +407,12 @@
       <workItem from="1533980364495" duration="403000" />
       <workItem from="1534134559474" duration="979000" />
       <workItem from="1534817036854" duration="850000" />
-      <workItem from="1534832642508" duration="1217000" />
+      <workItem from="1534832642508" duration="1825000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="441931000" />
+    <option name="totallyTimeSpent" value="442539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1299" height="744" extended-state="4" />
@@ -839,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Examples/MAVMono/Online/src/location_manager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="64" column="141" selection-start-line="64" selection-start-column="141" selection-end-line="64" selection-end-column="141" />
+        <state relative-caret-position="260">
+          <caret line="66" column="13" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
           <folding>
             <element signature="e#117#135#0" expanded="true" />
           </folding>
