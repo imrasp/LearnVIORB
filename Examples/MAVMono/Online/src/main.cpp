@@ -49,6 +49,8 @@ int main(int argc, char **argv) {
                                                                   (bool) configParam.slam_position_update,
                                                                   slam_interface, configParam.record_path);
         mavlinkControl = new Mavlink_Control(&configParam, location_manager);
+
+        // default disable viewer 
         cameraRecorder = new Camera_Recorder(configParam.cameraid, configParam.camera_time_offset, false,
                                              slam_interface, configParam.record_path);
         mavlinkControl->start();
