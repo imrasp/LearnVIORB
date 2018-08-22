@@ -8,13 +8,10 @@ test.VINSInitTime: 15.0
 test.DiscardTime: 0
 
 test.InitVIOTmpPath: "/home/rasp/workspace/LearnVIORB/tmp/"
-<<<<<<< HEAD
 bagfile: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds3.bag"
-=======
 #bagfile: "/home/rasp/workspace/LearnVIORB/datasets/car_enu.bag"
 bagfile: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds3-garage/ds3.bag"
 #bagfile: "/home/rasp/workspace/LearnVIORB_mavlink/datasets/ds4-soi120/ds4.bag"
->>>>>>> 052e11f9bf94fddcec4e4f13e0af177fdf753f3c
 
 imutopic: "/imu0"
 imagetopic: "/cam0/image_raw"

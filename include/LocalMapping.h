@@ -29,12 +29,9 @@
 #include <iomanip>
 
 #include <mutex>
-<<<<<<< HEAD
 #include "IMU/configparam.h"
 
-=======
 #include <iomanip>
->>>>>>> 052e11f9bf94fddcec4e4f13e0af177fdf753f3c
 
 namespace ORB_SLAM2
 {
