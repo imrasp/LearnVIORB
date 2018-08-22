@@ -19,7 +19,7 @@ Examples/Monocular/mono_tum
 Examples/RGB-D/rgbd_tum
 Examples/Stereo/stereo_euroc
 Examples/Stereo/stereo_kitti
-cpr
+**/cpr
 Examples/ROS/ORB_VIO/VIO
 datasets
 
