@@ -21,6 +21,9 @@ Examples/Stereo/stereo_euroc
 Examples/Stereo/stereo_kitti
 
 Examples/ROS/ORB_VIO/VIO
+
+Examples/MAVMono/Online/cpr
+
 datasets
 
 route.txt

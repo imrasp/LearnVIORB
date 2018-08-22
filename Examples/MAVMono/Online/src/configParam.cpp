@@ -5,6 +5,7 @@ int ConfigParam::baudrate;
 int ConfigParam::fps;
 int ConfigParam::sec;
 int ConfigParam::gpstime;
+int ConfigParam::gui;
 int ConfigParam::slam_position_update;
 int ConfigParam::gps_position_update;
 double ConfigParam::camera_time_offset;
@@ -45,6 +46,7 @@ void ConfigParam::readParams(){
     cameraid = fSettings["system.cameraid"];
     fps = fSettings["system.fps"];
     gpstime = fSettings["system.gpstime"];
+    gui = fSettings["system.gui"];
     slam_position_update = fSettings["system.slam_position_update"];
     gps_position_update = fSettings["system.gps_position_update"];
 

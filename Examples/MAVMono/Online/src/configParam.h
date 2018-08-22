@@ -21,6 +21,7 @@ public:
     static int baudrate;
     static int sec;
     static int gpstime;
+    static int gui;
     static int slam_position_update;
     static int gps_position_update;
     static double camera_time_offset;
