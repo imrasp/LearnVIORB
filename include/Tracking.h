@@ -42,6 +42,8 @@
 #include "IMU/configparam.h"
 
 #include <mutex>
+#include <iomanip>
+
 
 namespace ORB_SLAM2
 {

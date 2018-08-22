@@ -769,6 +769,14 @@ namespace ORB_SLAM2 {
             if (!mbOnlyTracking) {
                 if (bOK) {
 #ifndef TRACK_WITH_IMU
+<<<<<<< HEAD
+=======
+//                cout << "NOT DEFINE TRACK_WITH_IMU \n";
+                bOK = TrackLocalMap();
+#else
+//                cout << "DEFINE TRACK_WITH_IMU \n";
+                if(!mpLocalMapper->GetVINSInited())
+>>>>>>> 052e11f9bf94fddcec4e4f13e0af177fdf753f3c
                     bOK = TrackLocalMap();
 #else
                     if (!mpLocalMapper->GetVINSInited())
@@ -787,6 +795,21 @@ namespace ORB_SLAM2 {
                 // Localization Mode: Local Mapping is deactivated
                 cerr << "Localization mode not supported yet" << endl;
             }
+<<<<<<< HEAD
+=======
+        }
+        else
+        {
+            // mbVO true means that there are few matches to MapPoints in the map. We cannot retrieve
+            // a local map and therefore we do not perform TrackLocalMap(). Once the system relocalizes
+            // the camera we will use the local map again.
+            //if(bOK && !mbVO)
+            //    bOK = TrackLocalMap();
+
+            // Localization Mode: Local Mapping is deactivated
+            cerr<<"Localization mode not supported yet"<<endl;
+        }
+>>>>>>> 052e11f9bf94fddcec4e4f13e0af177fdf753f3c
 
             if (bOK) {
                 mState = OK;
