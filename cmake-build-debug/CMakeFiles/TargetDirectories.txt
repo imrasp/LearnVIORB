@@ -1,3 +1,0 @@
-/home/rasp/workspace/LearnVIORB/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/rasp/workspace/LearnVIORB/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/rasp/workspace/LearnVIORB/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir

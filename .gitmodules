@@ -1,9 +1,4 @@
-[submodule "Thirdparty/cpr"]
-	path = Thirdparty/cpr
-	url = https://github.com/whoshuu/cpr.git
-[submodule "Thirdparty/json"]
-	path = Thirdparty/json
-	url = https://github.com/nlohmann/json.git
+
 [submodule "Examples/MAVMono/Online/cpr"]
 	path = Examples/MAVMono/Online/cpr
 	url = https://github.com/whoshuu/cpr.git

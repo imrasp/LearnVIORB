@@ -1,6 +1,0 @@
-/home/rasp/Downloads/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/rasp/workspace/LearnVIORB
-Build type: Debug
--- Using flag -std=c++11.
--- Configuring done
--- Generating done
--- Build files have been written to: /home/rasp/workspace/LearnVIORB/cmake-build-debug
