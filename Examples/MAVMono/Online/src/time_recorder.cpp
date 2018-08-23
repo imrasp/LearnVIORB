@@ -20,7 +20,7 @@ void Time_Recorder::stop() {
     std::cout << "stop time record thread \n";
     time_to_exit = true;
     threadRecordTime.join();
-    std::cout << "Finish recording IMU." << std::endl;
+    std::cout << "Finish recording time." << std::endl;
 }
 
 

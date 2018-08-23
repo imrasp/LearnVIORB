@@ -33,11 +33,11 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
     imu_recorder_highres->start();
 //    imu_recorder_scaled = new IMU_Recorder("scaled_imu0.csv", record_path);
 //    imu_recorder_scaled->start();
-    imu_recorder_gps = new IMU_Recorder("gps0.csv", record_path);
-    imu_recorder_gps->start();
+//    imu_recorder_gps = new IMU_Recorder("gps0.csv", record_path);
+//    imu_recorder_gps->start();
 
-    imu_recorder_ned = new IMU_Recorder("ned0.csv", record_path);
-    imu_recorder_ned->start();
+//    imu_recorder_ned = new IMU_Recorder("ned0.csv", record_path);
+//    imu_recorder_ned->start();
 
     time_recorder = new Time_Recorder("time_imu0.csv", record_path);
     time_recorder->start();
@@ -59,8 +59,8 @@ void Location_Manager::stop(){
 //    imu_recorder->stop();
 //    imu_recorder_scaled->stop();
     imu_recorder_highres->stop();
-    imu_recorder_ned->stop();
-    imu_recorder_gps->stop();
+//    imu_recorder_ned->stop();
+//    imu_recorder_gps->stop();
     time_recorder->stop();
 
     threadInitialGeodetic.join();
@@ -197,7 +197,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
     uint64_t c_timestamp;
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
-        std::cout << " c_timestamp = " << c_timestamp;
+//        std::cout << " c_timestamp = " << c_timestamp;
         slam_interface->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         imu_recorder_highres->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         time_recorder->add_time_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref);
@@ -267,7 +267,7 @@ void Location_Manager::set_time(uint32_t boot_timestamp, uint64_t unix_timestamp
 uint64_t Location_Manager::get_unixtime(uint64_t time) {
     if (b_pixhawk_time_ref) {
         uint64_t timestamp_ns = pixhawk_unix_ns_ref + (time - pixhawk_ns_ref);
-        std::cout << "get_time = " << timestamp_ns;
+//        std::cout << "get_time = " << timestamp_ns;
         return timestamp_ns;
     } else return 0;
 }
