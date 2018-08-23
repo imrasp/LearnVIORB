@@ -14,6 +14,7 @@
 #include "geodetic_converter.cpp"
 #include "imu_recorder.h"
 #include "slam_interface.h"
+#include "time_recorder.h"
 
 class Autopilot_Interface;
 
@@ -61,7 +62,7 @@ private:
     uint64_t pixhawk_ns_ref;
     uint64_t pixhawk_unix_ns_ref;
 
-
+    Time_Recorder *time_recorder;
     IMU_Recorder *imu_recorder, *imu_recorder_highres, *imu_recorder_scaled, *imu_recorder_gps, *imu_recorder_ned, *imu_recorder_highres_time;
     SLAM_Interface *slam_interface;
     Autopilot_Interface *autopilot_interface;

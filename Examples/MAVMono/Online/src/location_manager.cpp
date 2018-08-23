@@ -39,8 +39,8 @@ Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_
     imu_recorder_ned = new IMU_Recorder("ned0.csv", record_path);
     imu_recorder_ned->start();
 
-    imu_recorder_highres_time = new IMU_Recorder("time_imu0.csv", record_path);
-    imu_recorder_highres_time->start();
+    time_recorder = new Time_Recorder("time_imu0.csv", record_path);
+    time_recorder->start();
 
     previous_state = 0;
 }
@@ -61,7 +61,7 @@ void Location_Manager::stop(){
     imu_recorder_highres->stop();
     imu_recorder_ned->stop();
     imu_recorder_gps->stop();
-    imu_recorder_highres_time->stop();
+    time_recorder->stop();
 
     threadInitialGeodetic.join();
     std::cout << "stopped location manager... \n";
@@ -199,7 +199,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
         slam_interface->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         imu_recorder_highres->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
-        imu_recorder_highres_time->add_imu_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref, 0, 0);
+        time_recorder->add_time_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref);
     }
     else {
         c_timestamp = boot_timestamp * 1e3;
