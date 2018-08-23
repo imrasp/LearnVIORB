@@ -35,6 +35,7 @@ void IMU_Recorder::start() {
 void IMU_Recorder::add_imu_to_queue(uint64_t timestamp, double xacc, double yacc, double zacc,
                                     double xgyro, double ygyro, double zgyro) {
 //    std::cout << "add IMU to queue \n";
+    std::cout << " timestamp = " << timestamp <<std::endl;
     imu_data imu;
     imu.timestamp = timestamp;
     imu.xacc = xacc;

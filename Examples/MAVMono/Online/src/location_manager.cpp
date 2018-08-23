@@ -197,7 +197,7 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
     uint64_t c_timestamp;
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(boot_timestamp * 1e3);
-        std::cout << " c_timestamp = " << c_timestamp <<std::endl;
+        std::cout << " c_timestamp = " << c_timestamp;
         slam_interface->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         imu_recorder_highres->add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
         time_recorder->add_time_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref);
