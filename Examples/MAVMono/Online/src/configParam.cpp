@@ -8,6 +8,7 @@ int ConfigParam::gpstime;
 int ConfigParam::gui;
 int ConfigParam::slam_position_update;
 int ConfigParam::gps_position_update;
+int ConfigParam::useSLAM;
 double ConfigParam::camera_time_offset;
 double ConfigParam::xacc_offset;
 double ConfigParam::yacc_offset;
@@ -44,6 +45,7 @@ void ConfigParam::readParams(){
 
     sec = fSettings["system.sec"];
     cameraid = fSettings["system.cameraid"];
+    useSLAM = fSettings["system.useSLAM"];
     fps = fSettings["system.fps"];
     gpstime = fSettings["system.gpstime"];
     gui = fSettings["system.gui"];

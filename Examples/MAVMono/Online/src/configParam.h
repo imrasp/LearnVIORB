@@ -24,6 +24,7 @@ public:
     static int gui;
     static int slam_position_update;
     static int gps_position_update;
+    static int useSLAM;
     static double camera_time_offset;
     static double xacc_offset;
     static double yacc_offset;

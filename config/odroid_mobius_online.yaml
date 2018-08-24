@@ -9,10 +9,8 @@ system.baudrate: 921600
 system.uart_name: /dev/ttyUSB0
 system.fps: 20
 system.sec: 60
-system.usecamera: 1 #1:Enable camera 0:Disable
-system.useIMU: 1 #1:Enable IMU 0:Disable
-system.useSLAM: 1 #1:Enable SLAM 0:Disable
-system.cameraid: 0
+system.useSLAM: 0 #1:Enable SLAM 0:Disable
+system.cameraid: -1 # set cameraid = -1 to disable camera
 system.gpstime: 1 #use gps time 1:yes 0:no
 system.camera_time_offset: 0.24
 system.xacc_offset: 0.21125624375235968

@@ -14,18 +14,21 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
     noFrame = PTHREAD_COND_INITIALIZER;
     mutexFrame = PTHREAD_MUTEX_INITIALIZER;
 
-    cout << "Starting SLAM..." << endl;
-    // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR, mavconfigParam->gui);
-    config = new ORB_SLAM2::ConfigParam(mavconfigParam->setting);
+    if (mavconfigParam->useSLAM || mavconfigParam->cameraid == -1) {
+        cout << "Starting SLAM..." << endl;
+        // Create SLAM system. It initializes all system threads and gets ready to process frames.
+        SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR,
+                                     mavconfigParam->gui);
+        config = new ORB_SLAM2::ConfigParam(mavconfigParam->setting);
 
-    imageMsgDelaySec = config->GetImageDelayToIMU();
-    // ORBVIO::MsgSynchronizer msgsync(imageMsgDe laySec);
-    bAccMultiply98 = config->GetAccMultiply9p8();
+        imageMsgDelaySec = config->GetImageDelayToIMU();
+        // ORBVIO::MsgSynchronizer msgsync(imageMsgDe laySec);
+        bAccMultiply98 = config->GetAccMultiply9p8();
 
 
-    cout << "Start SLAM thread..." << endl;
-    threadSLAM = boost::thread(&SLAM_Interface::start, this);
+        cout << "Start SLAM thread..." << endl;
+        threadSLAM = boost::thread(&SLAM_Interface::start, this);
+    }
 }
 
 SLAM_Interface::~SLAM_Interface() {

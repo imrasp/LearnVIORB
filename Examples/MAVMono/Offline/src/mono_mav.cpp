@@ -120,10 +120,10 @@ int main(int argc, char **argv) {
                 if(timestamp_camera < startT+config._testDiscardTime)
                     image = cv::Mat::zeros(image.rows,image.cols,image.type());
 
-//                std::cout << "-------------------" << '\n';
-//                std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << timestamp << '\n';
-//                std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
-//                std::cout << "-------------------" << '\n';
+                std::cout << "-------------------" << '\n';
+                std::cout << std::setprecision(19) << "Lastest IMU timestamp: " << timestamp << '\n';
+                std::cout << "Total Number of IMU: " << vimuData.size() << '\n';
+                std::cout << "-------------------" << '\n';
 
                 //skip first frame
                 if (!isFirstFrame) {

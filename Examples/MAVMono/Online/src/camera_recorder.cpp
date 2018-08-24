@@ -130,16 +130,18 @@ void Camera_Recorder::cameraRecord() {
 }
 
 void Camera_Recorder::start() {
-    // initilize camera parameter
-    initializeCamera();
+    if(camid == -1) {
+        // initilize camera parameter
+        initializeCamera();
 
-    //create camera thread
-    std::cout << "Start camera thread..." << std::endl;
-    threadCamera = boost::thread(&Camera_Recorder::cameraLoop, this);
+        //create camera thread
+        std::cout << "Start camera thread..." << std::endl;
+        threadCamera = boost::thread(&Camera_Recorder::cameraLoop, this);
 
-    // create record thread
-    std::cout << "Start record thread..." << std::endl;
-    threadRecord = boost::thread(&Camera_Recorder::cameraRecord, this);
+        // create record thread
+        std::cout << "Start record thread..." << std::endl;
+        threadRecord = boost::thread(&Camera_Recorder::cameraRecord, this);
+    }
 }
 
 void Camera_Recorder::stop() {
