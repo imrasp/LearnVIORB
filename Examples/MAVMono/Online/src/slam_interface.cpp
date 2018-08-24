@@ -14,7 +14,7 @@ SLAM_Interface::SLAM_Interface(ConfigParam *mavconfigParam_) : mavconfigParam(ma
     noFrame = PTHREAD_COND_INITIALIZER;
     mutexFrame = PTHREAD_MUTEX_INITIALIZER;
 
-    if (mavconfigParam->useSLAM || mavconfigParam->cameraid == -1) {
+    if (mavconfigParam->useSLAM || mavconfigParam->cameraid == 99) {
         cout << "Starting SLAM..." << endl;
         // Create SLAM system. It initializes all system threads and gets ready to process frames.
         SLAM = new ORB_SLAM2::System(mavconfigParam->vocabulary, mavconfigParam->setting, ORB_SLAM2::System::MONOCULAR,
