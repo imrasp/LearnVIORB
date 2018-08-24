@@ -47,7 +47,8 @@ int main(int argc, char **argv) {
 
         Location_Manager *location_manager = new Location_Manager((bool) configParam.gps_position_update,
                                                                   (bool) configParam.slam_position_update,
-                                                                  slam_interface, configParam.record_path);
+                                                                  slam_interface, configParam.record_path,
+                                                                  (bool) configParam.gpstime);
         mavlinkControl = new Mavlink_Control(&configParam, location_manager);
         cameraRecorder = new Camera_Recorder(configParam.cameraid, configParam.camera_time_offset, false,
                                              slam_interface, configParam.record_path);

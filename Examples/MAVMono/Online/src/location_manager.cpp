@@ -5,10 +5,10 @@
 #include "location_manager.h"
 #include "autopilot_interface.h"
 
-Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path)
+Location_Manager::Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path, bool _use_gpstime)
         : initializeGeodetic(false),
           update_gps_position(_update_gps_position), update_slam_position(_update_slam_position),
-          b_pixhawk_time_ref(false), slam_interface(slam_interface_) {
+          b_pixhawk_time_ref(false), slam_interface(slam_interface_), use_gpstime(_use_gpstime) {
 
     slam_interface->set_location_manager(this);
     geodeticConverter = new geodetic_converter::GeodeticConverter();
@@ -203,9 +203,11 @@ void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, floa
         time_recorder->add_time_to_queue(c_timestamp, boot_timestamp, b_pixhawk_time_ref, pixhawk_ns_ref, pixhawk_unix_ns_ref);
     }
     else {
-        c_timestamp = boot_timestamp * 1e3;
-//        imu_recorder_highres->
-//            add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+        if (!use_gpstime) {
+            c_timestamp = boot_timestamp * 1e3;
+            imu_recorder_highres->
+                    add_imu_to_queue(c_timestamp, xacc, yacc, zacc, xgyro, ygyro, zgyro);
+        }
     }
 }
 

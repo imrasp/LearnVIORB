@@ -117,23 +117,24 @@ void Mavlink_Control::start() {
     autopilot_interface->start();
 
 
-    //waiting for first gps message
-    cout << "waiting for GPS signal \n";
-    int count = 30;
-    while (!location_manager->isGeodeticInitialize() && count > 0){
-        sleep(1);
-        --count;
-    }
+    if(configParam->gpstime) {
+        //waiting for first gps message
+        cout << "waiting for GPS signal \n";
+        int count = 30;
+        while (!location_manager->isGeodeticInitialize() && count > 0) {
+            sleep(1);
+            --count;
+        }
 
-    if (!location_manager->isGeodeticInitialize())
-    {
-        throw 20; // gps not found
-    }
+        if (!location_manager->isGeodeticInitialize()) {
+            throw 20; // gps not found
+        }
 
-    //check route
-    std::cout << "start route check\n";
-    int result = check_route();
-    std::cout << "route checked \n";
+        //check route
+        std::cout << "start route check\n";
+        int result = check_route();
+        std::cout << "route checked \n";
+    }
 
 }
 
@@ -161,7 +162,21 @@ void Mavlink_Control::cmd() {
 //    cout << " waiting for " << configParam->sec << " sec.\n";
 //    // stack imu in queue for 60 seconds
 //    sleep(configParam->sec);
-    follow_route_file();
+    if(configParam->gpstime) {
+        follow_route_file();
+    } else {
+        // record for kalibr
+        cout << "start 1th hr record \n";
+        sleep(3600);
+        cout << "start 2nd hr record \n";
+        sleep(3600);
+        cout << "start 3rd hr record \n";
+        sleep(3600);
+        cout << "start 4th hr record \n";
+        sleep(3600);
+        cout << "Finish 4 hrs record! \n";
+        sleep(10);
+    }
 
 
 

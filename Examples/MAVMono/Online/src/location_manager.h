@@ -20,7 +20,7 @@ class Autopilot_Interface;
 
 class Location_Manager{
 public:
-    Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path);
+    Location_Manager(bool _update_gps_position, bool _update_slam_position, SLAM_Interface *slam_interface_, string record_path, bool _use_gpstime);
     ~Location_Manager();
 
     void set_autopilot_interface(Autopilot_Interface *autopilot_interface_);
@@ -52,7 +52,7 @@ private:
     geodetic_converter::GeodeticConverter *geodeticConverter;
     boost::thread threadInitialGeodetic;
 
-    bool update_gps_position, update_slam_position;
+    bool update_gps_position, update_slam_position, use_gpstime;
     bool time_to_exit;
     double cx,cy,cz;
     double c_lat, c_lon, c_alt;
