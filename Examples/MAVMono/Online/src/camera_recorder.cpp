@@ -130,7 +130,7 @@ void Camera_Recorder::cameraRecord() {
 }
 
 void Camera_Recorder::start() {
-    if(camid == 99) {
+    if(camid != 99) {
         // initilize camera parameter
         initializeCamera();
 
