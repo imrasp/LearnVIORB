@@ -5,9 +5,13 @@
 
 Camera_Recorder::Camera_Recorder(int camid_, int time_offset_, bool bViewer_, SLAM_Interface *slam_interface_, string record_path_) : camid(camid_),
                                                                                 time_offset(time_offset_),
-                                                                                bViewer(bViewer_), slam_interface(slam_interface_), record_path(record_path_) {
-    lframe.open(record_path + "/frame_cam" + std::to_string(camid) + ".csv");
-    lframe << "timestamp" << "\n";
+
+                                                                                bViewer(bViewer_), slam_interface(slam_interface_), record_path(record_path_)
+{
+    if(camid != -1){
+        lframe.open(record_path + "/frame_cam" + std::to_string(camid) + ".csv");
+        lframe << "timestamp" << "\n";
+    }
 }
 
 Camera_Recorder::~Camera_Recorder() {
@@ -130,7 +134,7 @@ void Camera_Recorder::cameraRecord() {
 }
 
 void Camera_Recorder::start() {
-    if(camid != 99) {
+    if(camid != -1) {
         // initilize camera parameter
         initializeCamera();
 

@@ -194,6 +194,15 @@ void Location_Manager::set_slam_position(uint64_t timestamp, double x, double y,
 void Location_Manager::set_highres_imu(uint64_t boot_timestamp, float xacc, float yacc, float zacc, float xgyro,
                                        float ygyro, float zgyro) {
 //    std::cout << "Get HIGHRES_IMU messaage \n";
+    /**
+     *  uint64_t time_usec; //< [us(microsecond)] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+     *  float xacc; //< [m/s/s] X acceleration
+     *  float yacc; //< [m/s/s] Y acceleration
+     *  float zacc; //< [m/s/s] Z acceleration
+     *  float xgyro; //< [rad/s] Angular speed around X axis
+     *  float ygyro; //< [rad/s] Angular speed around Y axis
+     *  float zgyro; //< [rad/s] Angular speed around Z axis
+    **/
     uint64_t c_timestamp;
     if (b_pixhawk_time_ref) {
         c_timestamp = get_unixtime(boot_timestamp * 1e3);

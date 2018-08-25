@@ -165,17 +165,17 @@ void Mavlink_Control::cmd() {
     if(configParam->gpstime) {
         follow_route_file();
     } else {
-        // record for kalibr
-        cout << "start 1th hr record \n";
-        sleep(3600);
-        cout << "start 2nd hr record \n";
-        sleep(3600);
-        cout << "start 3rd hr record \n";
-        sleep(3600);
-        cout << "start 4th hr record \n";
-        sleep(3600);
-        cout << "Finish 4 hrs record! \n";
-        sleep(10);
+//        // record for kalibr
+//        cout << "start 1th hr record \n";
+//        sleep(3600);
+//        cout << "start 2nd hr record \n";
+//        sleep(3600);
+//        cout << "start 3rd hr record \n";
+//        sleep(3600);
+//        cout << "start 4th hr record \n";
+//        sleep(3600);
+//        cout << "Finish 4 hrs record! \n";
+//        sleep(10);
     }
 
 
@@ -322,6 +322,8 @@ int Mavlink_Control::follow_route_file(){
 //                }
                 else if ( i == 0 && temp == "hold" ){
                     mode = "hold"; i++;
+                } else if ( i == 0 && temp == "hold" ){
+                    mode = "print"; i++;
                 } else if ( i == 0 && temp == "goto_ned" ){
                     mode = "gotoned"; i++;
                 } else if ( i == 0 && temp == "goto_gps" ){
@@ -344,6 +346,8 @@ int Mavlink_Control::follow_route_file(){
                     } else if( i == 1 && mode == "sleep" ){
                         cout << "sleep for " << stod(temp) << " sec. \n";
                         sleep(stod(temp));
+                    } else if( i == 1 && mode == "print" ){
+                        cout << temp << endl;
                     } else if ( i == 1 && (mode == "goto_ned" || mode == "goto_gps" || mode == "gotonedoffset" || mode == "takeoff")  ){
                         param1 = stod(temp); i++;
                     } else if (i != 1 ){
